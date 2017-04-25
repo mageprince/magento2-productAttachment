@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Krish_Productattach::top_level" title="Krish" module="Krish_Productattach" sortOrder="30" resource="Krish_Productattach::productattach"/>
+        <add id="Krish_Productattach::productattach_manage" title="Product Attachment" module="Krish_Productattach" sortOrder="10" parent="Krish_Productattach::top_level" action="productattach/index/" resource="Magento_Backend::content"/>
+    </menu>
+</config>

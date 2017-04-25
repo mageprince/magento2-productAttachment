@@ -1,0 +1,37 @@
+<?php
+
+namespace Krish\Productattach\Block\Adminhtml\Productattach\Renderer;
+ 
+use Magento\Framework\DataObject;
+ 
+class Group extends \Magento\Backend\Block\Widget\Grid\Column\Renderer\AbstractRenderer
+{
+
+    /**
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     */
+    protected $_objectManager;
+
+    public function __construct( \Magento\Framework\ObjectManagerInterface $objectManager) {
+        $this->_objectManager = $objectManager;
+    }
+ 
+    /**
+     * get customer group name
+     * @param  DataObject $row
+     * @return string
+     */
+    public function render(DataObject $row)
+    {
+        $groups = explode(',', $row->getCustomerGroup());
+
+        $customerGroup = "";
+
+        foreach ($groups as $group) {
+        	$customer = $this->_objectManager->get('\Magento\Customer\Model\Group')->load($group);	
+        	$customerGroup .= $customer->getCustomerGroupCode()."</br>";
+        }
+       
+        return $customerGroup;
+    }
+}

@@ -1,0 +1,46 @@
+<?php
+
+namespace Krish\Productattach\Block\Adminhtml\Productattach\Renderer;
+ 
+use Magento\Framework\DataObject;
+ 
+class Store extends \Magento\Backend\Block\Widget\Grid\Column\Renderer\AbstractRenderer
+{
+
+    /**
+     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     */
+    protected $_objectManager;
+
+    /**
+     * @param \Magento\Store\Model\System\Store $systemStore
+     */
+    protected $_systemStore;
+
+    public function __construct( 
+        \Magento\Framework\ObjectManagerInterface $objectManager,
+        \Magento\Store\Model\StoreManagerInterface $systemStore
+    ) {
+        $this->_objectManager = $objectManager;
+        $this->_systemStore = $systemStore;
+    }
+ 
+    /**
+     * get customer group name
+     * @param  DataObject $row
+     * @return string
+     */
+    public function render(DataObject $row)
+    {
+        $stores = explode(',', $row->getStore());
+
+        $storeName = "";
+
+        foreach ($stores as $store) {
+        	$store = $this->_systemStore->getStore($store)->getName();	
+            $storeName .= $store."</br>";
+        }
+       
+        return $storeName;
+    }
+}
