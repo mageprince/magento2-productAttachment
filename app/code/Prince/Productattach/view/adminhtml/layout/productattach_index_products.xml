@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/layout_generic.xsd">
+    <container name="root" label="Root">
+        <block class="Prince\Productattach\Block\Adminhtml\Productattach\Edit\Tab\Products" name="productattach.edit.tab.products"/>
+        <block class="Magento\Backend\Block\Widget\Grid\Serializer" name="products_grid_serializer">
+            <arguments>
+                <argument name="grid_block" xsi:type="string">productattach.edit.tab.products</argument>
+                <argument name="callback" xsi:type="string">getSelectedProducts</argument>
+                <argument name="input_element_name" xsi:type="string">products</argument>
+                <argument name="reload_param_name" xsi:type="string">index_products</argument>
+            </arguments>
+        </block>
+    </container>
+</layout>

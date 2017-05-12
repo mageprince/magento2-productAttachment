@@ -1,0 +1,21 @@
+{
+    "name": "prince/module-productattach",
+    "description": "",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "7pprince@gmail.com",
+            "name": "Prince"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Prince\\Productattach\\": ""
+        }
+    }
+}
