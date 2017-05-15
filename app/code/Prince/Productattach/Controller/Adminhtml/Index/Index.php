@@ -46,11 +46,11 @@ class Index extends \Magento\Backend\App\Action
         $resultPage->setActiveMenu(
             'Prince_Productattach::productattach_manage'
         )->addBreadcrumb(
-            __('Productattach'),
-            __('Productattach')
+            __('Attachment'),
+            __('Attachment')
         )->addBreadcrumb(
-            __('Manage Productattach'),
-            __('Manage Productattach')
+            __('Manage Attachment'),
+            __('Manage Attachment')
         );
         $resultPage->getConfig()->getTitle()->prepend(__('Product Attachment'));
         return $resultPage;

@@ -8,14 +8,22 @@ class FileIconAdmin extends \Magento\Framework\Data\Form\Element\AbstractElement
 {
 
     /**
-     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @var \Magento\Framework\View\Asset\Repository
      */
-      protected $_assetRepo;
-      protected $_dataHelper;
+    protected $_assetRepo;
 
+    /**
+     * @var \Prince\Productattach\Helper\Data
+     */
+    protected $_dataHelper;
+
+    /**
+     * @param \Magento\Framework\View\Asset\Repository $assetRepo
+     * @param \Prince\Productattach\Helper\Data $dataHelper
+     */
     public function __construct( 
-         \Magento\Framework\View\Asset\Repository $assetRepo,
-         \Prince\Productattach\Helper\Data $dataHelper
+        \Magento\Framework\View\Asset\Repository $assetRepo,
+        \Prince\Productattach\Helper\Data $dataHelper
     ) {
         $this->_dataHelper = $dataHelper;
          $this->_assetRepo = $assetRepo;
@@ -26,7 +34,6 @@ class FileIconAdmin extends \Magento\Framework\Data\Form\Element\AbstractElement
      * @param  DataObject $row
      * @return string
      */
-
     public function getElementHtml()
     {
         $file = $this->getValue();
@@ -46,5 +53,4 @@ class FileIconAdmin extends \Magento\Framework\Data\Form\Element\AbstractElement
         }
         return $fileIcon;
     }
-
 }

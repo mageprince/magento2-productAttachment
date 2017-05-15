@@ -1,22 +1,12 @@
 <?php
 /**
- * Productattach template for separate item
- *
+ * @var $this Prince\Productattach\Block\Attachment
+ * @see Prince\Productattach\Block\Attachment
  */
-
-/**
- * @var $this Prince\Productattach\Block\View
- * @see Prince\Productattach\Block\View
- */
-?>
-<?php 
-//echo "test";
-//echo $this->getCustomerId();
-
 ?>
 <?php $productId = $this->getCurrentId(); ?>
-
 <?php $attachments = $this->getAttachment($productId); ?>
+<?php $isSize = $this->getConfig('productattach/general/attachmentsize'); ?>
 
 <?php foreach ($attachments as $attachment): ?>
 	<?php if($attachment->getActive()): ?>
@@ -26,7 +16,9 @@
 	        	<a href="<?php echo $this->getAttachmentUrl($attachment->getFile()) ?>" target="_blank">
 	        		<?php echo $this->getFileIcon($attachment->getFile()) ?>
 	        		<?php echo $attachment->getName() ?>
-	        		<?php echo '( '.$this->getFileSize($attachment->getFile()).' )' ?>
+	        		<?php if($isSize): ?>
+	        			<?php echo '('.$this->getFileSize($attachment->getFile()).')' ?>
+	        		<?php endif; ?>
 	        	</a>
 	        <?php else: ?>
 	        	<a href="<?php echo $attachment->getUrl() ?>" target="_blank" >

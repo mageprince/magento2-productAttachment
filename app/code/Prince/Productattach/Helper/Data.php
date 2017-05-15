@@ -124,6 +124,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     
     /**
      * Return the number of items per page
+     *
      * @return int
      */
     public function getProductattachPerPage()
@@ -131,6 +132,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return abs((int)$this->_scopeConfig->getValue(self::XML_PATH_ITEMS_PER_PAGE, \Magento\Store\Model\ScopeInterface::SCOPE_STORE));
     }
 
+    /**
+     * Return current store Id
+     *
+     * @return Int
+     */
     public function getStoreId()
     {
         return $this->_storeManager->getStore()->getId();
@@ -141,12 +147,18 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         return $this->_backendUrl->getUrl('productattach/index/products', ['_current' => true]);
     }
 
+    /**
+     * Return customer groups
+     */
     public function getCustomerGroup($customers)
     {
         $customers = implode(',', $customers);
         return $customers;
     }
 
+    /**
+     * Return stores
+     */
     public function getStores($store)
     {
         $store = implode(',', $store);

@@ -8,17 +8,25 @@ class FileIcon extends \Magento\Backend\Block\Widget\Grid\Column\Renderer\Abstra
 {
 
     /**
-     * @param \Magento\Framework\ObjectManagerInterface $objectManager
+     * @var \Magento\Framework\View\Asset\Repository
      */
-      protected $_assetRepo;
-      protected $_dataHelper;
+    protected $_assetRepo;
+    
+    /**
+     * @var \Prince\Productattach\Helper\Data
+     */
+    protected $_dataHelper;
 
+    /**
+     * @param \Magento\Framework\View\Asset\Repository $assetRepo
+     * @param \Prince\Productattach\Helper\Data $dataHelper
+     */
     public function __construct( 
          \Magento\Framework\View\Asset\Repository $assetRepo,
          \Prince\Productattach\Helper\Data $dataHelper
     ) {
         $this->_dataHelper = $dataHelper;
-         $this->_assetRepo = $assetRepo;
+        $this->_assetRepo = $assetRepo;
     }
  
     /**
@@ -39,8 +47,6 @@ class FileIcon extends \Magento\Backend\Block\Widget\Grid\Column\Renderer\Abstra
             $fileIcon = "<img src='".$iconImage."' />";
         }
         
-
         return $fileIcon;
-    
     }
 }

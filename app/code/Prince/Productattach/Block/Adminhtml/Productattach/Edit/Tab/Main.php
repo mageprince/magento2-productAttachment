@@ -1,9 +1,7 @@
 <?php
+
 namespace Prince\Productattach\Block\Adminhtml\Productattach\Edit\Tab;
 
-/**
- * Cms page edit form main tab
- */
 class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magento\Backend\Block\Widget\Tab\TabInterface
 {
     /**
@@ -11,6 +9,9 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
      */
     protected $_systemStore;
 
+    /**
+     * @var \Magento\Framework\ObjectManagerInterface
+     */
     protected $_objectManager;
 
     /**
@@ -18,6 +19,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\Framework\Data\FormFactory $formFactory
      * @param \Magento\Store\Model\System\Store $systemStore
+     * @param \Magento\Framework\ObjectManagerInterface
      * @param array $data
      */
     public function __construct(

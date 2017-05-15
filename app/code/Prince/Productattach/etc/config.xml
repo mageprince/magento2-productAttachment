@@ -2,9 +2,12 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
     <default>
         <productattach>
-            <view>
-                <enabled>1</enabled>
-            </view>
+            <general>
+                <enable>1</enable>
+                <productdetail>1</productdetail>
+                <producttab>1</producttab>
+                <attachmentsize>1</attachmentsize>
+            </general>
         </productattach>
     </default>
 </config>

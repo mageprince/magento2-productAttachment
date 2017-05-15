@@ -12,6 +12,9 @@ class Save extends \Magento\Backend\App\Action
      */
     protected $dataProcessor;
 
+    /**
+     * @var Data
+     */
     protected $helper;
 
     /**
@@ -41,48 +44,19 @@ class Save extends \Magento\Backend\App\Action
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
-        
         if ($data) {
-
             $data = $this->dataProcessor->filter($data);
             $customerGroup = $this->helper->getCustomerGroup($data['customer_group']);
             $store = $this->helper->getStores($data['store']);
             $data['customer_group'] = $customerGroup;
             $data['store'] = $store;
-
             $model = $this->_objectManager->create('Prince\Productattach\Model\Productattach');
-
             $id = $this->getRequest()->getParam('productattach_id');
+            
             if ($id) {
                 $model->load($id);
             }
             
-            
-
-            // save image data and remove from data array
-
-
-            // if (isset($data['file'])) {
-            //     $imageData = $data['file'];
-            //     unset($data['file']);
-            // } else {
-            //     $imageData = array();
-            // }
-
-            //  echo "<pre>";
-            // print_r($imageData);
-
-            // exit;
-
-            
-            //echo "<pre>";
-            //print_r($data['file']['value']); exit;
-            
-            //$data['customer_group'] = implode(',',$data['customer_group']);
-            //$data['store'] = implode(',', $data['store']);
-            // echo "<pre>";
-            // print_r($data);
-            // exit;
             $model->addData($data);
 
             if (!$this->dataProcessor->validate($data)) {
@@ -92,24 +66,13 @@ class Save extends \Magento\Backend\App\Action
 
             try {
                 
-
-                /*if (isset($imageData['delete']) && $model->getImage()) {
-                    $imageHelper->removeImage($model->getImage());
-                    $model->setImage(null);
-                }*/
-                
                 if (isset($_FILES['file']) && $_FILES['file']['name'] != '') {
                     $imageFile = $this->helper->uploadFile('file');
                     $model->setFile($imageFile);
                 }
                 
-                // $imageFile = $imageHelper->uploadFile('file');
-                // if ($imageFile) {
-                //     $model->setFile($imageFile);
-                // }
-                
                 $model->save();
-                $this->messageManager->addSuccess(__('The Data has been saved.'));
+                $this->messageManager->addSuccess(__('Attachment has been saved.'));
                 $this->_objectManager->get('Magento\Backend\Model\Session')->setFormData(false);
                 if ($this->getRequest()->getParam('back')) {
                     $this->_redirect('*/*/edit', ['productattach_id' => $model->getId(), '_current' => true]);
@@ -122,7 +85,7 @@ class Save extends \Magento\Backend\App\Action
             } catch (\RuntimeException $e) {
                 $this->messageManager->addError($e->getMessage());
             } catch (\Exception $e) {
-                $this->messageManager->addException($e, __('Something went wrong while saving the data.'));
+                $this->messageManager->addException($e, __('Something went wrong while saving the attachment.'));
             }
 
             $this->_getSession()->setFormData($data);

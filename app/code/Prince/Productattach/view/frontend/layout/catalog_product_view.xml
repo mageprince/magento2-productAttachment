@@ -1,8 +1,11 @@
 <?xml version="1.0"?>
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
-    <body>      
+    <body>
+        <referenceContainer name="alert.urls">
+            <block class="Prince\Productattach\Block\Attachment" name="productattach" as="productattach" template="Prince_Productattach::attachment.phtml" ifconfig="productattach/general/productdetail"/>
+        </referenceContainer>
         <referenceBlock name="product.info.details">
-          <block class="Prince\Productattach\Block\Attachment" name="productattach.tab" as="productattach" template="Prince_Productattach::attachment.phtml" group="detailed_info" >
+          <block class="Prince\Productattach\Block\Attachment" name="productattach.tab" as="productattach" template="Prince_Productattach::attachment.phtml" group="detailed_info" ifconfig="productattach/general/producttab">
              <arguments>
                 <argument translate="true" name="title" xsi:type="string">Product Attachment</argument>
              </arguments>

@@ -51,11 +51,11 @@ class Edit extends \Magento\Backend\App\Action
         $resultPage->setActiveMenu(
             'Prince_Productattach::productattach_manage'
         )->addBreadcrumb(
-            __('Productattach'),
-            __('Productattach')
+            __('Attachment'),
+            __('Attachment')
         )->addBreadcrumb(
-            __('Manage Productattach'),
-            __('Manage Productattach')
+            __('Manage Attachment'),
+            __('Manage Attachment')
         );
         return $resultPage;
     }
@@ -75,7 +75,7 @@ class Edit extends \Magento\Backend\App\Action
         if ($id) {
             $model->load($id);
             if (!$model->getId()) {
-                $this->messageManager->addError(__('This productattach no longer exists.'));
+                $this->messageManager->addError(__('This Attachment no longer exists.'));
 				/** \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
                 $resultRedirect = $this->resultRedirectFactory->create();
                 return $resultRedirect->setPath('*/*/');
@@ -95,12 +95,12 @@ class Edit extends \Magento\Backend\App\Action
 		/** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->_initAction();
         $resultPage->addBreadcrumb(
-            $id ? __('Edit Productattach') : __('New Productattach'),
-            $id ? __('Edit Productattach') : __('New Productattach')
+            $id ? __('Edit Attachment') : __('New Attachment'),
+            $id ? __('Edit Attachment') : __('New Attachment')
         );
         $resultPage->getConfig()->getTitle()->prepend(__('Productattach'));
         $resultPage->getConfig()->getTitle()
-            ->prepend($model->getId() ? $model->getTitle() : __('New Productattach'));
+            ->prepend($model->getId() ? $model->getTitle() : __('New Attachment'));
         return $resultPage;
     }
 }

@@ -17,8 +17,14 @@ class FileIcon extends Column
      */
     protected $storeManager;
 
+    /**
+     * @var \Magento\Framework\View\Asset\Repository
+     */
     protected $_assetRepo;
     
+    /**
+     * @var \Prince\Productattach\Helper\Data
+     */
     protected $_dataHelper;
 
 
@@ -28,6 +34,8 @@ class FileIcon extends Column
      * @param Image $imageHelper
      * @param UrlInterface $urlBuilder
      * @param StoreManagerInterface $storeManager
+     * @param \Magento\Framework\View\Asset\Repository $assetRepo
+     * @param \Prince\Productattach\Helper\Data $dataHelper
      * @param array $components
      * @param array $data
      */
@@ -38,7 +46,7 @@ class FileIcon extends Column
         UrlInterface $urlBuilder,
         StoreManagerInterface $storeManager,
         \Magento\Framework\View\Asset\Repository $assetRepo,
-         \Prince\Productattach\Helper\Data $dataHelper,
+        \Prince\Productattach\Helper\Data $dataHelper,
         array $components = [],
         array $data = []
     ) {
@@ -59,50 +67,26 @@ class FileIcon extends Column
     public function prepareDataSource(array $dataSource)
     {
         if(isset($dataSource['data']['items'])) {
-            //echo "<pre>";
-            //print_r($dataSource); exit;
             $fieldName = $this->getData('name');
-            //exit;
             foreach($dataSource['data']['items'] as & $item) {
                 $file = $item['file'];
                 $fileExt = pathinfo($file, PATHINFO_EXTENSION);
-
-                // if($fileExt){
-                //     $iconImage = $this->_assetRepo->getUrl('Prince_Productattach::images/'.$fileExt.'.png');
-                //     $fileIcon = "<a href=".$this->_dataHelper->getBaseUrl().'/'.$file." target='_blank'><img src='".$iconImage."' /></a>";
-                // }else{
-                //     $iconImage = $this->_assetRepo->getUrl('Prince_Productattach::images/unknown.png');
-                //     $fileIcon = "<img src='".$iconImage."' />";
-                // }
-
-
-
                 $url = '';
+                
                 if($item[$fieldName] != '') {
                     if($fileExt){
                         $url = $this->_assetRepo->getUrl('Prince_Productattach::images/'.$fileExt.'.png');
                     }else{
                         $url = $this->_assetRepo->getUrl('Prince_Productattach::images/unknown.png');
                     }
-                    // $url = $this->storeManager->getStore()->getBaseUrl(
-                    //     \Magento\Framework\UrlInterface::URL_TYPE_MEDIA
-                    // ).'productattach/'.$item[$fieldName];
-                    
                 }
+
                 $item[$fieldName . '_src'] = $url;
                 $item[$fieldName . '_alt'] = $item['name'];
-                //$item[$fieldName . '_link'] = $this->urlBuilder->getUrl(
-                  //  'book_flip/flip/edit',
-                   // ['productattach_id' => $item['productattach_id']]
-                //);
-
                 $item[$fieldName . '_link'] = $this->_dataHelper->getBaseUrl().'/'.$file;
-
-
                 $item[$fieldName . '_orig_src'] = $url;
             }
         }
-
         return $dataSource;
     }
 }

@@ -19,10 +19,13 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended
     protected $contactFactory;
 
     /**
-     * @var  \Magento\Framework\Registry
+     * @var \Magento\Framework\Registry
      */
     protected $registry;
 
+    /**
+     * @var \Magento\Framework\ObjectManagerInterface
+     */
     protected $_objectManager = null;
 
     /**
@@ -30,7 +33,8 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Backend\Helper\Data $backendHelper
      * @param \Magento\Framework\Registry $registry
-     * @param ContactFactory $attachmentFactory
+     * @param \Magento\Framework\ObjectManagerInterface
+     * @param \Prince\Productattach\Model\ProductattachFactory
      * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
      * @param array $data
      */
@@ -68,7 +72,7 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended
     }
 
     /**
-     * add Column Filter To Collection
+     * add column filter to collection
      */
     protected function _addColumnFilterToCollection($column)
     {

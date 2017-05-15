@@ -76,15 +76,6 @@
 	<columns name="productattach_grid_index_columns">
 		<argument name="data" xsi:type="array">
 			<item name="config" xsi:type="array">
-				<item name="editorConfig" xsi:type="array">
-					<item name="selectProvider" xsi:type="string">productattach_grid_index.productattach_grid_index.productattach_grid_index_columns.ids</item>
-					<item name="enabled" xsi:type="boolean">true</item>
-					<item name="indexField" xsi:type="string">productattach_id</item>
-					<item name="clientConfig" xsi:type="array">
-						<item name="saveUrl" path="productattach/index/inlineEdit" xsi:type="url"/>
-						<item name="validateBeforeSave" xsi:type="boolean">false</item>
-					</item>
-				</item>
 				<item name="childDefaults" xsi:type="array">
 					<item name="fieldAction" xsi:type="array">
 						<item name="provider" xsi:type="string">productattach_grid_index.productattach_grid_index.productattach_grid_index_columns_editor</item>
@@ -140,6 +131,23 @@
 				</item>
 			</argument>
 		</column>
+		<column name="active">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Prince\Productattach\Ui\Component\Listing\Column\Status</item>
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">select</item>
+                    <item name="label" xsi:type="string" translate="true">Status</item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
+                    <item name="dataType" xsi:type="string">select</item>
+                    <item name="editor" xsi:type="array">
+                    <item name="editorType" xsi:type="string">select</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">false</item>
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </column>
 		<actionsColumn class="Prince\Productattach\Ui\Component\Listing\Column\ProductattachActions" name="actions">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
