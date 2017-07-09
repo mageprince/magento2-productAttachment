@@ -2,16 +2,16 @@
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
     <acl>
         <resources>
-            <resource id="Prince_Adminhtml::admin">
+            <resource id="Magento_Backend::admin">
                 <resource id="Prince_Productattach::productattach" title="Productattach" sortOrder="40">
                     <resource id="Prince_Productattach::manage" title="Productattach Module" sortOrder="10">
-						<resource id="Prince_Productattach::save" title="Save Productattach" sortOrder="10" />
+                        <resource id="Prince_Productattach::save" title="Save Productattach" sortOrder="10" />
                         <resource id="Prince_Productattach::news_delete" title="Delete Productattach" sortOrder="20" />
-					</resource>
+                    </resource>
                 </resource>
-                <resource id="Prince_Adminhtml::stores">
-                    <resource id="Prince_Adminhtml::stores_settings">
-                        <resource id="Prince_Adminhtml::config">
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
                             <resource id="Prince_Productattach::config_productattach" title="Productattach Section" sortOrder="50" />
                         </resource>
                     </resource>
