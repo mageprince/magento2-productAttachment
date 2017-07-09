@@ -39,7 +39,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $_scopeConfig;
+    protected $scopeConfig;
     
     /** 
      * @param \Magento\Framework\View\Element\Template\Context $context
@@ -56,14 +56,13 @@ class Attachment extends \Magento\Framework\View\Element\Template
         \Prince\Productattach\Model\ResourceModel\Productattach\CollectionFactory $productattachCollectionFactory,
         \Magento\Framework\ObjectManagerInterface $objectmanager,
         \Prince\Productattach\Helper\Data $dataHelper,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         array $data = []
     ) {
         $this->_customerSession =$customerSession;
         $this->_productattachCollectionFactory = $productattachCollectionFactory;
         $this->_objectManager = $objectmanager;
         $this->_dataHelper = $dataHelper;
-        $this->_scopeConfig = $scopeConfig;
+        $this->scopeConfig = $context->getScopeConfig();
         parent::__construct(
             $context,
             $data
@@ -185,7 +184,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
      */
     public function getConfig($config)
     {
-        return $this->_scopeConfig->getValue(
+        return $this->scopeConfig->getValue(
             $config, 
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );

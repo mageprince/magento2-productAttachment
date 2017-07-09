@@ -56,14 +56,12 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
         \Magento\Backend\Model\UrlInterface $backendUrl,
-        \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig,
         \Magento\Framework\Filesystem $filesystem,
         \Magento\Framework\File\Size $fileSize,
         \Magento\Framework\HTTP\Adapter\FileTransferFactory $httpFactory,
         \Magento\MediaStorage\Model\File\UploaderFactory $fileUploaderFactory,
         \Magento\Store\Model\StoreManagerInterface $storeManager
     ) {
-        $this->_scopeConfig = $scopeConfig;
         $this->_backendUrl = $backendUrl;
         $this->filesystem = $filesystem;
         $this->mediaDirectory = $filesystem->getDirectoryWrite(DirectoryList::MEDIA);
@@ -129,7 +127,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getProductattachPerPage()
     {
-        return abs((int)$this->_scopeConfig->getValue(self::XML_PATH_ITEMS_PER_PAGE, \Magento\Store\Model\ScopeInterface::SCOPE_STORE));
+        return abs((int)$this->getScopeConfig()->getValue(self::XML_PATH_ITEMS_PER_PAGE, \Magento\Store\Model\ScopeInterface::SCOPE_STORE));
     }
 
     /**
