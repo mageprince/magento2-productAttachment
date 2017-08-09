@@ -90,7 +90,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
         $collection = $this->getCollection();
         $collection->getSelect()->where("store LIKE '%".$this->_dataHelper->getStoreId()."%'");
         $collection->getSelect()->where("customer_group LIKE '%".$this->getCustomerId()."%'");
-        $collection->getSelect()->where("products LIKE '%".$productId."%'");
+        $collection->getSelect()->where("products REGEXP '[[:<:]]".$productId."[[:>:]]'");
         return $collection;
     }
 
