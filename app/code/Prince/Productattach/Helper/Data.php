@@ -21,7 +21,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      *
      * @var string
      */
-    const MEDIA_PATH    = 'Productattach';
+    const MEDIA_PATH    = 'productattach';
 
 
     /**
@@ -162,5 +162,4 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $store = implode(',', $store);
         return $store;
     }
-
 }

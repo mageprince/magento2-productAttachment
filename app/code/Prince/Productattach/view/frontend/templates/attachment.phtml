@@ -17,10 +17,10 @@
 	        		<?php echo $this->getFileIcon($attachment->getFile()) ?>
 	        		<?php echo $attachment->getName() ?>
 	        		<?php if($isSize): ?>
-	        			<?php echo '('.$this->getFileSize($attachment->getFile()).')' ?>
+	        			<?php echo '(Size: '.$this->getFileSize($attachment->getFile()).')' ?>
 	        		<?php endif; ?>
 	        	</a>
-	        <?php else: ?>
+	        <?php elseif ($attachment->getUrl()) : ?>
 	        	<a href="<?php echo $attachment->getUrl() ?>" target="_blank" >
 	        		<?php echo $this->getFileIcon($attachment->getUrl()) ?>
 	        		<?php echo $attachment->getName() ?>

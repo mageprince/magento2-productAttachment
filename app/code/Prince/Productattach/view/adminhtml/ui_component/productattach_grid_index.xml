@@ -95,6 +95,14 @@
 				</item>
 			</argument>
 		</selectionsColumn>
+		<column name="productattach_id">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="filter" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">ID</item>
+				</item>
+			</argument>
+		</column>
 		<column name="name">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
@@ -103,10 +111,9 @@
 				</item>
 			</argument>
 		</column>
-		<column name="file" class="Prince\Productattach\Ui\Component\Listing\Column\FileIcon">
+		<column name="file">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
-					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
                     <item name="sortable" xsi:type="boolean">false</item>
                     <item name="altField" xsi:type="string">name</item>
                     <item name="has_preview" xsi:type="string">1</item>
@@ -148,6 +155,14 @@
                 </item>
             </argument>
         </column>
+		<actionsColumn class="Prince\Productattach\Ui\Component\Listing\Column\Download" name="download">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="indexField" xsi:type="string">file</item>
+					<item name="label" xsi:type="string">File Download</item>
+				</item>
+			</argument>
+		</actionsColumn>
 		<actionsColumn class="Prince\Productattach\Ui\Component\Listing\Column\ProductattachActions" name="actions">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">

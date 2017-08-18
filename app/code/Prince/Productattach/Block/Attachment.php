@@ -174,7 +174,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
     public function convertToReadableSize($size)
     {
       $base = log($size) / log(1024);
-      $suffix = array("", "KB", "MB", "GB", "TB");
+      $suffix = array("", " KB", " MB", " GB", " TB");
       $f_base = floor($base);
       return round(pow(1024, $base - floor($base)), 1) . $suffix[$f_base];
     }
@@ -190,5 +190,14 @@ class Attachment extends \Magento\Framework\View\Element\Template
         );
     }
 
-
+    /**
+     * Retrive Tab Name
+     */
+    public function getTabName()
+    {
+        return $this->scopeConfig->getValue(
+            'productattach/general/tabname',
+            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
+        );
+    }
 }
