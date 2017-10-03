@@ -7,19 +7,18 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
     /**
      * @var \Magento\Store\Model\System\Store
      */
-    protected $_systemStore;
+    private $systemStore;
 
     /**
-     * @var \Magento\Framework\ObjectManagerInterface
+     * @var \Magento\Customer\Model\ResourceModel\Group\Collection
      */
-    protected $_objectManager;
+    private $customerCollection;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Framework\Registry $registry
      * @param \Magento\Framework\Data\FormFactory $formFactory
      * @param \Magento\Store\Model\System\Store $systemStore
-     * @param \Magento\Framework\ObjectManagerInterface
      * @param array $data
      */
     public function __construct(
@@ -27,11 +26,11 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
         \Magento\Framework\Registry $registry,
         \Magento\Framework\Data\FormFactory $formFactory,
         \Magento\Store\Model\System\Store $systemStore,
-        \Magento\Framework\ObjectManagerInterface $objectManager,
+        \Magento\Customer\Model\ResourceModel\Group\Collection $customerCollection,
         array $data = []
     ) {
-        $this->_systemStore = $systemStore;
-        $this->_objectManager = $objectManager;
+        $this->systemStore = $systemStore;
+        $this->customerCollection = $customerCollection;
         parent::__construct($context, $registry, $formFactory, $data);
     }
 
@@ -40,9 +39,9 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
      *
      * @return $this
      */
-    protected function _prepareForm()
+    public function _prepareForm()
     {
-        /* @var $model \Magento\Cms\Model\Page */
+        
         $model = $this->_coreRegistry->registry('productattach');
 
         /*
@@ -59,14 +58,15 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
 
         $form->setHtmlIdPrefix('productattach_main_');
 
-        $fieldset = $form->addFieldset('base_fieldset', ['legend' => __('Productattach Information')]);
+        $fieldset = $form->addFieldset('base_fieldset',
+            ['legend' => __('Productattach Information')]
+        );
 
-        $customerGroup = $this->_objectManager->get('\Magento\Customer\Model\ResourceModel\Group\Collection')->toOptionArray();
+        $customerGroup = $this->customerCollection->toOptionArray();
 
         if ($model->getId()) {
             $fieldset->addField('productattach_id', 'hidden', ['name' => 'productattach_id']);
         }
-
 
         $fieldset->addField(
             'name',
@@ -103,7 +103,10 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
             ]
         );
 
-        $fieldset->addType('uploadedfile', '\Prince\Productattach\Block\Adminhtml\Productattach\Renderer\FileIconAdmin');
+        $fieldset->addType(
+            'uploadedfile',
+            '\Prince\Productattach\Block\Adminhtml\Productattach\Renderer\FileIconAdmin'
+        );
 
         $fieldset->addField(
             'file',
@@ -152,7 +155,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'title' => __('Store'),
                 'required' => true,
                 'value' => [0,1],
-                'values' => $this->_systemStore->getStoreValuesForForm(false, true),
+                'values' => $this->systemStore->getStoreValuesForForm(false, true),
                 'disabled' => $isElementDisabled
             ]
         );
@@ -172,7 +175,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
 
         $this->_eventManager->dispatch('adminhtml_productattach_edit_tab_main_prepare_form', ['form' => $form]);
 
-        if($model->getId()){
+        if ($model->getId()) {
             $form->setValues($model->getData());
         }
         
@@ -223,7 +226,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
      * @param string $resourceId
      * @return bool
      */
-    protected function _isAllowedAction($resourceId)
+    public function _isAllowedAction($resourceId)
     {
         return $this->_authorization->isAllowed($resourceId);
     }

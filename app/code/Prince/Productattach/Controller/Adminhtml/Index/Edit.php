@@ -11,29 +11,44 @@ class Edit extends \Magento\Backend\App\Action
      *
      * @var \Magento\Framework\Registry
      */
-    protected $_coreRegistry = null;
-	
-	/**
+    private $coreRegistry = null;
+    
+    /**
      * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected $resultPageFactory;
+    private $resultPageFactory;
 
     /**
-     * @param Action\Context $context
-	 * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
-     * @param \Magento\Framework\Registry $registry
+     * @var \Prince\Productattach\Model\Productattach
      */
-    public function __construct(Action\Context $context, \Magento\Framework\View\Result\PageFactory $resultPageFactory, \Magento\Framework\Registry $registry)
-    {
+    private $attachModel;
+
+    /**
+     * @var  \Magento\Backend\Model\Session
+     */
+    private $backSession;
+
+    /**
+     * @param \Magento\Backend\App\Action $context
+     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param \Magento\Framework\Registry $registry
+     * @param \Prince\Productattach\Model\Productattach $attachModel
+     * @param \Magento\Backend\Model\Session $backSession
+     */
+    public function __construct(
+        Action\Context $context,
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Magento\Framework\Registry $registry,
+        \Prince\Productattach\Model\Productattach $attachModel
+    ) {
         $this->resultPageFactory = $resultPageFactory;
-		$this->_coreRegistry = $registry;
+        $this->coreRegistry = $registry;
+        $this->attachModel = $attachModel;
+        $this->backSession = $context->getSession();
         parent::__construct($context);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function _isAllowed()
+    public function _isAllowed()
     {
         return $this->_authorization->isAllowed('Prince_Productattach::save');
     }
@@ -43,7 +58,7 @@ class Edit extends \Magento\Backend\App\Action
      *
      * @return $this
      */
-    protected function _initAction()
+    public function _initAction()
     {
         // load layout, set active menu and breadcrumbs
         /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
@@ -69,30 +84,31 @@ class Edit extends \Magento\Backend\App\Action
     {
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('productattach_id');
-        $model = $this->_objectManager->create('Prince\Productattach\Model\Productattach');
+        $model = $this->attachModel;
 
         // 2. Initial checking
         if ($id) {
             $model->load($id);
             if (!$model->getId()) {
                 $this->messageManager->addError(__('This Attachment no longer exists.'));
-				/** \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+                /** \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
                 $resultRedirect = $this->resultRedirectFactory->create();
                 return $resultRedirect->setPath('*/*/');
             }
+            $this->coreRegistry->register('productattach_id', $model->getId());
         }
 
         // 3. Set entered data if was error when we do save
-        $data = $this->_objectManager->get('Magento\Backend\Model\Session')->getFormData(true);
+        $data = $this->backSession->getFormData(true);
         if (!empty($data)) {
             $model->setData($data);
         }
 
         // 4. Register model to use later in blocks
-        $this->_coreRegistry->register('productattach', $model);
+        $this->coreRegistry->register('productattach', $model);
 
         // 5. Build edit form
-		/** @var \Magento\Backend\Model\View\Result\Page $resultPage */
+        /** @var \Magento\Backend\Model\View\Result\Page $resultPage */
         $resultPage = $this->_initAction();
         $resultPage->addBreadcrumb(
             $id ? __('Edit Attachment') : __('New Attachment'),

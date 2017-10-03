@@ -9,12 +9,12 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
     /**
      * @var \Prince\Productattach\Model\ResourceModel\Productattach\CollectionFactory
      */
-    protected $_collectionFactory;
+    private $collectionFactory;
 
     /**
      * @var \Prince\Productattach\Model\Productattach
      */
-    protected $_productattach;
+    private $productattach;
 
     /**
      * @param \Magento\Backend\Block\Template\Context $context
@@ -31,15 +31,15 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
         \Prince\Productattach\Model\ResourceModel\Productattach\CollectionFactory $collectionFactory,
         array $data = []
     ) {
-        $this->_collectionFactory = $collectionFactory;
-        $this->_productattach = $productattach;
+        $this->collectionFactory = $collectionFactory;
+        $this->productattach = $productattach;
         parent::__construct($context, $backendHelper, $data);
     }
 
     /**
      * @return void
      */
-    protected function _construct()
+    public function _construct()
     {
         parent::_construct();
         $this->setId('productattachGrid');
@@ -54,12 +54,10 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
      *
      * @return \Magento\Backend\Block\Widget\Grid
      */
-    protected function _prepareCollection()
+    public function _prepareCollection()
     {
-        $collection = $this->_collectionFactory->create();
-        /* @var $collection \Prince\Productattach\Model\ResourceModel\Productattach\Collection */
+        $collection = $this->collectionFactory->create();
         $this->setCollection($collection);
-
         return parent::_prepareCollection();
     }
 
@@ -68,7 +66,7 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
      *
      * @return \Magento\Backend\Block\Widget\Grid\Extended
      */
-    protected function _prepareColumns()
+    public function _prepareColumns()
     {
         $this->addColumn('productattach_id', [
             'header'    => __('ID'),
@@ -76,50 +74,56 @@ class Grid extends \Magento\Backend\Block\Widget\Grid\Extended
         ]);
         
         $this->addColumn(
-            'name', 
+            'name',
             [
-                'header' => __('Name'), 
+                'header' => __('Name'),
                 'index' => 'name'
-            ]);
+            ]
+        );
 
         $this->addColumn(
-            'description', 
+            'description',
             [
-                'header' => __('Description'), 
-                'index' => 'description']
-            );
+                'header' => __('Description'),
+                'index' => 'description'
+            ]
+        );
 
         $this->addColumn(
-            'file', 
+            'file',
             [
-                'header' => __('File'), 
+                'header' => __('File'),
                 'index' => 'file',
                 'renderer' => 'Prince\Productattach\Block\Adminhtml\Productattach\Renderer\FileIcon'
-            ]);
+            ]
+        );
         
         $this->addColumn(
-            'customer_group', 
+            'customer_group',
             [
-                'header' => __('Customer Group'), 
+                'header' => __('Customer Group'),
                 'index' => 'customer_group',
                 'renderer' => 'Prince\Productattach\Block\Adminhtml\Productattach\Renderer\Group'
-            ]);
+            ]
+        );
 
         $this->addColumn(
-            'store', 
+            'store',
             [
-                'header' => __('Store '), 
+                'header' => __('Store '),
                 'index' => 'store',
                 'renderer' => 'Prince\Productattach\Block\Adminhtml\Productattach\Renderer\Store'
-            ]);
+            ]
+        );
 
         $this->addColumn(
-            'active', 
+            'active',
             [
-                'header' => __('Active'), 
+                'header' => __('Active'),
                 'index' => 'active',
                 'renderer' => 'Prince\Productattach\Block\Adminhtml\Productattach\Renderer\Active'
-            ]);
+            ]
+        );
        
         $this->addColumn(
             'action',

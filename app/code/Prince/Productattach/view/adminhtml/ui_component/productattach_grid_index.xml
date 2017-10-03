@@ -111,12 +111,9 @@
 				</item>
 			</argument>
 		</column>
-		<column name="file">
+		<column name="file" class="Prince\Productattach\Ui\Component\Listing\Column\File">
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
-                    <item name="sortable" xsi:type="boolean">false</item>
-                    <item name="altField" xsi:type="string">name</item>
-                    <item name="has_preview" xsi:type="string">1</item>
                     <item name="label" xsi:type="string" translate="true">File</item>
                     <item name="sortOrder" xsi:type="number">20</item>
 				</item>
@@ -124,34 +121,32 @@
 		</column>
 		<column name="customer_group" class="Prince\Productattach\Ui\Component\Listing\Column\CustomerGroup">
 			<argument name="data" xsi:type="array">
+				<item name="options" xsi:type="object">Magento\Customer\Model\Config\Source\Group</item>
 				<item name="config" xsi:type="array">
-					<item name="filter" xsi:type="string">text</item>
+					<item name="filter" xsi:type="string">select</item>
+            		<item name="dataType" xsi:type="string">multiselect</item>
 					<item name="label" translate="true" xsi:type="string">Customer Group</item>
 				</item>
 			</argument>
 		</column>
 		<column name="store" class="Prince\Productattach\Ui\Component\Listing\Column\Store">
 			<argument name="data" xsi:type="array">
+			<item name="options" xsi:type="object">Magento\Store\Model\System\Store</item>
 				<item name="config" xsi:type="array">
-					<item name="filter" xsi:type="string">text</item>
+					<item name="filter" xsi:type="string">select</item>
+            		<item name="dataType" xsi:type="string">multiselect</item>
 					<item name="label" translate="true" xsi:type="string">Store</item>
 				</item>
 			</argument>
 		</column>
-		<column name="active">
+		<column name="active" class="Prince\Productattach\Ui\Component\Listing\Column\Status">
             <argument name="data" xsi:type="array">
-                <item name="options" xsi:type="object">Prince\Productattach\Ui\Component\Listing\Column\Status</item>
+            <item name="options" xsi:type="object">Prince\Productattach\Model\Config\Source\Status</item>
                 <item name="config" xsi:type="array">
-                    <item name="filter" xsi:type="string">select</item>
+                	<item name="filter" xsi:type="string">select</item>
+            		<item name="dataType" xsi:type="string">multiselect</item>
                     <item name="label" xsi:type="string" translate="true">Status</item>
-                    <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/select</item>
-                    <item name="dataType" xsi:type="string">select</item>
-                    <item name="editor" xsi:type="array">
-                    <item name="editorType" xsi:type="string">select</item>
-                        <item name="validation" xsi:type="array">
-                            <item name="required-entry" xsi:type="boolean">false</item>
-                        </item>
-                    </item>
+                    <item name="bodyTmpl" xsi:type="string">ui/grid/cells/html</item>
                 </item>
             </argument>
         </column>

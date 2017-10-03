@@ -34,18 +34,16 @@ class Store extends Column
      * @return array
      */
     public function prepareDataSource(array $dataSource)
-    {   
-        if(isset($dataSource['data']['items'])) {
-
+    {
+        if (isset($dataSource['data']['items'])) {
             $fieldName = $this->getData('store');
-
-            foreach($dataSource['data']['items'] as &$items) {
-                $stores = explode(',', $items['store']);  
+            foreach ($dataSource['data']['items'] as &$items) {
+                $stores = explode(',', $items['store']);
                 $storeArray = [];
                 foreach ($stores as $key => $store) {
                     $storeArray[$key] = $this->_systemStore->getStore($store)->getName();
                 }
-                $items['store'] = implode(' - ', $storeArray);               
+                $items['store'] = implode(' - ', $storeArray);
             }
         }
         

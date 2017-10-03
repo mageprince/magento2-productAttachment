@@ -6,14 +6,14 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Index extends \Magento\Framework\App\Action\Action
 {
-	/**
-     * @var PageFactory
+    /**
+     * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected $resultPageFactory;
-	
-	/**
+    private $resultPageFactory;
+    
+    /**
      * @param \Magento\Framework\App\Action\Context $context
-     * @param PageFactory $resultPageFactory
+     * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
      */
     public function __construct(
         \Magento\Framework\App\Action\Context $context,
@@ -22,7 +22,7 @@ class Index extends \Magento\Framework\App\Action\Action
         $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
     }
-	
+    
     /**
      * Default Productattach Index page
      *
@@ -32,11 +32,11 @@ class Index extends \Magento\Framework\App\Action\Action
     {
         $this->_view->loadLayout();
         $this->_view->getLayout()->initMessages();
-		$this->_view->getPage()->getConfig()->getTitle()->set(__('Site Productattach'));
+        $this->_view->getPage()->getConfig()->getTitle()->set(__('Site Productattach'));
         $listBlock = $this->_view->getLayout()->getBlock('productattach.list');
 
         if ($listBlock) {
-            $currentPage = abs(intval($this->getRequest()->getParam('p')));
+            $currentPage = abs((int)($this->getRequest()->getParam('p')));
             if ($currentPage < 1) {
                 $currentPage = 1;
             }

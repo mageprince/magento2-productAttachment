@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
     <menu>
-        <add id="Prince_Productattach::top_level" title="Prince" module="Prince_Productattach" sortOrder="30" resource="Prince_Productattach::productattach"/>
-        <add id="Prince_Productattach::productattach_manage" title="Product Attachment" module="Prince_Productattach" sortOrder="10" parent="Prince_Productattach::top_level" action="productattach/index/" resource="Magento_Backend::content"/>
+        <add id="Prince_Productattach::top_level" title="Product Attachment" module="Prince_Productattach" sortOrder="30" resource="Prince_Productattach::productattach"/>
+        <add id="Prince_Productattach::productattach_manage" title="Manage Attachments" module="Prince_Productattach" sortOrder="10" parent="Prince_Productattach::top_level" action="productattach/index/" resource="Magento_Backend::content"/>
         <add id="Prince_Productattach::productattach_setting" title="Settings" module="Prince_Productattach" sortOrder="20" parent="Prince_Productattach::top_level" action="adminhtml/system_config/edit/section/productattach" resource="Magento_Backend::content"/>
     </menu>
 </config>

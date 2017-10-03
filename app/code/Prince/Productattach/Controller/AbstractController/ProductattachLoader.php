@@ -11,17 +11,17 @@ class ProductattachLoader implements ProductattachLoaderInterface
     /**
      * @var \Prince\Productattach\Model\ProductattachFactory
      */
-    protected $productattachFactory;
+    private $productattachFactory;
 
     /**
      * @var \Magento\Framework\Registry
      */
-    protected $registry;
+    private $registry;
 
     /**
      * @var \Magento\Framework\UrlInterface
      */
-    protected $url;
+    private $url;
 
     /**
      * @param \Prince\Productattach\Model\ProductattachFactory $productattachFactory

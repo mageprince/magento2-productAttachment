@@ -12,7 +12,7 @@ class Productattach extends \Magento\Backend\Block\Widget\Grid\Container
      *
      * @return void
      */
-    protected function _construct()
+    public function _construct()
     {
         $this->_controller = 'adminhtml_productattach';
         $this->_blockGroup = 'Prince_Productattach';
@@ -32,7 +32,7 @@ class Productattach extends \Magento\Backend\Block\Widget\Grid\Container
      * @param string $resourceId
      * @return bool
      */
-    protected function _isAllowedAction($resourceId)
+    public function _isAllowedAction($resourceId)
     {
         return $this->_authorization->isAllowed($resourceId);
     }

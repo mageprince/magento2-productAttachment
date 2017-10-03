@@ -1,4 +1,5 @@
 <?php
+
 namespace Prince\Productattach\Ui\Component\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponentFactory;
@@ -32,22 +33,19 @@ class CustomerGroup extends Column
      * @return array
      */
     public function prepareDataSource(array $dataSource)
-    {   
-        if(isset($dataSource['data']['items'])) {
-
+    {
+        if (isset($dataSource['data']['items'])) {
             $fieldName = $this->getData('customer_group');
-
-            foreach($dataSource['data']['items'] as &$items) {
+            foreach ($dataSource['data']['items'] as &$items) {
                 $groups = explode(',', $items['customer_group']);
                 $customers = [];
-                foreach ($groups as $key => $group) { 
+                foreach ($groups as $key => $group) {
                     $customer = $this->_customerGroup->load($group);
                     $customers[$key] =  $customer->getCustomerGroupCode();
                 }
-                $items['customer_group'] = implode(' - ', $customers);               
+                $items['customer_group'] = implode(' - ', $customers);
             }
         }
-        
         return $dataSource;
     }
 }

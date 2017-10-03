@@ -75,7 +75,10 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
     public function getHeaderText()
     {
         if ($this->_coreRegistry->registry('productattach')->getId()) {
-            return __("Edit Productattach '%1'", $this->escapeHtml($this->_coreRegistry->registry('productattach')->getTitle()));
+            return __(
+                "Edit Productattach '%1'",
+                $this->escapeHtml($this->_coreRegistry->registry('productattach')->getTitle())
+            );
         } else {
             return __('New Productattach');
         }
@@ -87,7 +90,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      * @param string $resourceId
      * @return bool
      */
-    protected function _isAllowedAction($resourceId)
+    public function _isAllowedAction($resourceId)
     {
         return $this->_authorization->isAllowed($resourceId);
     }
@@ -98,9 +101,12 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      *
      * @return string
      */
-    protected function _getSaveAndContinueUrl()
+    public function _getSaveAndContinueUrl()
     {
-        return $this->getUrl('productattach/*/save', ['_current' => true, 'back' => 'edit', 'active_tab' => '{{tab_id}}']);
+        return $this->getUrl(
+            'productattach/*/save',
+            ['_current' => true, 'back' => 'edit', 'active_tab' => '{{tab_id}}']
+        );
     }
 
     /**
@@ -108,7 +114,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
      *
      * @return \Magento\Framework\View\Element\AbstractBlock
      */
-    protected function _prepareLayout()
+    public function _prepareLayout()
     {
         $this->_formScripts[] = "
             function toggleEditor() {

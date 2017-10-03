@@ -10,22 +10,25 @@ abstract class View extends Action\Action
     /**
      * @var \Prince\Productattach\Controller\AbstractController\ProductattachLoaderInterface
      */
-    protected $productattachLoader;
-	
-	/**
+    private $productattachLoader;
+    
+    /**
      * @var PageFactory
      */
-    protected $resultPageFactory;
+    private $resultPageFactory;
 
     /**
      * @param Action\Context $context
      * @param OrderLoaderInterface $orderLoader
-	 * @param PageFactory $resultPageFactory
+     * @param PageFactory $resultPageFactory
      */
-    public function __construct(Action\Context $context, ProductattachLoaderInterface $productattachLoader, PageFactory $resultPageFactory)
-    {
+    public function __construct(
+        Action\Context $context,
+        ProductattachLoaderInterface $productattachLoader,
+        PageFactory $resultPageFactory
+    ) {
         $this->productattachLoader = $productattachLoader;
-		$this->resultPageFactory = $resultPageFactory;
+        $this->resultPageFactory = $resultPageFactory;
         parent::__construct($context);
     }
 
@@ -42,6 +45,6 @@ abstract class View extends Action\Action
 
         /** @var \Magento\Framework\View\Result\Page $resultPage */
         $resultPage = $this->resultPageFactory->create();
-		return $resultPage;
+        return $resultPage;
     }
 }

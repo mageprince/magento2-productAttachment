@@ -11,7 +11,7 @@ class Products extends \Magento\Backend\App\Action
     /**
      * @var \Magento\Framework\View\Result\LayoutFactory
      */
-    protected $_resultLayoutFactory;
+    private $resultLayoutFactory;
 
     /**
      * @param \Magento\Framework\View\Result\LayoutFactory $resultLayoutFactory
@@ -22,13 +22,10 @@ class Products extends \Magento\Backend\App\Action
         \Magento\Framework\View\Result\LayoutFactory $resultLayoutFactory
     ) {
         parent::__construct($context);
-        $this->_resultLayoutFactory = $resultLayoutFactory;
+        $this->resultLayoutFactory = $resultLayoutFactory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function _isAllowed()
+    public function _isAllowed()
     {
         return true;
     }
@@ -41,7 +38,7 @@ class Products extends \Magento\Backend\App\Action
     public function execute()
     {
 
-        $resultLayout = $this->_resultLayoutFactory->create();
+        $resultLayout = $this->resultLayoutFactory->create();
         $resultLayout->getLayout()->getBlock('productattach.edit.tab.products')
                      ->setInProducts($this->getRequest()->getPost('index_products', null));
 

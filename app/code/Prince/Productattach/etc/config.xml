@@ -4,7 +4,7 @@
         <productattach>
             <general>
                 <enable>1</enable>
-                <productdetail>1</productdetail>
+                <productdetail>0</productdetail>
                 <producttab>1</producttab>
                 <attachmentsize>1</attachmentsize>
                 <tabname>Product Attachment</tabname>

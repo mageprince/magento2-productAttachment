@@ -11,24 +11,21 @@ class ProductsGrid extends \Magento\Backend\App\Action
     /**
      * @var \Magento\Framework\View\Result\LayoutFactory
      */
-    protected $_resultLayoutFactory;
+    private $resultLayoutFactory;
 
     /**
+     * @param \Magento\Backend\App\Action $context
      * @param \Magento\Framework\View\Result\LayoutFactory $resultLayoutFactory
-     * @param Action\Context $context
      */
     public function __construct(
         Action\Context $context,
         \Magento\Framework\View\Result\LayoutFactory $resultLayoutFactory
     ) {
         parent::__construct($context);
-        $this->_resultLayoutFactory = $resultLayoutFactory;
+        $this->resultLayoutFactory = $resultLayoutFactory;
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function _isAllowed()
+    public function _isAllowed()
     {
         return true;
     }
@@ -40,11 +37,10 @@ class ProductsGrid extends \Magento\Backend\App\Action
      */
     public function execute()
     {
-        $resultLayout = $this->_resultLayoutFactory->create();
+        $resultLayout = $this->resultLayoutFactory->create();
         $resultLayout->getLayout()->getBlock('productattach.edit.tab.products')
                      ->setInBanner($this->getRequest()->getPost('index_products', null));
 
         return $resultLayout;
     }
-
 }

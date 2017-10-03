@@ -12,8 +12,8 @@ class Productattach extends \Magento\Framework\Model\ResourceModel\Db\AbstractDb
      *
      * @return void
      */
-    protected function _construct()
+    public function _construct()
     {
-        $this->_init('Prince_productattach', 'productattach_id');
+        $this->_init('prince_productattach', 'productattach_id');
     }
 }

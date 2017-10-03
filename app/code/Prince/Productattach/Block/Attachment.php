@@ -12,42 +12,47 @@ class Attachment extends \Magento\Framework\View\Element\Template
      *
      * @var Prince\Productattach\Model\ResourceModel\Productattach\Collection
      */
-    protected $_productattachCollection = null;
+    private $productattachCollection = null;
     
     /**
      * Productattach factory
      *
      * @var \Prince\Productattach\Model\ProductattachFactory
      */
-    protected $_productattachCollectionFactory;
+    private $productattachCollectionFactory;
     
     /**
      * @var \Prince\Productattach\Helper\Data
      */
-    protected $_dataHelper;
+    private $dataHelper;
 
     /**
      * @var \Magento\Framework\ObjectManagerInterface
      */
-    protected $_objectManager;
+    private $objectManager;
 
     /**
      * @var \Magento\Customer\Model\Session
      */
-    protected $_customerSession;
+    private $customerSession;
 
     /**
      * @var \Magento\Framework\App\Config\ScopeConfigInterface
      */
-    protected $scopeConfig;
+    private $scopeConfig;
+
+    /**
+     * @var \Magento\Framework\Registry
+     */
+    private $registry;
     
-    /** 
+    /**
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Prince\Productattach\Model\ResourceModel\Productattach\CollectionFactory $productattachCollectionFactory
      * @param \Magento\Framework\ObjectManagerInterface $objectmanager
      * @param \Prince\Productattach\Helper\Data $dataHelper
-     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     * @param \Magento\Framework\Registry $registry
      * @param array $data
      */
     public function __construct(
@@ -56,13 +61,15 @@ class Attachment extends \Magento\Framework\View\Element\Template
         \Prince\Productattach\Model\ResourceModel\Productattach\CollectionFactory $productattachCollectionFactory,
         \Magento\Framework\ObjectManagerInterface $objectmanager,
         \Prince\Productattach\Helper\Data $dataHelper,
+        \Magento\Framework\Registry $registry,
         array $data = []
     ) {
-        $this->_customerSession =$customerSession;
-        $this->_productattachCollectionFactory = $productattachCollectionFactory;
-        $this->_objectManager = $objectmanager;
-        $this->_dataHelper = $dataHelper;
+        $this->customerSession =$customerSession;
+        $this->productattachCollectionFactory = $productattachCollectionFactory;
+        $this->objectManager = $objectmanager;
+        $this->dataHelper = $dataHelper;
         $this->scopeConfig = $context->getScopeConfig();
+        $this->registry = $registry;
         parent::__construct(
             $context,
             $data
@@ -74,9 +81,9 @@ class Attachment extends \Magento\Framework\View\Element\Template
      *
      * @return Prince\Productattach\Model\ResourceModel\Productattach\Collection
      */
-    protected function getCollection()
+    public function getCollection()
     {
-        $collection = $this->_productattachCollectionFactory->create();
+        $collection = $this->productattachCollectionFactory->create();
         return $collection;
     }
     
@@ -88,7 +95,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
     public function getAttachment($productId)
     {
         $collection = $this->getCollection();
-        $collection->getSelect()->where("store LIKE '%".$this->_dataHelper->getStoreId()."%'");
+        $collection->getSelect()->where("store LIKE '%".$this->dataHelper->getStoreId()."%'");
         $collection->getSelect()->where("customer_group LIKE '%".$this->getCustomerId()."%'");
         $collection->getSelect()->where("products REGEXP '[[:<:]]".$productId."[[:>:]]'");
         return $collection;
@@ -101,7 +108,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
      */
     public function getAttachmentUrl($attachment)
     {
-        $url = $this->_dataHelper->getBaseUrl().'/'.$attachment;
+        $url = $this->dataHelper->getBaseUrl().'/'.$attachment;
         return $url;
     }
 
@@ -112,7 +119,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
      */
     public function getCurrentId()
     {
-        $product = $this->_objectManager->get('Magento\Framework\Registry')->registry('current_product');
+        $product = $this->registry->registry('current_product');
         return $product->getId();
     }
 
@@ -123,7 +130,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
      */
     public function getCustomerId()
     {
-        $customerId = $this->_customerSession->getCustomer()->getGroupId();
+        $customerId = $this->customerSession->getCustomer()->getGroupId();
         return $customerId;
     }
 
@@ -132,16 +139,25 @@ class Attachment extends \Magento\Framework\View\Element\Template
      *
      * @return string
      */
-    public function getFileIcon($attachment)
+    public function getFileIcon($fileExt)
     {
-        $fileExt = pathinfo($attachment, PATHINFO_EXTENSION);
-        if($fileExt){
+        if ($fileExt) {
             $iconImage = $this->getViewFileUrl('Prince_Productattach::images/'.$fileExt.'.png');
-        }else{
+        } else {
             $iconImage = $this->getViewFileUrl('Prince_Productattach::images/unknown.png');
         }
-        $fileIcon = "<img src='".$iconImage."' />";
-        return $fileIcon;
+        return $iconImage;
+    }
+
+    /**
+     * Retrive link icon image
+     *
+     * @return string
+     */
+    public function getLinkIcon()
+    {
+        $iconImage = $this->getViewFileUrl('Prince_Productattach::images/link.png');
+        return $iconImage;
     }
 
     /**
@@ -173,10 +189,10 @@ class Attachment extends \Magento\Framework\View\Element\Template
      */
     public function convertToReadableSize($size)
     {
-      $base = log($size) / log(1024);
-      $suffix = array("", " KB", " MB", " GB", " TB");
-      $f_base = floor($base);
-      return round(pow(1024, $base - floor($base)), 1) . $suffix[$f_base];
+        $base = log($size) / log(1024);
+        $suffix = ["", " KB", " MB", " GB", " TB"];
+        $f_base = floor($base);
+        return round(pow(1024, $base - floor($base)), 1) . $suffix[$f_base];
     }
 
     /**
@@ -185,7 +201,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
     public function getConfig($config)
     {
         return $this->scopeConfig->getValue(
-            $config, 
+            $config,
             \Magento\Store\Model\ScopeInterface::SCOPE_STORE
         );
     }

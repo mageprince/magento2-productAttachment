@@ -4,10 +4,10 @@ namespace Prince\Productattach\Controller\Adminhtml\Index;
 
 class NewAction extends \Magento\Backend\App\Action
 {
-	/**
+    /**
      * @var \Magento\Backend\Model\View\Result\Forward
      */
-    protected $resultForwardFactory;
+    private $resultForwardFactory;
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -20,11 +20,11 @@ class NewAction extends \Magento\Backend\App\Action
         $this->resultForwardFactory = $resultForwardFactory;
         parent::__construct($context);
     }
-	
+    
     /**
      * {@inheritdoc}
      */
-    protected function _isAllowed()
+    public function _isAllowed()
     {
         return $this->_authorization->isAllowed('Prince_Productattach::save');
     }

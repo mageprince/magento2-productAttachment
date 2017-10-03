@@ -8,7 +8,8 @@ class ProductattachActions extends \Magento\Ui\Component\Listing\Columns\Column
     const URL_PATH_EDIT = 'productattach/index/edit';
     const URL_PATH_DELETE = 'productattach/index/delete';
     const URL_PATH_DETAILS = 'productattach/index/details';
-    protected $urlBuilder;
+    
+    private $urlBuilder;
 
     /**
      * @param \Magento\Framework\View\Element\UiComponent\ContextInterface $context
@@ -58,8 +59,8 @@ class ProductattachActions extends \Magento\Ui\Component\Listing\Columns\Column
                             ),
                             'label' => __('Delete'),
                             'confirm' => [
-                                'title' => __('Delete "${ $.$data.title }"'),
-                                'message' => __('Are you sure you wan\'t to delete a "${ $.$data.title }" record?')
+                                'title' => __('Delete "${ $.$data.name }"'),
+                                'message' => __('Are you sure you wan\'t to delete a "${ $.$data.name }" record?')
                             ]
                         ]
                     ];

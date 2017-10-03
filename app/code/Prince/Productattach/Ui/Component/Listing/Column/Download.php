@@ -4,7 +4,10 @@ namespace Prince\Productattach\Ui\Component\Listing\Column;
 
 class Download extends \Magento\Ui\Component\Listing\Columns\Column
 {
-    protected $urlBuilder;
+    /**
+     * @var \Magento\Framework\UrlInterface
+     */
+    private $urlBuilder;
 
     /**
      * @param \Magento\Framework\View\Element\UiComponent\ContextInterface $context
@@ -40,6 +43,14 @@ class Download extends \Magento\Ui\Component\Listing\Columns\Column
                         'edit' => [
                             'href' => $url,
                             'label' => __('Download')
+                        ]
+                    ];
+                } elseif (isset($item['url'])) {
+                    $url = $item['url'];
+                    $item[$this->getData('name')] = [
+                        'edit' => [
+                            'href' => $url,
+                            'label' => __('Goto URL')
                         ]
                     ];
                 }

@@ -9,48 +9,48 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended
     /**
      * @var \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory
      */
-    protected $productCollectionFactory;
+    private $productCollectionFactory;
 
+    /**
+     * @var \Prince\Productattach\Model\Productattach
+     */
+    private $attachModel;
+    
     /**
      * Contact factory
      *
      * @var ContactFactory
      */
-    protected $contactFactory;
+    private $contactFactory;
 
     /**
      * @var \Magento\Framework\Registry
      */
-    protected $registry;
-
-    /**
-     * @var \Magento\Framework\ObjectManagerInterface
-     */
-    protected $_objectManager = null;
+    private $registry;
 
     /**
      *
      * @param \Magento\Backend\Block\Template\Context $context
      * @param \Magento\Backend\Helper\Data $backendHelper
      * @param \Magento\Framework\Registry $registry
-     * @param \Magento\Framework\ObjectManagerInterface
      * @param \Prince\Productattach\Model\ProductattachFactory
      * @param \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory
+     * @param \Prince\Productattach\Model\Productattach $attachModel
      * @param array $data
      */
     public function __construct(
         \Magento\Backend\Block\Template\Context $context,
         \Magento\Backend\Helper\Data $backendHelper,
         \Magento\Framework\Registry $registry,
-        \Magento\Framework\ObjectManagerInterface $objectManager,
         ProductattachFactory $contactFactory,
         \Magento\Catalog\Model\ResourceModel\Product\CollectionFactory $productCollectionFactory,
+        \Prince\Productattach\Model\Productattach $attachModel,
         array $data = []
     ) {
         $this->contactFactory = $contactFactory;
         $this->productCollectionFactory = $productCollectionFactory;
-        $this->_objectManager = $objectManager;
         $this->registry = $registry;
+        $this->attachModel = $attachModel;
         parent::__construct($context, $backendHelper, $data);
     }
 
@@ -58,7 +58,7 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended
      * _construct
      * @return void
      */
-    protected function _construct()
+    public function _construct()
     {
         parent::_construct();
         $this->setId('productsGrid');
@@ -67,14 +67,14 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended
         $this->setSaveParametersInSession(true);
         $this->setUseAjax(true);
         if ($this->getRequest()->getParam('productattach_id')) {
-            $this->setDefaultFilter(array('in_product' => 1));
+            $this->setDefaultFilter(['in_product' => 1]);
         }
     }
 
     /**
      * add column filter to collection
      */
-    protected function _addColumnFilterToCollection($column)
+    public function _addColumnFilterToCollection($column)
     {
         if ($column->getId() == 'in_product') {
             $productIds = $this->_getSelectedProducts();
@@ -83,10 +83,10 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended
                 $productIds = 0;
             }
             if ($column->getFilter()->getValue()) {
-                $this->getCollection()->addFieldToFilter('entity_id', array('in' => $productIds));
+                $this->getCollection()->addFieldToFilter('entity_id', ['in' => $productIds]);
             } else {
                 if ($productIds) {
-                    $this->getCollection()->addFieldToFilter('entity_id', array('nin' => $productIds));
+                    $this->getCollection()->addFieldToFilter('entity_id', ['nin' => $productIds]);
                 }
             }
         } else {
@@ -99,7 +99,7 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended
     /**
      * prepare collection
      */
-    protected function _prepareCollection()
+    public function _prepareCollection()
     {
         $collection = $this->productCollectionFactory->create();
         $collection->addAttributeToSelect('name');
@@ -112,10 +112,10 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended
     /**
      * @return $this
      */
-    protected function _prepareColumns()
+    public function _prepareColumns()
     {
-        /* @var $model \Webspeaks\ProductsGrid\Model\Slide */
-        $model = $this->_objectManager->get('\Prince\Productattach\Model\Productattach');
+
+        $model = $this->attachModel;
 
         $this->addColumn(
             'in_product',
@@ -187,7 +187,7 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended
         return '';
     }
 
-    protected function _getSelectedProducts()
+    public function _getSelectedProducts()
     {
         $contact = $this->getContact();
         return $contact->getProducts($contact);
@@ -209,7 +209,7 @@ class Products extends \Magento\Backend\Block\Widget\Grid\Extended
         return $selected;
     }
 
-    protected function getContact()
+    public function getContact()
     {
         $contactId = $this->getRequest()->getParam('productattach_id');
         $contact   = $this->contactFactory->create();

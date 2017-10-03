@@ -7,10 +7,10 @@ use Magento\Framework\View\Result\PageFactory;
 
 class Index extends \Magento\Backend\App\Action
 {
-	/**
-     * @var PageFactory
+    /**
+     * @var \Magento\Framework\View\Result\PageFactory
      */
-    protected $resultPageFactory;
+    private $resultPageFactory;
 
     /**
      * @param Context $context
@@ -23,13 +23,13 @@ class Index extends \Magento\Backend\App\Action
         parent::__construct($context);
         $this->resultPageFactory = $resultPageFactory;
     }
-	
+    
     /**
      * Check the permission to run it
      *
      * @return bool
      */
-    protected function _isAllowed()
+    public function _isAllowed()
     {
         return $this->_authorization->isAllowed('Prince_Productattach::productattach_manage');
     }

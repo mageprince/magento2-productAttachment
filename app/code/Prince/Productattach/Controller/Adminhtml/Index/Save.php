@@ -10,28 +10,44 @@ class Save extends \Magento\Backend\App\Action
     /**
      * @var PostDataProcessor
      */
-    protected $dataProcessor;
+    private $dataProcessor;
 
     /**
-     * @var Data
+     * @var \Prince\Productattach\Helper\Data
      */
-    protected $helper;
+    private $helper;
 
     /**
-     * @param Action\Context $context
+     * @var \Prince\Productattach\Model\Productattach
+     */
+    private $attachModel;
+
+    /**
+     * @var \Magento\Backend\Model\Session
+     */
+    private $backSession;
+
+    /**
+     * @param \Magento\Backend\App\Action $context
      * @param PostDataProcessor $dataProcessor
+     * @param \Prince\Productattach\Model\Productattach $attachModel
+     * @param \Magento\Backend\Model\Session $backSession
+     * @param \Prince\Productattach\Helper\Data $data
      */
-    public function __construct(Action\Context $context, PostDataProcessor $dataProcessor, Data $helper)
-    {
+    public function __construct(
+        Action\Context $context,
+        PostDataProcessor $dataProcessor,
+        \Prince\Productattach\Model\Productattach $attachModel,
+        Data $helper
+    ) {
         $this->dataProcessor = $dataProcessor;
+        $this->attachModel = $attachModel;
+        $this->backSession = $context->getSession();
         $this->helper = $helper;
         parent::__construct($context);
     }
 
-    /**
-     * {@inheritdoc}
-     */
-    protected function _isAllowed()
+    public function _isAllowed()
     {
         return $this->_authorization->isAllowed('Prince_Productattach::save');
     }
@@ -50,11 +66,13 @@ class Save extends \Magento\Backend\App\Action
             $store = $this->helper->getStores($data['store']);
             $data['customer_group'] = $customerGroup;
             $data['store'] = $store;
-            $model = $this->_objectManager->create('Prince\Productattach\Model\Productattach');
+            $uploadedFile = '';
+            $model = $this->attachModel;
             $id = $this->getRequest()->getParam('productattach_id');
             
             if ($id) {
                 $model->load($id);
+                $uploadedFile = $model->getFile();
             }
             
             $model->addData($data);
@@ -65,15 +83,10 @@ class Save extends \Magento\Backend\App\Action
             }
 
             try {
-                
-                if (isset($_FILES['file']) && $_FILES['file']['name'] != '') {
-                    $imageFile = $this->helper->uploadFile('file');
-                    $model->setFile($imageFile);
-                }
-                
+                $imageFile = $this->helper->uploadFile('file', $model);
                 $model->save();
                 $this->messageManager->addSuccess(__('Attachment has been saved.'));
-                $this->_objectManager->get('Magento\Backend\Model\Session')->setFormData(false);
+                $this->backSession->setFormData(false);
                 if ($this->getRequest()->getParam('back')) {
                     $this->_redirect('*/*/edit', ['productattach_id' => $model->getId(), '_current' => true]);
                     return;

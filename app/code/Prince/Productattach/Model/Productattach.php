@@ -33,7 +33,7 @@ class Productattach extends \Magento\Framework\Model\AbstractModel
      *
      * @return void
      */
-    protected function _construct()
+    public function _construct()
     {
         $this->_init('Prince\Productattach\Model\ResourceModel\Productattach');
     }
@@ -50,7 +50,7 @@ class Productattach extends \Magento\Framework\Model\AbstractModel
 
     public function getProducts(\Prince\Productattach\Model\Productattach $object)
     {
-        $tbl = $this->getResource()->getTable("Prince_productattach");
+        $tbl = $this->getResource()->getTable("prince_productattach");
         $select = $this->getResource()->getConnection()->select()->from(
             $tbl,
             ['products']
@@ -62,11 +62,10 @@ class Productattach extends \Magento\Framework\Model\AbstractModel
 
         $products = $this->getResource()->getConnection()->fetchCol($select);
         
-        if($products){
+        if ($products) {
             $products = explode('&', $products[0]);
         }
 
-        return $products; 
+        return $products;
     }
-
 }

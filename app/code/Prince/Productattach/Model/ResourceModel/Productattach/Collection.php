@@ -9,13 +9,17 @@ class Collection extends \Magento\Framework\Model\ResourceModel\Db\Collection\Ab
 {
 
     protected $_idFieldName = 'productattach_id';
+
     /**
      * Resource initialization
      *
      * @return void
      */
-    protected function _construct()
+    public function _construct()
     {
-        $this->_init('Prince\Productattach\Model\Productattach', 'Prince\Productattach\Model\ResourceModel\Productattach');
+        $this->_init(
+            'Prince\Productattach\Model\Productattach',
+            'Prince\Productattach\Model\ResourceModel\Productattach'
+        );
     }
 }

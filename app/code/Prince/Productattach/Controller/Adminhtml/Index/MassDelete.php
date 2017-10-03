@@ -1,27 +1,37 @@
 <?php
 namespace Prince\Productattach\Controller\Adminhtml\Index;
 
-class MassDelete extends \Magento\Backend\App\Action {
+class MassDelete extends \Magento\Backend\App\Action
+{
+    /**
+     * @var \Magento\Ui\Component\MassAction\Filter
+     */
+    private $filter;
 
-    protected $_filter;
-
-    protected $_collectionFactory;
+    /** 
+     * @var \Prince\Productattach\Model\ResourceModel\Productattach\CollectionFactory
+     */
+    private $collectionFactory;
     
+    /**
+     * @param \Magento\Ui\Component\MassAction\Filter $filter
+     * @param \Prince\Productattach\Model\ResourceModel\Productattach\CollectionFactory $collectionFactory
+     * @param \Magento\Backend\App\Action\Context $context
+     */
     public function __construct(
         \Magento\Ui\Component\MassAction\Filter $filter,
         \Prince\Productattach\Model\ResourceModel\Productattach\CollectionFactory $collectionFactory,
         \Magento\Backend\App\Action\Context $context
-        ) {
-        $this->_filter            = $filter;
-        $this->_collectionFactory = $collectionFactory;
+    ) {
+        $this->filter            = $filter;
+        $this->collectionFactory = $collectionFactory;
         parent::__construct($context);
     }
 
-    public function execute() {
-        try{ 
-
-            //  print_r($this->_collectionFactory->create()->getData()); exit;
-            $logCollection = $this->_filter->getCollection($this->_collectionFactory->create());
+    public function execute()
+    {
+        try {
+            $logCollection = $this->filter->getCollection($this->collectionFactory->create());
 
             $itemsDeleted = 0;
             foreach ($logCollection as $item) {
@@ -29,7 +39,7 @@ class MassDelete extends \Magento\Backend\App\Action {
                 $itemsDeleted++;
             }
             $this->messageManager->addSuccess(__('A total of %1 Attachment(s) were deleted.', $itemsDeleted));
-        }catch(Exception $e){
+        } catch (\Exception $e) {
             $this->messageManager->addError($e->getMessage());
         }
         $resultRedirect = $this->resultRedirectFactory->create();

@@ -2,12 +2,31 @@
 
 namespace Prince\Productattach\Controller\Adminhtml\Index;
 
+use Magento\Backend\App\Action;
+
 class Delete extends \Magento\Backend\App\Action
 {
     /**
+     * @var \Prince\Productattach\Model\Productattach
+     */
+    private $attachModel;
+
+    /**
+     * @param \Magento\Backend\App\Action $context
+     * @param \Prince\Productattach\Model\Productattach $attachModel
+     */
+    public function __construct(
+        Action\Context $context,
+        \Prince\Productattach\Model\Productattach $attachModel
+    ) {
+        $this->attachModel = $attachModel;
+        parent::__construct($context);
+    }
+
+    /**
      * {@inheritdoc}
      */
-    protected function _isAllowed()
+    public function _isAllowed()
     {
         return $this->_authorization->isAllowed('Prince_Productattach::productattach_delete');
     }
@@ -21,13 +40,13 @@ class Delete extends \Magento\Backend\App\Action
     {
         // check if we know what should be deleted
         $id = $this->getRequest()->getParam('productattach_id');
-		/** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
+        /** @var \Magento\Backend\Model\View\Result\Redirect $resultRedirect */
         $resultRedirect = $this->resultRedirectFactory->create();
         if ($id) {
             $title = "";
             try {
                 // init model and delete
-                $model = $this->_objectManager->create('Prince\Productattach\Model\Productattach');
+                $model = $this->attachModel;
                 $model->load($id);
                 $title = $model->getTitle();
                 $model->delete();

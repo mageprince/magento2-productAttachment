@@ -7,12 +7,12 @@ class PostDataProcessor
     /**
      * @var \Magento\Framework\Stdlib\DateTime\Filter\Date
      */
-    protected $dateFilter;
+    private $dateFilter;
 
     /**
      * @var \Magento\Framework\Message\ManagerInterface
      */
-    protected $messageManager;
+    private $messageManager;
 
     /**
      * @param \Magento\Framework\Stdlib\DateTime\Filter\Date $dateFilter
@@ -50,7 +50,7 @@ class PostDataProcessor
      * @param array $data
      * @return bool     Return FALSE if someone item is invalid
      */
-    public function validate($data)
+    public function validate()
     {
         $errorNo = true;
         return $errorNo;
