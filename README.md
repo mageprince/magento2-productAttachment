@@ -4,7 +4,7 @@ The Product Attachments extension for Magento 2 equips product pages with a spec
 
 # Installation Instruction
 
-- Copy the content of the repo to the Magento 2 root folder
+- Copy the content of the repo to the <b>app/code</b>
 - Run command: <b>php bin/magento setup:upgrade</b>
 - Run command: <b>php bin/magento setup:static-content:deploy</b>
 - Now flush cache: <b>php bin/magento cache:flush</b>
