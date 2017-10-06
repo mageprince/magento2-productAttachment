@@ -17,32 +17,32 @@ class Attachment extends \Magento\Framework\View\Element\Template
     /**
      * Productattach factory
      *
-     * @var \Prince\Productattach\Model\ProductattachFactory
+     * @var Prince\Productattach\Model\ProductattachFactory
      */
     private $productattachCollectionFactory;
     
     /**
-     * @var \Prince\Productattach\Helper\Data
+     * @var Prince\Productattach\Helper\Data
      */
     private $dataHelper;
 
     /**
-     * @var \Magento\Framework\ObjectManagerInterface
+     * @var Magento\Framework\ObjectManagerInterface
      */
     private $objectManager;
 
     /**
-     * @var \Magento\Customer\Model\Session
+     * @var Magento\Customer\Model\Session
      */
     private $customerSession;
 
     /**
-     * @var \Magento\Framework\App\Config\ScopeConfigInterface
+     * @var Magento\Framework\App\Config\ScopeConfigInterface
      */
     private $scopeConfig;
 
     /**
-     * @var \Magento\Framework\Registry
+     * @var Magento\Framework\Registry
      */
     private $registry;
     
@@ -76,6 +76,14 @@ class Attachment extends \Magento\Framework\View\Element\Template
         );
     }
     
+    /**
+     * Check module is enable or not
+     */
+    public function isEnable()
+    {
+        return $this->getConfig('productattach/general/enable');
+    }
+
     /**
      * Retrieve productattach collection
      *
@@ -211,9 +219,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
      */
     public function getTabName()
     {
-        return $this->scopeConfig->getValue(
-            'productattach/general/tabname',
-            \Magento\Store\Model\ScopeInterface::SCOPE_STORE
-        );
+        $tabName = __($this->getConfig('productattach/general/tabname'));
+        return $tabName;
     }
 }

@@ -7,7 +7,7 @@
         <referenceBlock name="product.info.details">
           <block class="Prince\Productattach\Block\Attachment" name="productattach.tab" as="productattach" template="Prince_Productattach::attachment.phtml" group="detailed_info" ifconfig="productattach/general/producttab">
              <arguments>
-                <argument translate="true" name="title" xsi:type="helper" helper="Prince\Productattach\Block\Attachment::getTabName"></argument>
+                <argument name="title" xsi:type="helper" helper="Prince\Productattach\Block\Attachment::getTabName"></argument>
              </arguments>
           </block>
         </referenceBlock>
