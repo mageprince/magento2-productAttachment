@@ -1,10 +1,22 @@
 <?php
+
 /**
- * Adminhtml productattach list block
+ * Mageprince
  *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @package Prince_Productattach
  */
+
 namespace Prince\Productattach\Block\Adminhtml;
 
+/**
+ * Class Productattach
+ * @package Prince\Productattach\Block\Adminhtml
+ */
 class Productattach extends \Magento\Backend\Block\Widget\Grid\Container
 {
     /**

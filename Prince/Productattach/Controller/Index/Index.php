@@ -1,9 +1,24 @@
 <?php
 
+/**
+ * Mageprince
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @package Prince_Productattach
+ */
+
 namespace Prince\Productattach\Controller\Index;
 
 use Magento\Framework\View\Result\PageFactory;
 
+/**
+ * Class Index
+ * @package Prince\Productattach\Controller\Index
+ */
 class Index extends \Magento\Framework\App\Action\Action
 {
     /**

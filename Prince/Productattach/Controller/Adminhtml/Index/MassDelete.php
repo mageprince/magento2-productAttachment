@@ -1,6 +1,22 @@
 <?php
+
+/**
+ * Mageprince
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @package Prince_Productattach
+ */
+
 namespace Prince\Productattach\Controller\Adminhtml\Index;
 
+/**
+ * Class MassDelete
+ * @package Prince\Productattach\Controller\Adminhtml\Index
+ */
 class MassDelete extends \Magento\Backend\App\Action
 {
     /**

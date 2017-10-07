@@ -1,10 +1,25 @@
 <?php
 
+/**
+ * Mageprince
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @package Prince_Productattach
+ */
+
 namespace Prince\Productattach\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Prince\Productattach\Helper\Data;
 
+/**
+ * Class Save
+ * @package Prince\Productattach\Controller\Adminhtml\Index
+ */
 class Save extends \Magento\Backend\App\Action
 {
     /**

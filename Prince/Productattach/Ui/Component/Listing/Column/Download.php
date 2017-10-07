@@ -1,7 +1,22 @@
 <?php
 
+/**
+ * Mageprince
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @package Prince_Productattach
+ */
+
 namespace Prince\Productattach\Ui\Component\Listing\Column;
 
+/**
+ * Class Download
+ * @package Prince\Productattach\Ui\Component\Listing\Column
+ */
 class Download extends \Magento\Ui\Component\Listing\Columns\Column
 {
     /**

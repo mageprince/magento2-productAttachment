@@ -1,5 +1,16 @@
 <?php
 
+/**
+ * Mageprince
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @package Prince_Productattach
+ */
+
 namespace Prince\Productattach\Ui\Component\Listing\Column;
 
 use Magento\Framework\View\Element\UiComponentFactory;
@@ -7,6 +18,10 @@ use Magento\Framework\View\Element\UiComponent\ContextInterface;
 use Magento\Ui\Component\Listing\Columns\Column;
 use Magento\Store\Model\StoreManagerInterface;
 
+/**
+ * Class Store
+ * @package Prince\Productattach\Ui\Component\Listing\Column
+ */
 class Store extends Column
 {
     /**

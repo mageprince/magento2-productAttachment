@@ -1,9 +1,21 @@
 <?php
+
+/**
+ * Mageprince
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @package Prince_Productattach
+ */
+
 namespace Prince\Productattach\Block\Adminhtml\Productattach;
 
 /**
- * Admin Productattach page
- *
+ * Class Edit
+ * @package Prince\Productattach\Block\Adminhtml\Productattach
  */
 class Edit extends \Magento\Backend\Block\Widget\Form\Container
 {
