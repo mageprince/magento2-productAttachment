@@ -1,24 +1,9 @@
 <?php
 
-/**
- * Mageprince
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this extension to newer
- * version in the future.
- *
- * @package Prince_Productattach
- */
-
 namespace Prince\Productattach\Helper;
 
 use Magento\Framework\App\Filesystem\DirectoryList;
 
-/**
- * Class Data
- * @package Prince\Productattach\Helper
- */
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
     /**

@@ -1,7 +1,6 @@
 {
     "name": "prince/module-productattachment",
     "description": "Magento2 Product Attachment Module",
-    "minimum-stability": "dev",
     "require": {
         "magento/module-store": ">100.0",
         "magento/module-backend": ">100.0",
@@ -9,9 +8,9 @@
     },
     "type": "magento2-module",
     "version": "1.0.0",
+    "minimum-stability": "dev",
     "license": [
-        "OSL-3.0",
-        "AFL-3.0"
+        "proprietary"
     ],
     "authors": [
         {

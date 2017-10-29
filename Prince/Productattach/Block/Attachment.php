@@ -1,21 +1,9 @@
 <?php
 
-/**
- * Mageprince
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this extension to newer
- * version in the future.
- *
- * @package Prince_Productattach
- */
-
 namespace Prince\Productattach\Block;
 
 /**
- * Class Attachment
- * @package Prince\Productattach\Block
+ * Productattach content block
  */
 class Attachment extends \Magento\Framework\View\Element\Template
 {

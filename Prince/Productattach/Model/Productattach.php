@@ -1,21 +1,12 @@
 <?php
 
-/**
- * Mageprince
- *
- * DISCLAIMER
- *
- * Do not edit or add to this file if you wish to upgrade this extension to newer
- * version in the future.
- *
- * @package Prince_Productattach
- */
-
 namespace Prince\Productattach\Model;
 
 /**
- * Class Productattach
- * @package Prince\Productattach\Model;
+ * Productattach Model
+ *
+ * @method \Prince\Productattach\Model\Resource\Page _getResource()
+ * @method \Prince\Productattach\Model\Resource\Page getResource()
  */
 class Productattach extends \Magento\Framework\Model\AbstractModel
 {
