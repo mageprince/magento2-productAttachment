@@ -48,7 +48,7 @@ php bin/magento cache:flush
 
 # API (SOAP) examples
 
-Creating a new attachment record
+**Creating a new attachment record**
 
     <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:all="http://magetest:8000/index.php/soap/all?services=princeProductattachV1">
        <soap:Header/>
@@ -71,7 +71,30 @@ Creating a new attachment record
        </soap:Body>
     </soap:Envelope>
 
-Deleting an attachment record
+**Updating an attachment record** (same as the previous one, except for the given id in the productAttachId element)
+
+    <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:all="http://magetest:8000/index.php/soap/all?services=princeProductattachV1">
+       <soap:Header/>
+       <soap:Body>
+          <all:princeProductattachV1UpdateInsertAttachmentRequest>
+             <productattachTable>
+                <productAttachId>9</productAttachId>
+                <name>testname</name>
+                <description>test desc</description>
+                <file>testfile.pdf</file>
+                <url></url>
+                <store>0,1</store>
+                <customerGroup>0,1,2,3</customerGroup>
+                <products>1</products>
+                <active>1</active>
+             </productattachTable>
+             <filename>testfile.pdf</filename>
+             <fileContent><![CDATA[JVBERi0xLjYNJeLjz9MN....CiUlRU9GDQo=]]></fileContent>
+          </all:princeProductattachV1UpdateInsertAttachmentRequest>
+       </soap:Body>
+    </soap:Envelope>
+
+**Deleting an attachment record**
 
     <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:all="http://magetest:8000/index.php/soap/all?services=princeProductattachV1">
        <soap:Header/>
