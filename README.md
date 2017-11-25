@@ -1,6 +1,8 @@
 # Magento2 Product Attachment
 
-The Product Attachments extension for Magento 2 equips product pages with a special attachments block where you can upload numerous documents such as user guides, extra images, pdf, certificates, licenses and many others.
+The Product Attachments extension for Magento 2 equips product pages with a special attachments block where you can upload numerous documents such as user guides, extra images, pdf, certificates, licenses and many others. 
+
+It also has API support (SOAP) for creating/updating and deleting attachments.
 
 # Installation Instruction
 
@@ -44,3 +46,38 @@ php bin/magento cache:flush
 <h3>Attachment Settings</h3>
 <img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/4-settings.png" alt="Attachment Settings" />
 
+# API (SOAP) examples
+
+Creating a new attachment record
+
+    <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:all="http://magetest:8000/index.php/soap/all?services=princeProductattachV1">
+       <soap:Header/>
+       <soap:Body>
+          <all:princeProductattachV1UpdateInsertAttachmentRequest>
+             <productattachTable>
+                <productAttachId>0</productAttachId>
+                <name>testname</name>
+                <description>test desc</description>
+                <file>testfile.pdf</file>
+                <url></url>
+                <store>0,1</store>
+                <customerGroup>0,1,2,3</customerGroup>
+                <products>1</products>
+                <active>1</active>
+             </productattachTable>
+             <filename>testfile.pdf</filename>
+             <fileContent><![CDATA[JVBERi0xLjYNJeLjz9MN....CiUlRU9GDQo=]]></fileContent>
+          </all:princeProductattachV1UpdateInsertAttachmentRequest>
+       </soap:Body>
+    </soap:Envelope>
+
+Deleting an attachment record
+
+    <soap:Envelope xmlns:soap="http://www.w3.org/2003/05/soap-envelope" xmlns:all="http://magetest:8000/index.php/soap/all?services=princeProductattachV1">
+       <soap:Header/>
+       <soap:Body>
+          <all:princeProductattachV1DeleteAttachmentRequest>
+             <int>9</int>
+          </all:princeProductattachV1DeleteAttachmentRequest>
+       </soap:Body>
+    </soap:Envelope>
