@@ -80,6 +80,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         try {
             $uploader = $this->fileUploaderFactory->create(['fileId' => $scope]);
+            $uploader->setAllowedExtensions($this->getAllowedExt());
             $uploader->setAllowRenameFiles(true);
             $uploader->setFilesDispersion(true);
             $uploader->setAllowCreateFolders(true);
@@ -121,7 +122,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
                 // create file
                 file_put_contents($folderAbsolutePath."/".$filename, base64_decode($fileContent));
                 return true;
-            } catch (Exception $e) {
+            } catch (\Exception $e) {
                 return false;
             }
         }else{
@@ -231,7 +232,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         if(count($exts)){
             $ext = $exts[count($exts)-1];
         }
-        if( in_array($ext, array('pdf','jpg','png','gif')) &&
+        if( in_array($ext, $this->getAllowedExt()) &&
             strpos($filepathInMediaFolder,"..") === false ) {
             $finalPath = $this->getProductAttachMediaFolderAbsolutePath()."/".$filepathInMediaFolder;
             if(file_exists($finalPath)){
@@ -260,5 +261,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function getDispersionFolderAbsolutePath($filename)
     {
         return $this->getProductAttachMediaFolderAbsolutePath()."/".$this->getFileDispersionPath($filename);
+    }
+    
+    /**
+     * Return the allowed file extensions
+     * @return array
+     */
+    public function getAllowedExt()
+    {
+        return ['pdf','pptx', 'xls', 'xlsx', 'flash', 'mp3', 'docx', 'doc', 'zip', 'jpg', 'jpeg', 'png', 'gif', 'ini', 'readme', 'avi', 'csv', 'txt', 'wma', 'mpg', 'flv'];
     }
 }
