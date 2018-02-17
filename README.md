@@ -104,3 +104,11 @@ php bin/magento cache:flush
           </all:princeProductattachV1DeleteAttachmentRequest>
        </soap:Body>
     </soap:Envelope>
+    
+# Contribution
+
+Want to contribute to this extension? The quickest way is to <a href="https://help.github.com/articles/about-pull-requests/">open a pull request</a> on GitHub.
+
+# Support
+
+If you encounter any problems or bugs, please <a href="https://github.com/mageprince/magento2-productAttachment/issues">open an issue</a> on GitHub.
