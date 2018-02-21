@@ -15,7 +15,7 @@ It also has API support (SOAP) for creating/updating and deleting attachments.
 2. Enter following commands to install module:
 
     1. `composer config repositories.mageprince git https://github.com/mageprince/magento2-productAttachment.git`</br>
-    2. `composer require mageprince/mageprince/magento2-productattachment:dev-master` </br>
+    2. `composer require mageprince/magento2-productattachment:dev-master` </br>
     3. `php bin/magento setup:upgrade`
     4. `php bin/magento setup:static-content:deploy`
     
