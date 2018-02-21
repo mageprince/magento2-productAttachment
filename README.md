@@ -8,10 +8,33 @@ It also has API support (SOAP) for creating/updating and deleting attachments.
 
 # Installation Instruction
 
-- Copy the content of the repo to the <b>app/code/Prince/Productattach</b>
-- Run command: <b>php bin/magento setup:upgrade</b>
-- Run command: <b>php bin/magento setup:static-content:deploy</b>
-- Now flush cache: <b>php bin/magento cache:flush</b>
+<b>Install Via Composer:</b>
+
+1. Go to Magento2 root folder
+
+2. Enter following commands to install module:
+
+    1. `composer config repositories.mageprince git https://github.com/mageprince/magento2-productAttachment.git`</br>
+    2. `composer require mageprince/mageprince/magento2-productattachment:dev-master` </br>
+    3. `php bin/magento setup:upgrade`
+    4. `php bin/magento setup:static-content:deploy`
+    
+
+<b>Install Manually:</b>
+
+* Create folder `app/code/Prince/Productattach` and copy the content of the repo 
+* Run command:
+<b>php bin/magento setup:upgrade</b>
+* Run Command:
+<b>php bin/magento setup:static-content:deploy</b>
+
+# Contribution
+
+Want to contribute to this extension? The quickest way is to <a href="https://help.github.com/articles/about-pull-requests/">open a pull request</a> on GitHub.
+
+# Support
+
+If you encounter any problems or bugs, please <a href="https://github.com/mageprince/magento2-productAttachment/issues">open an issue</a> on GitHub.
 
 # How to Change Attachment Icons
 
