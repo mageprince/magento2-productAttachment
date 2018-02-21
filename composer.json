@@ -1,5 +1,5 @@
 {
-  "name": "mageprince/module-productattachment",
+  "name": "mageprince/magento2-productattachment",
   "description": "Magento2 Product Attachment Module",
   "require": {
     "magento/module-store": ">100.0",
