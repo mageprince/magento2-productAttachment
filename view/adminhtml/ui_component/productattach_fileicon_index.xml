@@ -1,0 +1,121 @@
+<?xml version="1.0" ?>
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+	<argument name="context" xsi:type="configurableObject">
+		<argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\Context</argument>
+		<argument name="namespace" xsi:type="string">productattach_fileicon_index</argument>
+	</argument>
+	<argument name="data" xsi:type="array">
+		<item name="js_config" xsi:type="array">
+			<item name="provider" xsi:type="string">productattach_fileicon_index.productattach_fileicon_grid_data_source</item>
+			<item name="deps" xsi:type="string">productattach_fileicon_index.productattach_fileicon_grid_data_source</item>
+		</item>
+		<item name="spinner" xsi:type="string">productattach_fileicon_columns</item>
+		<item name="buttons" xsi:type="array">
+			<item name="add" xsi:type="array">
+				<item name="name" xsi:type="string">add</item>
+				<item name="label" translate="true" xsi:type="string">Add new Fileicon</item>
+				<item name="class" xsi:type="string">primary</item>
+				<item name="url" xsi:type="string">*/*/new</item>
+			</item>
+		</item>
+	</argument>
+	<dataSource name="productattach_fileicon_grid_data_source">
+		<argument name="dataProvider" xsi:type="configurableObject">
+			<argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+			<argument name="name" xsi:type="string">productattach_fileicon_grid_data_source</argument>
+			<argument name="primaryFieldName" xsi:type="string">fileicon_id</argument>
+			<argument name="requestFieldName" xsi:type="string">id</argument>
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+					<item name="update_url" path="mui/index/render" xsi:type="url"/>
+					<item name="storageConfig" xsi:type="array">
+						<item name="indexField" xsi:type="string">fileicon_id</item>
+					</item>
+				</item>
+			</argument>
+		</argument>
+	</dataSource>
+	<listingToolbar name="listing_top">
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="sticky" xsi:type="boolean">true</item>
+			</item>
+		</argument>
+		<bookmark name="bookmarks"/>
+		<columnsControls name="columns_controls"/>
+		<filters name="listing_filters"/>
+		<paging name="listing_paging"/>
+	</listingToolbar>
+	<columns name="productattach_fileicon_columns">
+		<argument name="data" xsi:type="array">
+			<item name="config" xsi:type="array">
+				<item name="editorConfig" xsi:type="array">
+					<item name="selectProvider" xsi:type="string">productattach_fileicon_index.productattach_fileicon_index.productattach_fileicon_columns.ids</item>
+					<item name="enabled" xsi:type="boolean">true</item>
+					<item name="indexField" xsi:type="string">fileicon_id</item>
+					<item name="clientConfig" xsi:type="array">
+						<item name="saveUrl" path="productattach/Fileicon/inlineEdit" xsi:type="url"/>
+						<item name="validateBeforeSave" xsi:type="boolean">false</item>
+					</item>
+				</item>
+				<item name="childDefaults" xsi:type="array">
+					<item name="fieldAction" xsi:type="array">
+						<item name="provider" xsi:type="string">productattach_fileicon_index.productattach_fileicon_index.productattach_fileicon_columns_editor</item>
+						<item name="target" xsi:type="string">startEdit</item>
+						<item name="params" xsi:type="array">
+							<item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+							<item name="1" xsi:type="boolean">true</item>
+						</item>
+					</item>
+				</item>
+			</item>
+		</argument>
+		<column name="fileicon_id">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="sortOrder" xsi:type="number">10</item>
+					<item name="filter" xsi:type="string">text</item>
+					<item name="sorting" xsi:type="string">asc</item>
+					<item name="label" translate="true" xsi:type="string">ID</item>
+				</item>
+			</argument>
+		</column>
+		<column name="icon_ext">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="sortOrder" xsi:type="number">20</item>
+					<item name="filter" xsi:type="string">text</item>
+					<item name="label" translate="true" xsi:type="string">File Type</item>
+					<item name="editor" xsi:type="array">
+						<item name="editorType" xsi:type="string">text</item>
+						<item name="validation" xsi:type="array">
+							<item name="required-entry" xsi:type="boolean">false</item>
+						</item>
+					</item>
+				</item>
+			</argument>
+		</column>
+		<column name="icon_image" class="Prince\Productattach\Ui\Component\Listing\Column\FileIcon">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="sortOrder" xsi:type="number">40</item>
+					<item name="bodyTmpl" xsi:type="string">Prince_Productattach/grid/cells/thumbnail</item>
+					<item name="component" xsi:type="string">Magento_Ui/js/grid/columns/thumbnail</item>
+                    <item name="sortable" xsi:type="boolean">false</item>
+                    <item name="altField" xsi:type="string">icon_ext</item>
+                    <item name="has_preview" xsi:type="string">0</item>
+                    <item name="label" xsi:type="string" translate="true">Icon Image</item>
+				</item>
+			</argument>
+		</column>
+		<actionsColumn class="Prince\Productattach\Ui\Component\Listing\Column\FileiconActions" name="actions">
+			<argument name="data" xsi:type="array">
+				<item name="config" xsi:type="array">
+					<item name="sortOrder" xsi:type="number">50</item>
+					<item name="indexField" xsi:type="string">fileicon_id</item>
+				</item>
+			</argument>
+		</actionsColumn>
+	</columns>
+</listing>

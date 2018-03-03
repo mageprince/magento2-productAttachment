@@ -21,6 +21,13 @@ class Attachment extends \Magento\Framework\View\Element\Template
      * @var Prince\Productattach\Model\ProductattachFactory
      */
     private $productattachCollectionFactory;
+
+    /**
+     * Fileicon factory
+     *
+     * @var Prince\Productattach\Model\FileiconFactory
+     */
+    private $fileiconCollectionFactory;
     
     /**
      * @var Prince\Productattach\Helper\Data
@@ -51,6 +58,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Prince\Productattach\Model\ResourceModel\Productattach\CollectionFactory $productattachCollectionFactory
+     * @param \Prince\Productattach\Model\ResourceModel\Fileicon\CollectionFactory $fileiconCollectionFactory
      * @param \Magento\Framework\ObjectManagerInterface $objectmanager
      * @param \Prince\Productattach\Helper\Data $dataHelper
      * @param \Magento\Framework\Registry $registry
@@ -60,6 +68,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
         \Magento\Framework\View\Element\Template\Context $context,
         \Magento\Customer\Model\Session $customerSession,
         \Prince\Productattach\Model\ResourceModel\Productattach\CollectionFactory $productattachCollectionFactory,
+        \Prince\Productattach\Model\ResourceModel\Fileicon\CollectionFactory $fileiconCollectionFactory,
         \Magento\Framework\ObjectManagerInterface $objectmanager,
         \Prince\Productattach\Helper\Data $dataHelper,
         \Magento\Framework\Registry $registry,
@@ -67,6 +76,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
     ) {
         $this->customerSession =$customerSession;
         $this->productattachCollectionFactory = $productattachCollectionFactory;
+        $this->fileiconCollectionFactory = $fileiconCollectionFactory;
         $this->objectManager = $objectmanager;
         $this->dataHelper = $dataHelper;
         $this->scopeConfig = $context->getScopeConfig();
@@ -104,9 +114,24 @@ class Attachment extends \Magento\Framework\View\Element\Template
     public function getAttachment($productId)
     {
         $collection = $this->getCollection();
-        $collection->getSelect()->where("store LIKE '%".$this->dataHelper->getStoreId()."%'");
-        $collection->getSelect()->where("customer_group LIKE '%".$this->getCustomerId()."%'");
+        
+        $collection->addFieldToFilter(
+            'customer_group',
+            [
+                ['null' => true],
+                ['finset' => $this->getCustomerId()]
+            ]
+        );
+        $collection->addFieldToFilter(
+            'store',
+            [
+                ['eq' => 0],
+                ['finset' => $this->dataHelper->getStoreId()]
+            ]
+        );
+
         $collection->getSelect()->where("products REGEXP '[[:<:]]".$productId."[[:>:]]'");
+        
         return $collection;
     }
 
@@ -151,11 +176,30 @@ class Attachment extends \Magento\Framework\View\Element\Template
     public function getFileIcon($fileExt)
     {
         if ($fileExt) {
-            $iconImage = $this->getViewFileUrl('Prince_Productattach::images/'.$fileExt.'.png');
+            $iconExt = $this->getIconExt($fileExt);
+            if($iconExt) {
+                $mediaUrl = $this->dataHelper->getMediaUrl();
+                $iconImage = $mediaUrl.'fileicon/tmp/icon/'.$iconExt;
+            } else {
+                $iconImage = $this->getViewFileUrl('Prince_Productattach::images/'.$fileExt.'.png');
+            } 
         } else {
             $iconImage = $this->getViewFileUrl('Prince_Productattach::images/unknown.png');
         }
         return $iconImage;
+    }
+
+    /**
+     * Retrive icon ext name
+     *
+     * @return string
+     */
+    public function getIconExt($fileExt)
+    {
+        $iconCollection = $this->fileiconCollectionFactory->create();
+        $iconCollection->addFieldToFilter('icon_ext',$fileExt);
+        $icon = $iconCollection->getFirstItem()->getIconImage();
+        return $icon;
     }
 
     /**

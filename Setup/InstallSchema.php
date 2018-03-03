@@ -17,84 +17,115 @@ class InstallSchema implements InstallSchemaInterface
         $installer = $setup;
         $installer->startSetup();
 
+        /*
+         * Drop tables if exists
+         */
+
+        $installer->getConnection()->dropTable($installer->getTable('prince_productattach'));
+        $installer->getConnection()->dropTable($installer->getTable('prince_productattach_fileicon'));
+
         /**
          * Creating table prince_productattach
          */
-        $table = $installer->getConnection()->newTable(
-            $installer->getTable('prince_productattach')
-        )->addColumn(
+        $table_prince_productattach = $installer->getConnection()->newTable($installer->getTable('prince_productattach'));
+        
+        $table_prince_productattach->addColumn(
             'productattach_id',
             \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
             null,
             ['identity' => true, 'unsigned' => true, 'nullable' => false, 'primary' => true],
             'Entity Id'
-        )->addColumn(
+        );
+
+        $table_prince_productattach->addColumn(
             'name',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
             ['nullable' => true],
             'Name'
-        )->addColumn(
+        );
+
+        $table_prince_productattach->addColumn(
             'description',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
             ['nullable' => true,'default' => null],
             'Description'
-        )->addColumn(
+        );
+
+        $table_prince_productattach->addColumn(
             'file',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
             ['nullable' => true,'default' => null],
             'Content'
-        )->addColumn(
+        );
+
+        $table_prince_productattach->addColumn(
             'file_ext',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
             ['nullable' => true,'default' => null],
             'File Extension'
-        )->addColumn(
+        );
+
+        $table_prince_productattach->addColumn(
             'url',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             null,
             ['nullable' => true,'default' => null],
             'Productattach image media path'
-        )->addColumn(
+        );
+
+        $table_prince_productattach->addColumn(
             'store',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             null,
             ['nullable' => true,'default' => null],
             'Store'
-        )->addColumn(
+        );
+
+        $table_prince_productattach->addColumn(
             'customer_group',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             null,
             ['nullable' => true,'default' => null],
             'Customer Group'
-        )->addColumn(
+        );
+
+        $table_prince_productattach->addColumn(
             'products',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
             255,
             ['nullable' => true,'default' => null],
             'Assigned Products'
-        )->addColumn(
+        );
+
+        $table_prince_productattach->addColumn(
             'active',
             \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
             null,
             ['nullable' => false, 'default' => '0'],
             'Active'
-        )->addColumn(
+        );
+
+        $table_prince_productattach->addColumn(
             'created_at',
             \Magento\Framework\DB\Ddl\Table::TYPE_TIMESTAMP,
             null,
             ['nullable' => false],
             'Created At'
-        )->addColumn(
+        );
+
+        $table_prince_productattach->addColumn(
             'published_at',
             \Magento\Framework\DB\Ddl\Table::TYPE_DATE,
             null,
             ['nullable' => true,'default' => null],
             'World publish date'
-        )->addIndex(
+        );
+
+        $table_prince_productattach->addIndex(
             $installer->getIdxName(
                 'Prince_productattach',
                 ['published_at'],
@@ -102,10 +133,38 @@ class InstallSchema implements InstallSchemaInterface
             ),
             ['published_at'],
             ['type' => \Magento\Framework\DB\Adapter\AdapterInterface::INDEX_TYPE_INDEX]
-        )->setComment(
-            'Productattach item'
+        )->setComment('Productattach item');
+
+        $installer->getConnection()->createTable($table_prince_productattach);
+
+        $table_prince_productattach_fileicon = $setup->getConnection()->newTable($setup->getTable('prince_productattach_fileicon'));
+        
+        $table_prince_productattach_fileicon->addColumn(
+            'fileicon_id',
+            \Magento\Framework\DB\Ddl\Table::TYPE_INTEGER,
+            null,
+            array('identity' => true,'nullable' => false,'primary' => true,'unsigned' => true,),
+            'Entity ID'
         );
-        $installer->getConnection()->createTable($table);
+        
+        $table_prince_productattach_fileicon->addColumn(
+            'icon_ext',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            null,
+            [],
+            'icon_ext'
+        );
+        
+        $table_prince_productattach_fileicon->addColumn(
+            'icon_image',
+            \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
+            null,
+            [],
+            'icon_image'
+        );
+
+        $setup->getConnection()->createTable($table_prince_productattach_fileicon);
+
         $installer->endSetup();
     }
 }
