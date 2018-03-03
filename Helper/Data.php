@@ -271,4 +271,14 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         return ['pdf','pptx', 'xls', 'xlsx', 'flash', 'mp3', 'docx', 'doc', 'zip', 'jpg', 'jpeg', 'png', 'gif', 'ini', 'readme', 'avi', 'csv', 'txt', 'wma', 'mpg', 'flv'];
     }
+
+    /**
+     * Return mediaurl
+     * @return string
+     */
+    public function getMediaUrl()
+    {
+        $mediaUrl = $this ->storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
+        return $mediaUrl;
+    }
 }

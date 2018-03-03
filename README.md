@@ -4,25 +4,12 @@ The Product Attachments extension for Magento 2 equips product pages with a spec
 
 It also has API support (SOAP) for creating/updating and deleting attachments.
 
-<b>Magento Market Place Link:</b> https://marketplace.magento.com/prince-module-productattachment.html</b>
-
 # Installation Instruction
 
-<b>Install Manually:</b>
-
-* Create folder `app/code/Prince/Productattach` and copy the content of the repo 
-* Run command:
-<b>php bin/magento setup:upgrade</b>
-* Run Command:
-<b>php bin/magento setup:static-content:deploy</b>
-
-# Contribution
-
-Want to contribute to this extension? The quickest way is to <a href="https://help.github.com/articles/about-pull-requests/">open a pull request</a> on GitHub.
-
-# Support
-
-If you encounter any problems or bugs, please <a href="https://github.com/mageprince/magento2-productAttachment/issues">open an issue</a> on GitHub.
+- Copy the content of the repo to the <b>app/code/Prince/Productattach</b>
+- Run command: <b>php bin/magento setup:upgrade</b>
+- Run command: <b>php bin/magento setup:static-content:deploy</b>
+- Now flush cache: <b>php bin/magento cache:flush</b>
 
 # How to Change Attachment Icons
 
@@ -117,11 +104,3 @@ php bin/magento cache:flush
           </all:princeProductattachV1DeleteAttachmentRequest>
        </soap:Body>
     </soap:Envelope>
-    
-# Contribution
-
-Want to contribute to this extension? The quickest way is to <a href="https://help.github.com/articles/about-pull-requests/">open a pull request</a> on GitHub.
-
-# Support
-
-If you encounter any problems or bugs, please <a href="https://github.com/mageprince/magento2-productAttachment/issues">open an issue</a> on GitHub.
