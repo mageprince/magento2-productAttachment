@@ -11,23 +11,13 @@ It also has API support (SOAP) for creating/updating and deleting attachments.
 - Run command: <b>php bin/magento setup:static-content:deploy</b>
 - Now flush cache: <b>php bin/magento cache:flush</b>
 
-# How to Change Attachment Icons
+# Contribution
 
-<b>Frontend Attachments Icons:</b>
+Want to contribute to this extension? The quickest way is to <a href="https://help.github.com/articles/about-pull-requests/">open a pull request</a> on GitHub.
 
-You can find all frontend attachment icons from here `Prince\Productattach\view\frontend\web\images`
-Just replace icon images with your icon image. Image file must be in png format.
+# Support
 
-<b>Admin Attachments Icons:</b>
-
-You can find all admin attachment icons from here:`Prince\Productattach\view\adminhtml\web\images`
-Just replace icon images with your icon image. Image file must be in png format.
-
-<b>Run This Commands After changes icon images</b>
-
-php bin/magento setup:static-content:deploy
-
-php bin/magento cache:flush
+If you encounter any problems or bugs, please <a href="https://github.com/mageprince/magento2-productAttachment/issues">open an issue</a> on GitHub.
 
 # Screenshot
 
