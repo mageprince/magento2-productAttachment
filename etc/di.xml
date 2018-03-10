@@ -22,4 +22,24 @@
             <argument name="resourceModel" xsi:type="string">Prince\Productattach\Model\ResourceModel\Fileicon\Collection</argument>
         </arguments>
     </virtualType>
+    <type name="Magento\Framework\EntityManager\Operation\ExtensionPool">
+        <arguments>
+            <argument name="extensionActions" xsi:type="array">
+                <item name="Magento\Catalog\Api\Data\ProductInterface" xsi:type="array">
+                    <item name="read" xsi:type="array">
+                        <item name="prince_attachment_read" xsi:type="string">Prince\Productattach\Model\Product\ReadHandler</item>
+                    </item>
+                    <item name="create" xsi:type="array">
+                        <item name="prince_attachmentk_create" xsi:type="string">Prince\Productattach\Model\Product\CreateHandler</item>
+                    </item>
+                    <item name="update" xsi:type="array">
+                        <item name="prince_attachment_update" xsi:type="string">Prince\Productattach\Model\Product\UpdateHandler</item>
+                    </item>
+                    <item name="delete" xsi:type="array">
+                        <item name="prince_attachment_delete" xsi:type="string">Prince\Productattach\Model\Product\DeleteHandler</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
 </config>

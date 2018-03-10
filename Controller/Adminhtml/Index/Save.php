@@ -30,6 +30,7 @@ namespace Prince\Productattach\Controller\Adminhtml\Index;
 
 use Magento\Backend\App\Action;
 use Prince\Productattach\Helper\Data;
+use Magento\Framework\View\LayoutFactory;
 
 /**
  * Class Save
@@ -48,14 +49,24 @@ class Save extends \Magento\Backend\App\Action
     private $helper;
 
     /**
-     * @var \Prince\Productattach\Model\Productattach
+     * @var \Prince\Productattach\Model\ProductattachFactory
      */
-    private $attachModel;
+    private $attachModelFactory;
+
+    /**
+     * @var LayoutFactory
+     */
+    protected $layoutFactory;
 
     /**
      * @var \Magento\Backend\Model\Session
      */
     private $backSession;
+
+    /**
+     * @var \Magento\Framework\Controller\Result\JsonFactory
+     */
+    protected $resultJsonFactory;
 
     /**
      * Save constructor.
@@ -67,11 +78,15 @@ class Save extends \Magento\Backend\App\Action
     public function __construct(
         Action\Context $context,
         PostDataProcessor $dataProcessor,
-        \Prince\Productattach\Model\Productattach $attachModel,
+        \Prince\Productattach\Model\ProductattachFactory $attachModelFactory,
+        LayoutFactory $layoutFactory,
+        \Magento\Framework\Controller\Result\JsonFactory $resultJsonFactory,
         Data $helper
     ) {
         $this->dataProcessor = $dataProcessor;
-        $this->attachModel = $attachModel;
+        $this->attachModelFactory = $attachModelFactory;
+        $this->layoutFactory = $layoutFactory;
+        $this->resultJsonFactory = $resultJsonFactory;
         $this->backSession = $context->getSession();
         $this->helper = $helper;
         parent::__construct($context);
@@ -93,51 +108,73 @@ class Save extends \Magento\Backend\App\Action
     public function execute()
     {
         $data = $this->getRequest()->getPostValue();
-        if ($data) {
-            $data = $this->dataProcessor->filter($data);
-            $customerGroup = $this->helper->getCustomerGroup($data['customer_group']);
-            $store = $this->helper->getStores($data['store']);
-            $data['customer_group'] = $customerGroup;
-            $data['store'] = $store;
-            $uploadedFile = '';
-            $model = $this->attachModel;
-            $id = $this->getRequest()->getParam('productattach_id');
-            
-            if ($id) {
-                $model->load($id);
-                $uploadedFile = $model->getFile();
-            }
-            
-            $model->addData($data);
-
-            if (!$this->dataProcessor->validate($data)) {
-                $this->_redirect('*/*/edit', ['productattach_id' => $model->getId(), '_current' => true]);
-                return;
-            }
-
-            try {
-                $imageFile = $this->helper->uploadFile('file', $model);
-                $model->save();
-                $this->messageManager->addSuccess(__('Attachment has been saved.'));
-                $this->backSession->setFormData(false);
-                if ($this->getRequest()->getParam('back')) {
-                    $this->_redirect('*/*/edit', ['productattach_id' => $model->getId(), '_current' => true]);
-                    return;
-                }
-                $this->_redirect('*/*/');
-                return;
-            } catch (\Magento\Framework\Model\Exception $e) {
-                $this->messageManager->addError($e->getMessage());
-            } catch (\RuntimeException $e) {
-                $this->messageManager->addError($e->getMessage());
-            } catch (\Exception $e) {
-                $this->messageManager->addException($e, __('Something went wrong while saving the attachment.'));
-            }
-
-            $this->_getSession()->setFormData($data);
-            $this->_redirect('*/*/edit', ['productattach_id' => $this->getRequest()->getParam('productattach_id')]);
+        if (!$data) {
+            $this->_redirect('*/*/');
             return;
         }
-        $this->_redirect('*/*/');
+
+        $data = $this->dataProcessor->filter($data);
+        $customerGroup = $this->helper->getCustomerGroup($data['customer_group']);
+        $store = $this->helper->getStores($data['store']);
+        $data['customer_group'] = $customerGroup;
+        $data['store'] = $store;
+        /** @var \Prince\Productattach\Model\Productattach $model */
+        $model = $this->attachModelFactory->create();
+        $id = $this->getRequest()->getParam('productattach_id');
+
+        if ($id) {
+            $model->load($id);
+        }
+
+        $model->addData($data);
+
+        if (!$this->dataProcessor->validate($data)) {
+            $this->_redirect('*/*/edit', ['productattach_id' => $model->getId(), '_current' => true]);
+            return;
+        }
+
+        try {
+            if (isset($_FILES['file']) && $_FILES['file']['name'] != '') {
+                $imageFile = $this->helper->uploadFile('file');
+                $model->setFile($imageFile);
+            }
+
+            $model->save();
+            $this->messageManager->addSuccess(__('Attachment has been saved.'));
+        } catch (\RuntimeException $e) {
+            $this->messageManager->addError($e->getMessage());
+            $this->_getSession()->setFormData($data);
+        } catch (\Exception $e) {
+            $this->messageManager->addException($e, __('Something went wrong while saving the attachment.'));
+            $this->_getSession()->setFormData($data);
+        }
+
+        $hasError = (bool)$this->messageManager->getMessages()->getCountByType(
+            \Magento\Framework\Message\MessageInterface::TYPE_ERROR
+        );
+
+        if ($this->getRequest()->getParam('popup')) {
+            $model->load($model->getId());
+            // to obtain truncated category name
+            /** @var $block \Magento\Framework\View\Element\Messages */
+            $block = $this->layoutFactory->create()->getMessagesBlock();
+            $block->setMessages($this->messageManager->getMessages(true));
+
+            /** @var \Magento\Framework\Controller\Result\Json $resultJson */
+            $resultJson = $this->resultJsonFactory->create();
+            return $resultJson->setData(
+                [
+                    'messages' => $block->getGroupedHtml(),
+                    'error' => $hasError,
+                    'attachment' => $this->helper->format($model),
+                ]
+            );
+        }
+
+        if ($model->getId()) {
+            $this->_redirect('*/*/edit', ['productattach_id' => $model->getId(), '_current' => true]);
+        } else {
+            $this->_redirect('*/*/');
+        }
     }
 }

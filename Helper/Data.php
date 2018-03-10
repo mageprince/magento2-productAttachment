@@ -28,7 +28,11 @@
 
 namespace Prince\Productattach\Helper;
 
+use Prince\Productattach\Model\Productattach;
+use Magento\Catalog\Model\Product\Attribute\Source\Status;
+use Magento\Customer\Model\GroupRegistry;
 use Magento\Framework\App\Filesystem\DirectoryList;
+use Magento\Framework\Exception\NoSuchEntityException;
 
 class Data extends \Magento\Framework\App\Helper\AbstractHelper
 {
@@ -45,6 +49,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @var string
      */
     const MEDIA_PATH    = 'productattach';
+
+    /**
+     * @var GroupRegistry
+     */
+    protected $customerGroupRegistry;
 
     /**
      * @var \Magento\Framework\Filesystem\Directory\WriteInterface
@@ -74,6 +83,11 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     private $backendUrl;
 
     /**
+     * @var Status
+     */
+    protected $status;
+
+    /**
      * @param \Magento\Framework\App\Helper\Context $context
      * @param \Magento\Backend\Model\UrlInterface $backendUrl
      * @param \Magento\Framework\Filesystem $filesystem
@@ -83,15 +97,19 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
         \Magento\Backend\Model\UrlInterface $backendUrl,
+        \Magento\Customer\Model\GroupRegistry $customerGroupRegistry,
         \Magento\Framework\Filesystem $filesystem,
         \Magento\MediaStorage\Model\File\UploaderFactory $fileUploaderFactory,
-        \Magento\Store\Model\StoreManagerInterface $storeManager
+        \Magento\Store\Model\StoreManagerInterface $storeManager,
+        \Magento\Catalog\Model\Product\Attribute\Source\Status $status
     ) {
         $this->backendUrl = $backendUrl;
+        $this->customerGroupRegistry = $customerGroupRegistry;
         $this->filesystem = $filesystem;
         $this->mediaDirectory = $filesystem->getDirectoryWrite(DirectoryList::MEDIA);
         $this->fileUploaderFactory = $fileUploaderFactory;
         $this->storeManager = $storeManager;
+        $this->status = $status;
         parent::__construct($context);
     }
     
@@ -306,5 +324,46 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     {
         $mediaUrl = $this ->storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
         return $mediaUrl;
+    }
+
+    /**
+     * @param Productattach $attachment
+     * @return array
+     */
+    public function format(Productattach $attachment)
+    {
+        $customerGroupNames = [];
+        // TODO: part of attachment model
+        $groups = explode(',', $attachment->getCustomerGroup());
+        foreach ($groups as $groupId) {
+            try {
+                $group = $this->customerGroupRegistry->retrieve($groupId);
+                $customerGroupNames[] = $group->getCode();
+            } catch (NoSuchEntityException $e) {
+                // well, nothing critical
+            }
+        }
+
+        // TODO: part of attachment model
+        $storeNames = [];
+        $stores = explode(',', $attachment->getStore());
+        foreach ($stores as $storeId) {
+            try {
+                $storeNames[] = $this->storeManager->getStore($storeId)->getName();
+            } catch (NoSuchEntityException $e) {
+                // well, nothing critical
+            }
+        }
+
+        return [
+            'productattach_id' => $attachment->getId(),
+            'id' => $attachment->getId(),
+            'name' => $attachment->getName(),
+            'description' => $attachment->getDescription(),
+            'url' => $attachment->getUrl(),
+            'customer_group' => join(' - ', $customerGroupNames) ?: __('None'),
+            'store' => join(' - ', $storeNames) ?: __('None'),
+            'active' => $this->status->getOptionText($attachment->getActive()), // FIXME: correct model
+        ];
     }
 }
