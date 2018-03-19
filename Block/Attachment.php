@@ -168,7 +168,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
      */
     public function getAttachmentUrl($attachment)
     {
-        $url = $this->dataHelper->getBaseUrl().'/'.$attachment;
+        $url = $this->dataHelper->getBaseUrl().$attachment;
         return $url;
     }
 
@@ -246,32 +246,9 @@ class Attachment extends \Magento\Framework\View\Element\Template
      */
     public function getFileSize($attachment)
     {
-        $url = $this->getAttachmentUrl($attachment);
-        $fileSize = $this->convertToReadableSize($this->remoteFileSize($url));
+        $attachmentPath = \Prince\Productattach\Helper\Data::MEDIA_PATH.$attachment;
+        $fileSize = $this->dataHelper->getFileSize($attachmentPath);
         return $fileSize;
-    }
-
-    /**
-     * Retrive file size by url
-     *
-     * @return number
-     */
-    public function remoteFileSize($url)
-    {
-        $data = get_headers($url, true);
-        if (isset($data['Content-Length']))
-            return (int) $data['Content-Length'];
-    }
-
-    /**
-     * Convert size into redable format
-     */
-    public function convertToReadableSize($size)
-    {
-        $base = log($size) / log(1024);
-        $suffix = ["", " KB", " MB", " GB", " TB"];
-        $f_base = floor($base);
-        return round(pow(1024, $base - floor($base)), 1) . $suffix[$f_base];
     }
 
     /**
