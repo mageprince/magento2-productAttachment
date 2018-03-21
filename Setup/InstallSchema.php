@@ -122,7 +122,7 @@ class InstallSchema implements InstallSchemaInterface
         $table_prince_productattach->addColumn(
             'products',
             \Magento\Framework\DB\Ddl\Table::TYPE_TEXT,
-            255,
+            null,
             ['nullable' => true,'default' => null],
             'Assigned Products'
         );
