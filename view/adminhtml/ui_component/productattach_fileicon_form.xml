@@ -46,13 +46,14 @@
 			<argument name="data" xsi:type="array">
 				<item name="config" xsi:type="array">
 					<item name="dataType" xsi:type="string">text</item>
-					<item name="label" translate="true" xsi:type="string">Icon Extension</item>
+					<item name="label" translate="true" xsi:type="string">File Extension/Type</item>
 					<item name="formElement" xsi:type="string">input</item>
 					<item name="source" xsi:type="string">Fileicon</item>
 					<item name="sortOrder" xsi:type="number">30</item>
 					<item name="dataScope" xsi:type="string">icon_ext</item>
+					<item name="notice" xsi:type="string" translate="true">For ex. png txt zip</item>
 					<item name="validation" xsi:type="array">
-						<item name="required-entry" xsi:type="boolean">false</item>
+						<item name="required-entry" xsi:type="boolean">true</item>
 					</item>
 				</item>
 			</argument>
@@ -69,8 +70,12 @@
 					<item name="previewTmpl" xsi:type="string">Prince_Productattach/image-preview</item>
 					<item name="required" xsi:type="boolean">false</item>
 					<item name="sortOrder" xsi:type="number">40</item>
+					<item name="notice" xsi:type="string" translate="true">Don't upload big sized icon image.</item>
 					<item name="uploaderConfig" xsi:type="array">
 						<item name="url" xsi:type="url" path="productattach/fileicon/upload"/>
+					</item>
+					<item name="validation" xsi:type="array">
+						<item name="required-entry" xsi:type="boolean">true</item>
 					</item>
 				</item>
 			</argument>
