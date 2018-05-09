@@ -32,7 +32,7 @@ abstract class Fileicon extends \Magento\Backend\App\Action
 {
 
     protected $_coreRegistry;
-    const ADMIN_RESOURCE = 'Prince_Productattach::top_level';
+    const ADMIN_RESOURCE = 'Prince_Productattach::productattach_manage';
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
