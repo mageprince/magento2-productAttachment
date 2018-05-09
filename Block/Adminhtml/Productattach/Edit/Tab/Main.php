@@ -90,8 +90,9 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
 
         $form->setHtmlIdPrefix('productattach_main_');
 
-        $fieldset = $form->addFieldset('base_fieldset',
-            ['legend' => __('Productattach Information')]
+        $fieldset = $form->addFieldset(
+            'base_fieldset',
+            ['legend' => __('Attachment Information')]
         );
 
         $customerGroup = $this->customerCollection->toOptionArray();
@@ -131,14 +132,14 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'label' => __('File'),
                 'title' => __('File'),
                 'required' => false,
-                'note' => 'File size must be < 2M. You can increse limit from php.ini.',
+                'note' => 'File size must be less than 2 Mb.', // TODO: show ACCTUAL file-size
                 'disabled' => $isElementDisabled
             ]
         );
 
         $fieldset->addType(
             'uploadedfile',
-            '\Prince\Productattach\Block\Adminhtml\Productattach\Renderer\FileIconAdmin'
+            \Prince\Productattach\Block\Adminhtml\Productattach\Renderer\FileIconAdmin::class
         );
 
         $fieldset->addField(
@@ -173,7 +174,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'label' => __('Customer Group'),
                 'title' => __('Customer Group'),
                 'required' => true,
-                'value' => [0,1,2,3],
+                'value' => [0,1,2,3], // todo: preselect ALL customer groups, not just 0-3
                 'values' => $customerGroup,
                 'disabled' => $isElementDisabled
             ]
@@ -187,7 +188,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'label' => __('Store'),
                 'title' => __('Store'),
                 'required' => true,
-                'value' => [0,1],
+                'value' => [0],
                 'values' => $this->systemStore->getStoreValuesForForm(false, true),
                 'disabled' => $isElementDisabled
             ]

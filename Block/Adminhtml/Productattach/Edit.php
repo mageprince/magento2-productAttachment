@@ -69,7 +69,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
         parent::_construct();
 
         if ($this->_isAllowedAction('Prince_Productattach::save')) {
-            $this->buttonList->update('save', 'label', __('Save Productattach'));
+            $this->buttonList->update('save', 'label', __('Save Attachment'));
             $this->buttonList->add(
                 'saveandcontinue',
                 [
