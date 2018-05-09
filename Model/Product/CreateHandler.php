@@ -37,7 +37,7 @@ class CreateHandler implements ExtensionInterface
     public function execute($entity, $arguments = [])
     {
         /** @var \Prince\Productattach\Model\Productattach[] $attachments */
-        $attachments = $entity->getExtensionAttributes()->getMagecompAttachments() ?: [];
+        $attachments = $entity->getExtensionAttributes()->getPrinceAttachment() ?: [];
         foreach ($attachments as $attachment) {
             $this->attachmentRepository->addProductToAttachment($entity, $attachment);
         }

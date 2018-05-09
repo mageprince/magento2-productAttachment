@@ -37,7 +37,7 @@ class UpdateHandler implements ExtensionInterface
     public function execute($entity, $arguments = [])
     {
         $attachments = [];
-        foreach ((array)$entity->getExtensionAttributes()->getMagecompAttachments() as $attachment) {
+        foreach ((array)$entity->getExtensionAttributes()->getPrinceAttachment() as $attachment) {
             $attachments[$attachment->getId()] = $attachment;
         }
 

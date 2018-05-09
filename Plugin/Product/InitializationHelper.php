@@ -40,7 +40,7 @@ class InitializationHelper
         \Magento\Catalog\Controller\Adminhtml\Product\Initialization\Helper $subject,
         \Magento\Catalog\Model\Product $product
     ) {
-        $rows = $this->request->getPost('magecomp_attachments') ?: [];
+        $rows = $this->request->getPost('prince_attachment') ?: [];
 
         $extension = $product->getExtensionAttributes();
 
@@ -54,7 +54,7 @@ class InitializationHelper
                 $attachments[] = $attachment;
             }
         }
-        $extension->setMagecompAttachments($attachments);
+        $extension->setPrinceAttachment($attachments);
 
         $product->setExtensionAttributes($extension);
 

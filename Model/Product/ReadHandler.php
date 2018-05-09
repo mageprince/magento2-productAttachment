@@ -37,7 +37,7 @@ class ReadHandler implements ExtensionInterface
         $entityExtension = $entity->getExtensionAttributes();
         $attachments = $this->attachmentRepository->getByProduct($entity);
         if ($attachments) {
-            $entityExtension->setMagecompAttachments($attachments);
+            $entityExtension->setPrinceAttachment($attachments);
         }
         $entity->setExtensionAttributes($entityExtension);
         return $entity;
