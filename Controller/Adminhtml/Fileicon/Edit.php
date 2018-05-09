@@ -84,7 +84,7 @@ class Edit extends \Prince\Productattach\Controller\Adminhtml\Fileicon
             $id ? __('Edit Fileicon') : __('New Fileicon')
         );
         $resultPage->getConfig()->getTitle()->prepend(__('Fileicons'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New Fileicon'));
+        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getIconExt() : __('New Fileicon'));
         return $resultPage;
     }
 }
