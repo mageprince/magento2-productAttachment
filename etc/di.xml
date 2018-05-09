@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
-    <preference for="Prince\Productattach\Api\ProductattachInterface" type="Prince\Productattach\Model\ProductattachWebApi"/>
+    <preference for="Prince\Productattach\Api\ProductattachWebApiInterface" type="Prince\Productattach\Model\ProductattachWebApi"/>
     <preference for="Prince\Productattach\Api\Data\ProductattachTableInterface" type="Prince\Productattach\Model\ProductattachTable"/>
     <virtualType name="Prince\Productattach\Model\ResourceModel\Productattach\Grid\Collection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
         <arguments>

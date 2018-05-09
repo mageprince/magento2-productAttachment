@@ -34,7 +34,8 @@ namespace Prince\Productattach\Model;
  * @method \Prince\Productattach\Model\Resource\Page _getResource()
  * @method \Prince\Productattach\Model\Resource\Page getResource()
  */
-class Productattach extends \Magento\Framework\Model\AbstractModel
+class Productattach extends \Magento\Framework\Model\AbstractExtensibleModel
+    implements \Prince\Productattach\Api\ProductattachInterface
 {
     
     /**
@@ -74,6 +75,91 @@ class Productattach extends \Magento\Framework\Model\AbstractModel
         return [self::CACHE_TAG . '_' . $this->getId()];
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function getName()
+    {
+        return $this->getData('name');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getDescription()
+    {
+        return $this->getData('description');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFile()
+    {
+        return $this->getData('file');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getFileExt()
+    {
+        return $this->getData('file_ext');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getUrl()
+    {
+        return $this->getData('url');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getActive()
+    {
+        return $this->getData('active');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getCreatedAt()
+    {
+        return $this->getData('created_at');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getPublishedAt()
+    {
+        return $this->getData('publiched_at');
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function getExtensionAttributes()
+    {
+        return $this->_getExtensionAttributes();
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function setExtensionAttributes(
+        \Prince\Productattach\Api\Data\ExtensionInterface $extensionAttributes
+    ) {
+        return $this->_setExtensionAttributes($extensionAttributes);
+    }
+
+    /**
+     * @param Productattach $object
+     * @return array
+     */
     public function getProducts(\Prince\Productattach\Model\Productattach $object)
     {
         $tbl = $this->getResource()->getTable("prince_productattach");

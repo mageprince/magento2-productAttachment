@@ -28,30 +28,61 @@
 
 namespace Prince\Productattach\Api;
 
-interface ProductattachInterface
+interface ProductattachInterface extends \Magento\Framework\Api\ExtensibleDataInterface
 {
     /**
-     * Update / insert attachment
-     * @param \Prince\Productattach\Api\Data\ProductattachTableInterface $productattachTable
-     * @param string $filename
-     * @param string $fileContent
-     * @return int
+     * @return string
      */
-    public function UpdateInsertAttachment(
-        \Prince\Productattach\Api\Data\ProductattachTableInterface $productattachTable,
-        $filename,
-        $fileContent
-    );
+    public function getName();
 
     /**
-     * Delete the attachment
-     * @param int $int
-     * @throws NotFoundException
-     * @throws \Exception
-     * @return bool
+     * @return string
      */
-    public function DeleteAttachment(
-        $int
-    );
+    public function getDescription();
+
+    /**
+     * @return string
+     */
+    public function getFile();
+
+    /**
+     * @return string
+     */
+    public function getFileExt();
+
+    /**
+     * @return string
+     */
+    public function getUrl();
+
+    /**
+     * @return int
+     */
+    public function getActive();
+
+    /**
+     * @return string
+     */
+    public function getCreatedAt();
+
+    /**
+     * @return string
+     */
+    public function getPublishedAt();
+
+    /**
+     * Retrieve existing extension attributes object or create a new one.
+     *
+     * @return \Prince\Productattach\Api\Data\ExtensionInterface|null
+     */
+    public function getExtensionAttributes();
+
+    /**
+     * Set an extension attributes object.
+     *
+     * @param \Prince\Productattach\Api\Data\ExtensionInterface $extensionAttributes
+     * @return $this
+     */
+    public function setExtensionAttributes(\Prince\Productattach\Api\Data\ExtensionInterface $extensionAttributes);
 
 }

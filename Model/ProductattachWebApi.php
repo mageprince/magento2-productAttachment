@@ -34,7 +34,7 @@ use Prince\Productattach\Api\Data;
 use Magento\Framework\Exception\NotFoundException;
 use Symfony\Component\Config\Definition\Exception\Exception;
 
-class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInterface
+class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachWebApiInterface
 {
 
     /**
