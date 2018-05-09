@@ -131,6 +131,7 @@ class Main extends \Magento\Backend\Block\Widget\Form\Generic implements \Magent
                 'label' => __('File'),
                 'title' => __('File'),
                 'required' => false,
+                'note' => 'File size must be < 2M. You can increse limit from php.ini.',
                 'disabled' => $isElementDisabled
             ]
         );

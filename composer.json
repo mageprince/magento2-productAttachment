@@ -1,17 +1,10 @@
 {
-    "name": "prince/module-productattachment",
+    "name": "mageprince/magento2-productattachment",
     "description": "Magento2 Product Attachment Module",
-    "require": {
-        "magento/module-store": ">100.0",
-        "magento/module-backend": ">100.0",
-        "magento/framework": ">100.0"
-    },
     "type": "magento2-module",
     "version": "1.0.0",
     "minimum-stability": "dev",
-    "license": [
-        "proprietary"
-    ],
+    "license": "proprietary",
     "authors": [
         {
           "name": "Prince Patel",

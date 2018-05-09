@@ -294,7 +294,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
         $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
         $fileSystem = $objectManager->create('\Magento\Framework\Filesystem');
         $mediaPath = $fileSystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath();
-        return $mediaPath . \Prince\Productattach\Helper\Data::MEDIA_PATH;
+        return $mediaPath . self::MEDIA_PATH;
     }
 
     /**
@@ -322,8 +322,31 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getMediaUrl()
     {
-        $mediaUrl = $this ->storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
+        $mediaUrl = $this->storeManager-> getStore()->getBaseUrl(\Magento\Framework\UrlInterface::URL_TYPE_MEDIA );
         return $mediaUrl;
+    }
+
+    /**
+     * Retrive file size by attachment
+     *
+     * @return number
+     */
+    public function getFileSize($file)
+    {
+        $fileSize = $this->mediaDirectory->stat($file)['size'];
+        $readableSize = $this->convertToReadableSize($fileSize);
+        return $readableSize;
+    }
+
+    /**
+     * Convert size into readable format
+     */
+    public function convertToReadableSize($size)
+    {
+        $base = log($size) / log(1024);
+        $suffix = ["", " KB", " MB", " GB", " TB"];
+        $f_base = floor($base);
+        return round(pow(1024, $base - floor($base)), 1) . $suffix[$f_base];
     }
 
     /**

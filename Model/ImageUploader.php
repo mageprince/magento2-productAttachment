@@ -246,6 +246,13 @@ class ImageUploader
         $uploader = $this->uploaderFactory->create(['fileId' => $fileId]);
         $uploader->setAllowedExtensions($this->getAllowedExtensions());
         $uploader->setAllowRenameFiles(true);
+        $size = $uploader->getFileSize();
+
+        if($size > 20000) {
+            throw new \Magento\Framework\Exception\LocalizedException(
+                __('File size must be less than 20KB. Large icon images will effect page load time.')
+            );
+        }
 
         $result = $uploader->save($this->mediaDirectory->getAbsolutePath($baseTmpPath));
 
