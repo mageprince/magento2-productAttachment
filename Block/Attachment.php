@@ -188,20 +188,23 @@ class Attachment extends \Magento\Framework\View\Element\Template
     }
 
     /**
-     * Retrive file icon image
+     * Retrieve file icon image
      *
+     * @param string $fileExt
      * @return string
      */
     public function getFileIcon($fileExt)
     {
+        $fileExt = \strtolower($fileExt);
+
         if ($fileExt) {
             $iconExt = $this->getIconExt($fileExt);
-            if($iconExt) {
+            if ($iconExt) {
                 $mediaUrl = $this->dataHelper->getMediaUrl();
                 $iconImage = $mediaUrl.'fileicon/tmp/icon/'.$iconExt;
             } else {
                 $iconImage = $this->getViewFileUrl('Prince_Productattach::images/'.$fileExt.'.png');
-            } 
+            }
         } else {
             $iconImage = $this->getViewFileUrl('Prince_Productattach::images/unknown.png');
         }
