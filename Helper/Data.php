@@ -386,7 +386,9 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
             'url' => $attachment->getUrl(),
             'customer_group' => join(' - ', $customerGroupNames) ?: __('None'),
             'store' => join(' - ', $storeNames) ?: __('None'),
-            'active' => $this->status->getOptionText($attachment->getActive()), // FIXME: correct model
+            'active' => $attachment->getActive() ?
+                '<span class="grid-severity-notice"><span>' . __('Enabled') . '</span></span>'
+                : '<span class="grid-severity-critical"><span>' . __('Disabled') . '</span></span>',
         ];
     }
 }

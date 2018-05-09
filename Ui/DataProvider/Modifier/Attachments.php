@@ -5,6 +5,7 @@
  */
 namespace Prince\Productattach\Ui\DataProvider\Modifier;
 
+use Magento\Ui\Component\Form\Element\ActionDelete;
 use Prince\Productattach\Helper\Data;
 use Prince\Productattach\Model\AttachmentRepository;
 use Magento\Catalog\Model\Locator\LocatorInterface;
@@ -132,7 +133,7 @@ class Attachments extends AbstractModifier
                             'data' => [
                                 'config' => [
                                     'formElement' => 'container',
-                                    'componentType' => 'container',
+                                    'componentType' => Container::NAME,
                                     'label' => false,
                                     'content' => __(
                                         'Provides more information for the products customers purchase by allowing to attach '
@@ -185,7 +186,7 @@ class Attachments extends AbstractModifier
                                 'arguments' => [
                                     'data' => [
                                         'config' => [
-                                            'componentType' => 'container',
+                                            'componentType' => Container::NAME,
                                             'isTemplate' => true,
                                             'is_collection' => true,
                                             'component' => 'Magento_Ui/js/dynamic-rows/record',
@@ -216,7 +217,7 @@ class Attachments extends AbstractModifier
                     'data' => [
                         'config' => [
                             'formElement' => 'container',
-                            'componentType' => 'container',
+                            'componentType' => Container::NAME,
                             'component' => 'Magento_Ui/js/form/components/button',
                             'actions' => [
                                 [
@@ -292,9 +293,9 @@ class Attachments extends AbstractModifier
                                     'autoRender' => false,
                                     'componentType' => 'insertListing',
                                     'dataScope' => 'attachments_product_listing',
-                                    'externalProvider' => 'attachments_product_listing.attachments_product_listing_data_source',
-                                    'selectionsProvider' => 'attachments_product_listing.attachments_product_listing.product_columns.ids',
-                                    'ns' => 'attachments_product_listing',
+                                    'externalProvider' => 'productattach_grid_index.productattach_grid_index_data_source',
+                                    'selectionsProvider' => 'productattach_grid_index.productattach_grid_index.productattach_grid_index_columns.ids',
+                                    'ns' => 'productattach_grid_index',
                                     'render_url' => $this->urlBuilder->getUrl('mui/index/render'),
                                     'realTimeLink' => true,
                                     'dataLinks' => [
@@ -461,22 +462,38 @@ class Attachments extends AbstractModifier
     protected function fillMeta()
     {
         return [
-            'id' => $this->getTextColumn('id', false, __('ID'), 0),
+            'id' => $this->getTextColumn('id', false, __('ID'), 10),
             'name' => $this->getTextColumn('name', false, __('Name'), 20),
             'description' => $this->getTextColumn('description', false, __('Description'), 30),
             'url' => $this->getTextColumn('url', false, __('URL'), 40),
             'customer_group' => $this->getTextColumn('customer_group', false, __('Customer Group'), 50),
             'store' => $this->getTextColumn('store', false, __('Store'), 60),
-            'active' => $this->getTextColumn('active', true, __('Status'), 70),
+            'active' => [
+                'arguments' => [
+                    'data' => [
+                        'config' => [
+                            'componentType' => Field::NAME,
+                            'formElement' => Input::NAME,
+                            'elementTmpl' => 'Prince_Productattach/dynamic-rows/cells/html',
+                            'component' => 'Magento_Ui/js/form/element/text',
+                            'dataType' => Text::NAME,
+                            'dataScope' => 'active',
+                            'fit' => false,
+                            'label' => __('Status'),
+                            'sortOrder' => 70,
+                        ],
+                    ],
+                ],
+            ],
             'actionDelete' => [
                 'arguments' => [
                     'data' => [
                         'config' => [
                             'additionalClasses' => 'data-grid-actions-cell',
-                            'componentType' => 'actionDelete',
+                            'componentType' => ActionDelete::NAME,
                             'dataType' => Text::NAME,
                             'label' => __('Actions'),
-                            'sortOrder' => 70,
+                            'sortOrder' => 80,
                             'fit' => true,
                         ],
                     ],
