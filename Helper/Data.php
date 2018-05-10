@@ -59,7 +59,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * File Uploader factory
      *
-     * @var \Magento\Core\Model\File\UploaderFactory
+     * @var \Magento\MediaStorage\Model\File\UploaderFactory
      */
     private $fileUploaderFactory;
     
@@ -79,6 +79,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      * @param \Magento\Framework\Filesystem $filesystem
      * @param \Magento\MediaStorage\Model\File\UploaderFactory $fileUploaderFactory
      * @param \Magento\Store\Model\StoreManagerInterface $storeManager
+     * @throws \Magento\Framework\Exception\FileSystemException
      */
     public function __construct(
         \Magento\Framework\App\Helper\Context $context,
@@ -98,7 +99,6 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
     /**
      * Upload image and return uploaded image file name or false
      *
-     * @throws Mage_Core_Exception
      * @param string $scope the request key for file
      * @return bool|string
      */
@@ -273,9 +273,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     private function getProductAttachMediaFolderAbsolutePath()
     {
-        $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
-        $fileSystem = $objectManager->create('\Magento\Framework\Filesystem');
-        $mediaPath = $fileSystem->getDirectoryRead(\Magento\Framework\App\Filesystem\DirectoryList::MEDIA)->getAbsolutePath();
+        $mediaPath = $this->filesystem->getDirectoryRead(DirectoryList::MEDIA)->getAbsolutePath();
         return $mediaPath . self::MEDIA_PATH;
     }
 

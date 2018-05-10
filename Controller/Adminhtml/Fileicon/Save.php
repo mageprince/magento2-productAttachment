@@ -35,15 +35,21 @@ class Save extends \Magento\Backend\App\Action
 
     protected $dataPersistor;
 
+    /** @var \Prince\Productattach\Model\FileiconFactory */
+    private $fileiconFactory;
+
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+     * @param \Prince\Productattach\Model\FileiconFactory $fileiconFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
-        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor
+        \Magento\Framework\App\Request\DataPersistorInterface $dataPersistor,
+        \Prince\Productattach\Model\FileiconFactory $fileiconFactory
     ) {
         $this->dataPersistor = $dataPersistor;
+        $this->fileiconFactory = $fileiconFactory;
         parent::__construct($context);
     }
 
@@ -60,7 +66,7 @@ class Save extends \Magento\Backend\App\Action
         if ($data) {
             $id = $this->getRequest()->getParam('fileicon_id');
         
-            $model = $this->_objectManager->create('Prince\Productattach\Model\Fileicon')->load($id);
+            $model = $this->fileiconFactory->create()->load($id);
             if (!$model->getId() && $id) {
                 $this->messageManager->addErrorMessage(__('This Fileicon no longer exists.'));
                 return $resultRedirect->setPath('*/*/');

@@ -31,6 +31,18 @@ namespace Prince\Productattach\Controller\Adminhtml\Fileicon;
 class Delete extends \Prince\Productattach\Controller\Adminhtml\Fileicon
 {
 
+    /** @var \Prince\Productattach\Model\FileiconFactory */
+    private $fileiconFactory;
+
+    public function __construct(
+        \Magento\Backend\App\Action\Context $context,
+        \Magento\Framework\Registry $coreRegistry,
+        \Prince\Productattach\Model\FileiconFactory $fileiconFactory
+    ) {
+        parent::__construct($context, $coreRegistry);
+        $this->fileiconFactory = $fileiconFactory;
+    }
+
     /**
      * Delete action
      *
@@ -45,7 +57,7 @@ class Delete extends \Prince\Productattach\Controller\Adminhtml\Fileicon
         if ($id) {
             try {
                 // init model and delete
-                $model = $this->_objectManager->create('Prince\Productattach\Model\Fileicon');
+                $model = $this->fileiconFactory->create();
                 $model->load($id);
                 $model->delete();
                 // display success message

@@ -33,17 +33,23 @@ class Edit extends \Prince\Productattach\Controller\Adminhtml\Fileicon
 
     protected $resultPageFactory;
 
+    /** @var \Prince\Productattach\Model\FileiconFactory */
+    private $fileiconFactory;
+
     /**
      * @param \Magento\Backend\App\Action\Context $context
      * @param \Magento\Framework\Registry $coreRegistry
      * @param \Magento\Framework\View\Result\PageFactory $resultPageFactory
+     * @param \Prince\Productattach\Model\FileiconFactory $fileiconFactory
      */
     public function __construct(
         \Magento\Backend\App\Action\Context $context,
         \Magento\Framework\Registry $coreRegistry,
-        \Magento\Framework\View\Result\PageFactory $resultPageFactory
+        \Magento\Framework\View\Result\PageFactory $resultPageFactory,
+        \Prince\Productattach\Model\FileiconFactory $fileiconFactory
     ) {
         $this->resultPageFactory = $resultPageFactory;
+        $this->fileiconFactory = $fileiconFactory;
         parent::__construct($context, $coreRegistry);
     }
 
@@ -56,7 +62,7 @@ class Edit extends \Prince\Productattach\Controller\Adminhtml\Fileicon
     {
         // 1. Get ID and create model
         $id = $this->getRequest()->getParam('fileicon_id');
-        $model = $this->_objectManager->create('Prince\Productattach\Model\Fileicon');
+        $model = $this->fileiconFactory->create();
         
         // 2. Initial checking
         if ($id) {
@@ -78,7 +84,7 @@ class Edit extends \Prince\Productattach\Controller\Adminhtml\Fileicon
             $id ? __('Edit Fileicon') : __('New Fileicon')
         );
         $resultPage->getConfig()->getTitle()->prepend(__('Fileicons'));
-        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getTitle() : __('New Fileicon'));
+        $resultPage->getConfig()->getTitle()->prepend($model->getId() ? $model->getIconExt() : __('New Fileicon'));
         return $resultPage;
     }
 }

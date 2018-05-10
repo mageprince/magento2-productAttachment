@@ -144,9 +144,8 @@ class Edit extends \Magento\Backend\App\Action
             $id ? __('Edit Attachment') : __('New Attachment'),
             $id ? __('Edit Attachment') : __('New Attachment')
         );
-        $resultPage->getConfig()->getTitle()->prepend(__('Productattach'));
         $resultPage->getConfig()->getTitle()
-            ->prepend($model->getId() ? $model->getTitle() : __('New Attachment'));
+            ->prepend($model->getId() ? $model->getName() : __('New Attachment'));
         return $resultPage;
     }
 }
