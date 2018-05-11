@@ -54,7 +54,7 @@ class Delete extends \Magento\Backend\App\Action
      */
     public function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Prince_Productattach::productattach_delete');
+        return $this->_authorization->isAllowed('Prince_Productattach::delete');
     }
 
     /**

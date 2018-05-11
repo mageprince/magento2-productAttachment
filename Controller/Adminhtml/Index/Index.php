@@ -61,7 +61,7 @@ class Index extends \Magento\Backend\App\Action
      */
     public function _isAllowed()
     {
-        return $this->_authorization->isAllowed('Prince_Productattach::productattach_manage');
+        return $this->_authorization->isAllowed('Prince_Productattach::manage');
     }
 
     /**

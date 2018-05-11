@@ -59,6 +59,14 @@ class MassDelete extends \Magento\Backend\App\Action
         parent::__construct($context);
     }
 
+    /**
+     * {@inheritdoc}
+     */
+    public function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Prince_Productattach::delete');
+    }
+
     public function execute()
     {
         try {

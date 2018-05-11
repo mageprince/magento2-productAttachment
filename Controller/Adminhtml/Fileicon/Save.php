@@ -54,6 +54,16 @@ class Save extends \Magento\Backend\App\Action
     }
 
     /**
+     * Check admin permissions for this controller
+     *
+     * @return boolean
+     */
+    public function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Prince_Productattach::save');
+    }
+
+    /**
      * Save action
      *
      * @return \Magento\Framework\Controller\ResultInterface

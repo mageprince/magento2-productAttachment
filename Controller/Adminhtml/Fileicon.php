@@ -32,7 +32,7 @@ abstract class Fileicon extends \Magento\Backend\App\Action
 {
 
     protected $_coreRegistry;
-    const ADMIN_RESOURCE = 'Prince_Productattach::productattach_manage';
+    const ADMIN_RESOURCE = 'Prince_Productattach::manage';
 
     /**
      * @param \Magento\Backend\App\Action\Context $context
@@ -53,7 +53,7 @@ abstract class Fileicon extends \Magento\Backend\App\Action
      */
     public function initPage($resultPage)
     {
-        $resultPage->setActiveMenu(self::ADMIN_RESOURCE)
+        $resultPage->setActiveMenu('Prince_Productattach::prince_productattach_fileicon')
             ->addBreadcrumb(__('Prince'), __('Prince'))
             ->addBreadcrumb(__('Fileicon'), __('Fileicon'));
         return $resultPage;

@@ -61,7 +61,7 @@ class ProductsGrid extends \Magento\Backend\App\Action
      */
     public function _isAllowed()
     {
-        return true;
+        return $this->_authorization->isAllowed('Prince_Productattach::manage');
     }
 
     /**
