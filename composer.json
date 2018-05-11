@@ -1,16 +1,18 @@
 {
     "name": "mageprince/magento2-productattachment",
     "description": "Magento2 Product Attachment Module",
+    "homepage": "https://github.com/mageprince/magento2-productAttachment",
     "type": "magento2-module",
-    "version": "1.0.0",
-    "minimum-stability": "dev",
-    "license": "proprietary",
+    "license": "GPL-3.0-or-later",
     "authors": [
         {
           "name": "Prince Patel",
           "email": "mail.mageprince@gmail.com"
         }
     ],
+    "support": {
+        "issues": "https://github.com/mageprince/magento2-productAttachment/issues"
+    },
     "autoload": {
         "files": [
             "registration.php"
