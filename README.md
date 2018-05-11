@@ -6,10 +6,21 @@ It also has API support (SOAP) for creating/updating and deleting attachments.
 
 # Installation Instruction
 
+<b>Manual Installation</b>
+
 - Copy the content of the repo to the <b>app/code/Prince/Productattach</b>
 - Run command: <b>php bin/magento setup:upgrade</b>
 - Run command: <b>php bin/magento setup:static-content:deploy</b>
 - Now flush cache: <b>php bin/magento cache:flush</b>
+
+<b>Install By Composer</b>
+
+- Go to the Magento folder and run the command: <b>composer require mageprince/magento2-productattachment</b>
+- Enable the extension and clear static view files: <b>php bin/magento module:enable Prince_Productattach --clear-static-content</b>
+- Register the extension <b>php bin/magento setup:upgrade</b>
+- Recompile your Magento project <b>php bin/magento setup:di:compile</b>
+
+
 
 # Contribution
 
