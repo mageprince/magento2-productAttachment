@@ -183,6 +183,9 @@ class Attachment extends \Magento\Framework\View\Element\Template
      */
     public function getCustomerId()
     {
+        if (!$this->customerSession->isLoggedIn()) {
+            return 0;
+        }
         $customerId = $this->customerSession->getCustomer()->getGroupId();
         return $customerId;
     }
