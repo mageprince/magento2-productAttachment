@@ -6,10 +6,22 @@ It also has API support (SOAP) for creating/updating and deleting attachments.
 
 # Installation Instruction
 
-- Copy the content of the repo to the <b>app/code/Prince/Productattach</b>
-- Run command: <b>php bin/magento setup:upgrade</b>
-- Run command: <b>php bin/magento setup:static-content:deploy</b>
-- Now flush cache: <b>php bin/magento cache:flush</b>
+- Get the source code in one of these ways:
+  - Copy the content of the repo to the <b>app/code/Prince/Productattach</b>
+  - Using composer:
+    - Add this repo to your composer.json file repositories array:
+    ```"repositories": [
+    ....  
+        {
+            "type": "vcs",
+            "url": "https://github.com/mageprince/magento2-productAttachment"
+        }
+    ],```
+    - Install the package:
+    ```composer require mageprince/magento2-productattachment```
+- Run command: `php bin/magento setup:upgrade`
+- Run command: `php bin/magento setup:static-content:deploy`
+- Now flush cache: `php bin/magento cache:flush`
 
 # Contribution
 
