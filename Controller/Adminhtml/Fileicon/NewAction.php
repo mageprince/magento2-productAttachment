@@ -48,6 +48,16 @@ class NewAction extends \Prince\Productattach\Controller\Adminhtml\Fileicon
     }
 
     /**
+     * Check admin permissions for this controller
+     *
+     * @return boolean
+     */
+    public function _isAllowed()
+    {
+        return $this->_authorization->isAllowed('Prince_Productattach::save');
+    }
+
+    /**
      * New action
      *
      * @return \Magento\Framework\Controller\ResultInterface

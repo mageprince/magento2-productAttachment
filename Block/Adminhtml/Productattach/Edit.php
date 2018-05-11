@@ -87,7 +87,7 @@ class Edit extends \Magento\Backend\Block\Widget\Form\Container
             $this->buttonList->remove('save');
         }
 
-        if ($this->_isAllowedAction('Prince_Productattach::productattach_delete')) {
+        if ($this->_isAllowedAction('Prince_Productattach::delete')) {
             $this->buttonList->update('delete', 'label', __('Delete Productattach'));
         } else {
             $this->buttonList->remove('delete');

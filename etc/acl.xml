@@ -3,16 +3,16 @@
     <acl>
         <resources>
             <resource id="Magento_Backend::admin">
-                <resource id="Prince_Productattach::productattach" title="Productattach" sortOrder="40">
-                    <resource id="Prince_Productattach::manage" title="Productattach Module" sortOrder="10">
-                        <resource id="Prince_Productattach::save" title="Save Productattach" sortOrder="10" />
-                        <resource id="Prince_Productattach::news_delete" title="Delete Productattach" sortOrder="20" />
+                <resource id="Magento_Catalog::catalog">
+                    <resource id="Prince_Productattach::manage" title="Product Attachments" sortOrder="40">
+                        <resource id="Prince_Productattach::save" title="Save" sortOrder="10" />
+                        <resource id="Prince_Productattach::delete" title="Delete" sortOrder="20" />
                     </resource>
                 </resource>
                 <resource id="Magento_Backend::stores">
                     <resource id="Magento_Backend::stores_settings">
                         <resource id="Magento_Config::config">
-                            <resource id="Prince_Productattach::config_productattach" title="Productattach Section" sortOrder="50" />
+                            <resource id="Prince_Productattach::config_productattach" title="Product Attachment Section" sortOrder="50" />
                         </resource>
                     </resource>
                 </resource>
