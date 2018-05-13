@@ -4,6 +4,10 @@ The Product Attachments extension for Magento 2 equips product pages with a spec
 
 It also has API support (SOAP) for creating/updating and deleting attachments.
 
+<b>For Manage Attachment/Icon: Catalog->Product Attachments</b>
+
+<b>For Settings: Stores->Configuration->MagePrince->Product Attachment</b>
+
 # Installation Instruction
 
 <b>Manual Installation</b>
