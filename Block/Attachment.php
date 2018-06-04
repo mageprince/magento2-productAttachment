@@ -74,14 +74,21 @@ class Attachment extends \Magento\Framework\View\Element\Template
      * @var \Magento\Framework\Registry
      */
     private $registry;
-    
+
     /**
+     * @var \Magento\Framework\App\Http\Context
+     */
+    private $httpContext;
+
+    /**
+     * Attachment constructor.
      * @param \Magento\Framework\View\Element\Template\Context $context
      * @param \Magento\Customer\Model\Session $customerSession
      * @param \Prince\Productattach\Model\ResourceModel\Productattach\CollectionFactory $productattachCollectionFactory
      * @param \Prince\Productattach\Model\ResourceModel\Fileicon\CollectionFactory $fileiconCollectionFactory
      * @param \Prince\Productattach\Helper\Data $dataHelper
      * @param \Magento\Framework\Registry $registry
+     * @param \Magento\Framework\App\Http\Context $httpContext
      * @param array $data
      */
     public function __construct(
@@ -91,6 +98,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
         \Prince\Productattach\Model\ResourceModel\Fileicon\CollectionFactory $fileiconCollectionFactory,
         \Prince\Productattach\Helper\Data $dataHelper,
         \Magento\Framework\Registry $registry,
+        \Magento\Framework\App\Http\Context $httpContext,
         array $data = []
     ) {
         $this->customerSession =$customerSession;
@@ -99,6 +107,7 @@ class Attachment extends \Magento\Framework\View\Element\Template
         $this->dataHelper = $dataHelper;
         $this->scopeConfig = $context->getScopeConfig();
         $this->registry = $registry;
+        $this->httpContext = $httpContext;
         parent::__construct(
             $context,
             $data
@@ -183,9 +192,11 @@ class Attachment extends \Magento\Framework\View\Element\Template
      */
     public function getCustomerId()
     {
-        if (!$this->customerSession->isLoggedIn()) {
+        $isLoggedIn = $this->httpContext->getValue(\Magento\Customer\Model\Context::CONTEXT_AUTH);
+        if(!$isLoggedIn) {
             return 0;
         }
+
         $customerId = $this->customerSession->getCustomer()->getGroupId();
         return $customerId;
     }
