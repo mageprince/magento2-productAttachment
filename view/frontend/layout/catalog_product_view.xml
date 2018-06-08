@@ -2,10 +2,10 @@
 <page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
     <body>
         <referenceContainer name="alert.urls">
-            <block class="Prince\Productattach\Block\Attachment" name="productattach" as="productattach" template="Prince_Productattach::attachment.phtml" ifconfig="productattach/general/productdetail" cacheable="false"/>
+            <block class="Prince\Productattach\Block\Attachment" name="productattach" as="productattach" template="Prince_Productattach::attachment.phtml" ifconfig="productattach/general/productdetail" />
         </referenceContainer>
         <referenceBlock name="product.info.details">
-          <block class="Prince\Productattach\Block\Attachment" name="productattach.tab" as="productattach" template="Prince_Productattach::attachment.phtml" group="detailed_info" ifconfig="productattach/general/producttab" cacheable="false">
+          <block class="Prince\Productattach\Block\Attachment" name="productattach.tab" as="productattach" template="Prince_Productattach::attachment.phtml" group="detailed_info" ifconfig="productattach/general/producttab">
              <arguments>
                 <argument name="title" xsi:type="helper" helper="Prince\Productattach\Block\Attachment::getTabName"></argument>
              </arguments>
