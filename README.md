@@ -115,7 +115,7 @@ If you encounter any problems or bugs, please <a href="https://github.com/magepr
 ### Create/update attachment record
 
 **METHOD**: POST  
-**URL**: http://< your store url >/rest/V1/productattach/addupdate
+**URL**: http://< your store url >/rest/V1/productattach/addupdate  
 **BODY**:
 
 (json encoded)
@@ -139,7 +139,7 @@ If you encounter any problems or bugs, please <a href="https://github.com/magepr
 
 If you use `productAttachId` different than `0` you update the record.
 
-**Deleting an attachment record**
+### Deleting an attachment record
 
 **METHOD**: DELETE  
 **URL**: http://< your store url >/rest/V1/productattach/delete/< attachment id >
