@@ -15,4 +15,18 @@
             <resource ref="self"/>
         </resources>
     </route>
+    <route method="POST" url="/V1/productattach/addupdate">
+        <service class="Prince\Productattach\Api\ProductattachInterface"
+                 method="UpdateInsertAttachment"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
+    <route method="DELETE" url="/V1/productattach/delete/:int">
+        <service class="Prince\Productattach\Api\ProductattachInterface"
+                 method="DeleteAttachment"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
 </routes>
