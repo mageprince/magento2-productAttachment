@@ -2,7 +2,7 @@
 
 The Product Attachments extension for Magento 2 equips product pages with a special attachments block where you can upload numerous documents such as user guides, extra images, pdf, certificates, licenses and many others. 
 
-It also has API support (SOAP) for creating/updating and deleting attachments.
+It also has API support SOAP and REST for creating,updating,deleting and get attachments. It also has support for get product API to get attachments by product.
 
 <b>For Manage Attachment/Icon: Catalog->Product Attachments</b>
 
@@ -54,6 +54,55 @@ If you encounter any problems or bugs, please <a href="https://github.com/magepr
 
 <h3>Attachment Settings</h3>
 <img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/4-settings.png" alt="Attachment Settings" />
+
+# API (REST) examples
+
+### Create new attachment
+
+**METHOD**: POST  
+**URL**: http://< your store url >/rest/V1/productattach/addupdate
+**BODY**:
+
+(json encoded)
+```
+{
+  "productattachTable": {
+        "productAttachId": "0",
+        "name": "testname",
+        "description": "test desc",
+        "file": "testfile.pdf",
+        "url": "",
+        "store": "0,1",
+        "customerGroup": "0,1,2,3",
+        "products": "1",
+        "active": "1"
+  },
+  "filename": "testfile.pdf",
+  "fileContent": "JVBERi0xLjYNJeLjz9MN....CiUlRU9GDQo="
+}
+```
+
+### Update attachment
+
+(json encoded)
+```
+{
+  "productattachTable": {
+        "productAttachId": "10",
+        "name": "testname",
+        "description": "test desc",
+  },
+  "filename": "",
+  "fileContent": ""
+}
+
+Note: Keep only field which you want to update except "filename" and "fileContent"
+
+### Deleting an attachment record
+
+**METHOD**: DELETE  
+**URL**: http://< your store url >/rest/V1/productattach/delete/< attachment id >
+
 
 # API (SOAP) examples
 
@@ -113,37 +162,3 @@ If you encounter any problems or bugs, please <a href="https://github.com/magepr
           </all:princeProductattachV1DeleteAttachmentRequest>
        </soap:Body>
     </soap:Envelope>
-
-# API (REST) examples
-
-### Create/update attachment record
-
-**METHOD**: POST  
-**URL**: http://< your store url >/rest/V1/productattach/addupdate  
-**BODY**:
-
-(json encoded)
-```
-{
-	"productattachTable": {
-		"productAttachId": "0",
-        "name": "testname",
-        "description": "test desc",
-		"file": "testfile.pdf",
-        "url": "",
-        "store": "0,1",
-        "customerGroup": "0,1,2,3",
-        "products": "1",
-        "active": "1"
-	},
-	"filename": "testfile.pdf",
-	"fileContent": "JVBERi0xLjYNJeLjz9MN....CiUlRU9GDQo="
-}
-```
-
-If you use `productAttachId` different than `0` you update the record.
-
-### Deleting an attachment record
-
-**METHOD**: DELETE  
-**URL**: http://< your store url >/rest/V1/productattach/delete/< attachment id >
