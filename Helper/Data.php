@@ -233,7 +233,7 @@ class Data extends \Magento\Framework\App\Helper\AbstractHelper
      */
     public function getFilePathForDB($fileName)
     {
-        return ltrim($this->getFileDispersionPath($fileName), '/') ."/". $fileName;
+        return $this->getFileDispersionPath($fileName) ."/". $fileName;
     }
 
     /**
