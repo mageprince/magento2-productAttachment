@@ -109,3 +109,37 @@ If you encounter any problems or bugs, please <a href="https://github.com/magepr
           </all:princeProductattachV1DeleteAttachmentRequest>
        </soap:Body>
     </soap:Envelope>
+
+# API (REST) examples
+
+### Create/update attachment record
+
+**METHOD**: POST  
+**URL**: http://< your store url >/rest/V1/productattach/addupdate  
+**BODY**:
+
+(json encoded)
+```
+{
+	"productattachTable": {
+		"productAttachId": "0",
+        "name": "testname",
+        "description": "test desc",
+		"file": "testfile.pdf",
+        "url": "",
+        "store": "0,1",
+        "customerGroup": "0,1,2,3",
+        "products": "1",
+        "active": "1"
+	},
+	"filename": "testfile.pdf",
+	"fileContent": "JVBERi0xLjYNJeLjz9MN....CiUlRU9GDQo="
+}
+```
+
+If you use `productAttachId` different than `0` you update the record.
+
+### Deleting an attachment record
+
+**METHOD**: DELETE  
+**URL**: http://< your store url >/rest/V1/productattach/delete/< attachment id >
