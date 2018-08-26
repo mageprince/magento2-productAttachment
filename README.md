@@ -8,6 +8,10 @@ It also has API support (SOAP) for creating/updating and deleting attachments.
 
 <b>For Settings: Stores->Configuration->MagePrince->Product Attachment</b>
 
+Please donate if you enjoy my extension.
+
+[![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TKAKY4KP65Z4A)
+
 # Installation Instruction
 
 <b>Manual Installation</b>
