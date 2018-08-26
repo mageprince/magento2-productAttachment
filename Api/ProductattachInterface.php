@@ -54,4 +54,15 @@ interface ProductattachInterface
         $int
     );
 
+    /**
+     * Get attachment
+     * @param int $int
+     * @throws NotFoundException
+     * @throws \Exception
+     * @return string
+     */
+    public function GetAttachment(
+        $int
+    );
+
 }

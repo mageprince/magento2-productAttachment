@@ -36,7 +36,6 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 
 class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInterface
 {
-
     /**
      * @var \Prince\Productattach\Model\ResourceModel\Productattach
      */
@@ -63,10 +62,12 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
     protected $_dataHelper;
 
     /**
-     * @param Productattach $productAttach
-     * @param \Magento\Framework\Api\ExtensibleDataObjectConverter $extensibleDataObjectConverter
+     * ProductattachWebApi constructor.
+     * @param ResourceModel\Productattach $productattach
+     * @param ProductattachTableFactory $productattachCollectionFactory
      * @param Data\ProductattachTableInterface $productattachTableInterface
-     * @param ResourceModel\Productattach\CollectionFactory $productattachCollectionFactory
+     * @param \Magento\Framework\Api\ExtensibleDataObjectConverter $extensibleDataObjectConverter
+     * @param \Prince\Productattach\Helper\Data $dataHelper
      */
     public  function __construct(
         \Prince\Productattach\Model\ResourceModel\Productattach $productattach,
@@ -74,8 +75,7 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
         \Prince\Productattach\Api\Data\ProductattachTableInterface $productattachTableInterface,
         \Magento\Framework\Api\ExtensibleDataObjectConverter $extensibleDataObjectConverter,
         \Prince\Productattach\Helper\Data $dataHelper
-    )
-    {
+    ) {
         $this->_productattach = $productattach;
         $this->_productattachCollectionFactory = $productattachCollectionFactory;
         $this->_productattachTableInterface = $productattachTableInterface;
@@ -94,7 +94,7 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
         \Prince\Productattach\Api\Data\ProductattachTableInterface $productattachTableInterface,
         $fileName,
         $fileContent
-    ){
+    ) {
         $objectArray = $productattachTableInterface->getData();
 
         $id = $productattachTableInterface->getId();
@@ -108,12 +108,21 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
 
         if($attachment->isObjectNew() == false)
         {
-            //UPDATE REC
-            $attachment->setName($objectArray["name"]);
-            $attachment->setDescription($objectArray["description"]);
-            $attachment->setProducts($objectArray["products"]);
-            $attachment->setCustomerGroup($objectArray["customer_group"]);
-            $attachment->setStore($objectArray["store"]);
+            //UPDATE ATTACHMENT RECORD
+            if(array_key_exists('name', $objectArray))
+                $attachment->setName($objectArray['name']);
+            if(array_key_exists('description', $objectArray))
+                $attachment->setDescription($objectArray['description']);
+            if(array_key_exists('url', $objectArray))
+                $attachment->setUrl($objectArray['url']);
+            if(array_key_exists('products', $objectArray))
+                $attachment->setProducts($objectArray['products']);
+            if(array_key_exists('customer_group', $objectArray))
+                $attachment->setCustomerGroup($objectArray['customer_group']);
+            if(array_key_exists('store', $objectArray))
+                $attachment->setStore($objectArray['store']);
+            if(array_key_exists('active', $objectArray))
+                $attachment->setActive($objectArray['active']);
         }
 
         //check if file already exists on the file system
@@ -126,20 +135,20 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
             //create file
             if(!$this->_dataHelper->saveFile($fileName, $fileContent)){
                 return -1;
+            } else {
+                //update file path
+                $attachment->setFile( $this->_dataHelper->getFilePathForDB($fileName) );
+
+                $fileExt = "";
+                $slicedFileName = explode('.', $fileName);
+                if(count($slicedFileName) > 1){
+                    $fileExt = $slicedFileName[count($slicedFileName)-1];
+                }
+                $attachment->setFileExt($fileExt);
             }
-        }else{
-            //file is already on the file system (not cpecified by the fileCOntent element) => just update the record
+        } else {
+            $attachment->setFileExt('');
         }
-
-        //update file path
-        $attachment->setFile( $this->_dataHelper->getFilePathForDB($fileName) );
-
-        $fileExt = "";
-        $slicedFileName = explode('.', $fileName);
-        if(count($slicedFileName) > 1){
-            $fileExt = $slicedFileName[count($slicedFileName)-1];
-        }
-        $attachment->setFileExt($fileExt);
 
         //save attachment record
         $this->_productattach->save($attachment);
@@ -156,7 +165,7 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
      */
     public function DeleteAttachment(
         $int
-    ){
+    ) {
         //delete DB record
         $attachment = $this->_productattachCollectionFactory->create();
         $this->_productattach->load($attachment, $int);
@@ -174,6 +183,41 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
         }
 
         return true;
+    }
+
+    /**
+     * @param int $int
+     * @throws NotFoundException
+     * @throws \Exception
+     * @return string
+     */
+    public function GetAttachment(
+        $int
+    ) {
+        $attachment = $this->_productattachCollectionFactory->create();
+        $this->_productattach->load($attachment, $int);
+        if(!$attachment->getId()) {
+            throw new \Magento\Framework\Exception\NotFoundException(
+                __('no attachment found')
+            );
+        }
+
+        $attachmentData = [];
+        if($attachment->getData()) {
+            $attachmentData = [
+                'id' => $attachment->getId(),
+                'name' => $attachment->getName(),
+                'description' => $attachment->getDescription(),
+                'file' => $attachment->getFile(),
+                'url' => $attachment->getUrl(),
+                'store' => $attachment->getStore(),
+                'customer_group' => $attachment->getCustomerGroup(),
+                'products' => $attachment->getProducts(),
+                'active' => $attachment->getActive()
+            ];
+        }
+
+        return json_encode($attachmentData);
     }
 
     const CUSTOM_PATH = "custom/upload";
