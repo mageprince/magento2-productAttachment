@@ -22,4 +22,7 @@
             <argument name="resourceModel" xsi:type="string">Prince\Productattach\Model\ResourceModel\Fileicon\Collection</argument>
         </arguments>
     </virtualType>
+    <type name="Magento\Catalog\Api\ProductRepositoryInterface">
+        <plugin name="get_product_attachments" type="Prince\Productattach\Plugin\ProductGet" sortOrder="1"/>
+    </type>
 </config>
