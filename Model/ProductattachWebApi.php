@@ -52,6 +52,11 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
     protected $_productattachTableInterface;
 
     /**
+     * @var Data\ProductattachTableInterfaceFactory
+     */
+    protected $_productattachTableInterfaceFactory;
+
+    /**
      * @var \Magento\Framework\Api\ExtensibleDataObjectConverter
      */
     protected $_extensibleDataObjectConverter;
@@ -66,6 +71,7 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
      * @param ResourceModel\Productattach $productattach
      * @param ProductattachTableFactory $productattachCollectionFactory
      * @param Data\ProductattachTableInterface $productattachTableInterface
+     * @param Data\ProductattachTableInterfaceFactory $productattachTableInterfaceFactory
      * @param \Magento\Framework\Api\ExtensibleDataObjectConverter $extensibleDataObjectConverter
      * @param \Prince\Productattach\Helper\Data $dataHelper
      */
@@ -73,12 +79,14 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
         \Prince\Productattach\Model\ResourceModel\Productattach $productattach,
         \Prince\Productattach\Model\ProductattachTableFactory $productattachCollectionFactory,
         \Prince\Productattach\Api\Data\ProductattachTableInterface $productattachTableInterface,
+        \Prince\Productattach\Api\Data\ProductattachTableInterfaceFactory $productattachTableInterfaceFactory,
         \Magento\Framework\Api\ExtensibleDataObjectConverter $extensibleDataObjectConverter,
         \Prince\Productattach\Helper\Data $dataHelper
     ) {
         $this->_productattach = $productattach;
         $this->_productattachCollectionFactory = $productattachCollectionFactory;
         $this->_productattachTableInterface = $productattachTableInterface;
+        $this->_productattachTableInterfaceFactory = $productattachTableInterfaceFactory;
         $this->_extensibleDataObjectConverter = $extensibleDataObjectConverter;
         $this->_dataHelper = $dataHelper;
     }
@@ -187,9 +195,8 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
 
     /**
      * @param int $int
+     * @return ProductattachTable
      * @throws NotFoundException
-     * @throws \Exception
-     * @return string
      */
     public function GetAttachment(
         $int
@@ -201,23 +208,20 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
                 __('no attachment found')
             );
         }
-
-        $attachmentData = [];
+        $attachResponse = $this->_productattachCollectionFactory->create();
         if($attachment->getData()) {
-            $attachmentData = [
-                'id' => $attachment->getId(),
-                'name' => $attachment->getName(),
-                'description' => $attachment->getDescription(),
-                'file' => $attachment->getFile(),
-                'url' => $attachment->getUrl(),
-                'store' => $attachment->getStore(),
-                'customer_group' => $attachment->getCustomerGroup(),
-                'products' => $attachment->getProducts(),
-                'active' => $attachment->getActive()
-            ];
+            $attachResponse->setProductAttachId($attachment->getId());
+            $attachResponse->setName($attachment->getName());
+            $attachResponse->setDescription($attachment->getDescription());
+            $attachResponse->setFile($attachment->getFile());
+            $attachResponse->setUrl($attachment->getUrl());
+            $attachResponse->setStore($attachment->getStore());
+            $attachResponse->setCustomerGroup($attachment->getCustomerGroup());
+            $attachResponse->setProducts($attachment->getProducts());
+            $attachResponse->setActive($attachment->getActive());
         }
 
-        return json_encode($attachmentData);
+        return $attachResponse;
     }
 
     const CUSTOM_PATH = "custom/upload";

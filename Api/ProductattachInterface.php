@@ -59,7 +59,7 @@ interface ProductattachInterface
      * @param int $int
      * @throws NotFoundException
      * @throws \Exception
-     * @return string
+     * @return \Prince\Productattach\Api\Data\ProductattachTableInterface
      */
     public function GetAttachment(
         $int
