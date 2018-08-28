@@ -29,4 +29,11 @@
             <resource ref="self"/>
         </resources>
     </route>
+    <route method="GET" url="/V1/productattach/:int">
+        <service class="Prince\Productattach\Api\ProductattachInterface"
+                 method="GetAttachment"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+    </route>
 </routes>
