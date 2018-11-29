@@ -122,6 +122,18 @@ class Attachment extends \Magento\Framework\View\Element\Template
         return $this->getConfig('productattach/general/enable');
     }
 
+    public function fileExists($attachment)
+    {
+        try {
+            $this->getFileSize($attachment);
+            return true;
+        } catch (\Magento\Framework\Exception\FileSystemException $e) {
+
+        }
+
+        return false;
+    }
+
     /**
      * Retrieve productattach collection
      *
