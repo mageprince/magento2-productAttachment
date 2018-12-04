@@ -74,7 +74,7 @@ If you encounter any problems or bugs, please <a href="https://github.com/magepr
         "url": "",
         "store": "0,1",
         "customerGroup": "0,1,2,3",
-        "products": "1",
+        "products": "1,2,3",
         "active": "1"
   },
   "filename": "testfile.pdf",
