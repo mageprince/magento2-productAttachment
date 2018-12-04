@@ -109,6 +109,11 @@ class ProductattachWebApi implements \Prince\Productattach\Api\ProductattachInte
         if($id == 0)
             $objectArray["productattach_id"] = null;
 
+        if(array_key_exists('products', $objectArray)) {
+            $productIds = $objectArray['products'];
+            $objectArray['products'] = str_replace(',', '&', $productIds);
+        }
+
         $attachment = $this->_productattachCollectionFactory->create();
         $attachment->setData($objectArray);
 
