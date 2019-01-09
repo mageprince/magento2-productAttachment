@@ -170,8 +170,10 @@ class Attachment extends \Magento\Framework\View\Element\Template
             ]
         );
 
-        $collection->getSelect()->where("products REGEXP '[[:<:]]".$productId."[[:>:]]'");
-        
+        $collection->getSelect()->where(
+            "FIND_IN_SET(".$productId.", replace(products , '&', ',')) > 0"
+        );
+
         return $collection;
     }
 
