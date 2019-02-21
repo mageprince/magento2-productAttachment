@@ -91,7 +91,7 @@ class FileIconAdmin extends \Magento\Framework\Data\Form\Element\AbstractElement
      */
     public function getElementHtml()
     {
-        $fileIcon = '<h3>No File Uploded</h3>';
+        $fileIcon = '<h3>No File Uploaded</h3>';
         $file = $this->getValue();
         if ($file) {
             $fileExt = pathinfo($file, PATHINFO_EXTENSION);
