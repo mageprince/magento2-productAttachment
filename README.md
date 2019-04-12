@@ -1,3 +1,6 @@
+# Download From Magento Marketplace
+# <a href="https://marketplace.magento.com/prince-module-productattachment.html">Download Link</a>
+
 # Magento2 Product Attachment
 
 The Product Attachments extension for Magento 2 equips product pages with a special attachments block where you can upload numerous documents such as user guides, extra images, pdf, certificates, licenses and many others. 
@@ -7,10 +10,6 @@ It also has API support SOAP and REST for creating,updating,deleting and get att
 <b>For Manage Attachment/Icon: Catalog->Product Attachments</b>
 
 <b>For Settings: Stores->Configuration->MagePrince->Product Attachment</b>
-
-Please donate if you enjoy my extension.
-
-[![](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=TKAKY4KP65Z4A)
 
 # Installation Instruction
 
