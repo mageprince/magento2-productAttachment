@@ -59,19 +59,19 @@ attachment_id="5,6" template="Mageprince_Productattach::allattachment.phtml"}}``
 # Screenshot
 
 <h3>Product Page - Table View</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/1-productattachment.png" alt="Product Page">
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/1-productattachment.png" alt="Product Page" heigth="600">
 
 <h3>Product Page - List View</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/2-productattachment.png" alt="Product Page">
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/2-productattachment.png" alt="Product Page" heigth="600">
 
 <h3>CMS Page</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/3.1-productattachment.png" alt="CMS page">
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/3.1-productattachment.png" alt="CMS page" heigth="600">
 
 <h3>Product Edit Page</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/3.2-productattachment.jpg" alt="Admin Product Edit Page">
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/3.2-productattachment.jpg" alt="Admin Product Edit Page" heigth="600">
 
 <h3>Admin Grid</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/5-productattachment-grid.png" alt="Admin Attachment Grid">
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/5-productattachment-grid.png" alt="Admin Attachment Grid" heigth="600">
 
 <h3>Configuration</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/8-productattachment.png" alt="Admin Configuration">
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/8-productattachment.png" alt="Admin Configuration" heigth="600">
