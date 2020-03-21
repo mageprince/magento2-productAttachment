@@ -32,6 +32,30 @@ The Product Attachments extension for Magento 2 equips product pages with a spec
 
 <b><a href="http://demo.mageprince.com/">Frontend</a>   |   <a href="http://demo.mageprince.com/admin">Backend</a></b>
 
+# Code to show attachments on CMS page or Static Block
+
+<b>1) To show all attachments</b>
+
+``{{block class="Mageprince\Productattach\Block\AllAttachment"
+template="Mageprince_Productattach::all-attachment.phtml" show_icon=1
+show_label=1 show_description=0 show_filetype=0 show_size=1
+show_download=1 apply_customer_filter=1 apply_store_filter=1}}``
+
+<b>2) To show attachments by file_type</b>
+
+``{{block class="Mageprince\Productattach\Block\AllAttachment"
+file_type="pdf,doc" template="Mageprince_Productattach::allattachment.phtml"}}``
+
+<b>3) To set number of attachments to show</b>
+
+``{{block class="Mageprince\Productattach\Block\AllAttachment" count="10"
+template="Mageprince_Productattach::all-attachment.phtml"}}``
+
+<b>4) To show attachment by attachment id(s)</b>
+
+``{{block class="Mageprince\Productattach\Block\AllAttachment"
+attachment_id="5,6" template="Mageprince_Productattach::allattachment.phtml"}}``
+
 # Screenshot
 
 <h3>Product Page - Table View</h3>
