@@ -30,7 +30,7 @@ The Product Attachments extension for Magento 2 equips product pages with a spec
 
 # Demo
 
-<b><a href="http://demo.mageprince.com/">Frontend</a>   |   <a href="http://demo.mageprince.com/admin">Backend</a></b>
+<b><a href="https://demo.mageprince.com/push-it-messenger-bag.html">Frontend</a>   |   <a href="http://demo.mageprince.com/admin">Backend</a></b>
 
 # Code to show attachments on CMS page or Static Block
 
