@@ -74,4 +74,8 @@ attachment_id="5,6" template="Mageprince_Productattach::allattachment.phtml"}}``
 <img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/5-productattachment-grid.png" alt="Admin Attachment Grid" heigth="600">
 
 <h3>Configuration</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/8-productattachment.png" alt="Admin Configuration" heigth="600">
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/product_attachment_config1.jpeg" alt="Admin Configuration" heigth="600">
+
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/product_attachment_config2.jpg" alt="Admin Configuration" heigth="600">
+
+<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/product_attachment_config3.png" alt="Admin Configuration" heigth="600">
