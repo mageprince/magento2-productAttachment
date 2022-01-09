@@ -1,7 +1,7 @@
 # Download Latest Module with Magento 2.4.x support From Magento Marketplace
 # <a href="https://marketplace.magento.com/prince-module-productattachment.html">Download Link</a>
 
-<h3><a href="https://marketplace.magento.com/media/catalog/product/prince-module-productattachment-2-0-6-ce/user_guides.pdf">User Guide</a></h3>
+<h3><a href="https://marketplace.magento.com/media/catalog/product/prince-module-productattachment-2-1-8-ce/user_guides.pdf">User Guide</a></h3>
 
 # Magento2 Product Attachment
 
@@ -10,12 +10,16 @@ The Product Attachments extension for Magento 2 equips product pages with a spec
 # New Features
 <ul>
 <li>You can now manage attachments from the product edit page</li>
+<li>Add multiple new attachments from the product edit page</li>
+<li>Assign products to attachment by Product Grid, Product IDs, or by Product Skus</li>
+<li>Implement widget to show specific attachments, all attachments or by current product</li>
 <li>API support: Now you can manage attachments by APIs.
   <ul>
     <li>Create a new attachment</li>
     <li>Update attachment</li>
     <li>Get attachment</li>
     <li>Delete attachment</li>
+    <li>Get attachments data by product id</li>
   </ul> 
 </li>
 <li>Product API support: Now you can also manage attachments with product API
@@ -37,24 +41,30 @@ The Product Attachments extension for Magento 2 equips product pages with a spec
 <b>1) To show all attachments</b>
 
 ``{{block class="Mageprince\Productattach\Block\AllAttachment"
-template="Mageprince_Productattach::all-attachment.phtml" show_icon=1
-show_label=1 show_description=0 show_filetype=0 show_size=1
-show_download=1 apply_customer_filter=1 apply_store_filter=1}}``
+template="Mageprince_Productattach::all-attachment.phtml" show_icon=1 show_label=1
+show_description=0 show_filetype=0 show_size=1 show_download=1 apply_customer_filter=1
+apply_store_filter=1}}``
 
-<b>2) To show attachments by file_type</b>
-
+<b>2) To show attachments of current product</b>
 ``{{block class="Mageprince\Productattach\Block\AllAttachment"
-file_type="pdf,doc" template="Mageprince_Productattach::allattachment.phtml"}}``
+template="Mageprince_Productattach::all-attachment.phtml" show_icon=1 show_label=1
+show_description=0 show_filetype=0 show_size=1 show_download=1 apply_customer_filter=1
+apply_store_filter=1 current_product=1}}``
 
-<b>3) To set number of attachments to show</b>
+<b>3) To show attachments by file_type</b>
+
+``{{block class="Mageprince\Productattach\Block\AllAttachment" file_type="pdf,doc"
+template="Mageprince_Productattach::all-attachment.phtml"}}``
+
+<b>4) To set number of attachments to show</b>
 
 ``{{block class="Mageprince\Productattach\Block\AllAttachment" count="10"
 template="Mageprince_Productattach::all-attachment.phtml"}}``
 
-<b>4) To show attachment by attachment id(s)</b>
+<b>5) To show attachment by attachment id(s)</b>
 
-``{{block class="Mageprince\Productattach\Block\AllAttachment"
-attachment_id="5,6" template="Mageprince_Productattach::allattachment.phtml"}}``
+``{{block class="Mageprince\Productattach\Block\AllAttachment" attachment_id="5,6"
+template="Mageprince_Productattach::all-attachment.phtml"}}``
 
 # Screenshot
 
@@ -87,7 +97,3 @@ attachment_id="5,6" template="Mageprince_Productattach::allattachment.phtml"}}``
 
 <h3>Configuration</h3>
 <img src="https://marketplace.magento.com/media/catalog/product/6/7/67ea_14_configuration_1.jpg" alt="Admin Configuration" heigth="600">
-
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/product_attachment_config2.jpg" alt="Admin Configuration" heigth="600">
-
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/product_attachment_config3.png" alt="Admin Configuration" heigth="600">
