@@ -59,7 +59,7 @@ attachment_id="5,6" template="Mageprince_Productattach::allattachment.phtml"}}``
 # Screenshot
 
 <h3>Product Page - Table View</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/1-productattachment.png" heigth="600"/>
+<img src="https://marketplace.magento.com/media/catalog/product/7/e/7ec8_01_table_view_description.jpg" heigth="600"/>
 
 <h3>Product Page - List View</h3>
 <img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/2-productattachment.png" alt="Product Page" heigth="600">
