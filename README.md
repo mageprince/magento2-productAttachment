@@ -60,21 +60,33 @@ attachment_id="5,6" template="Mageprince_Productattach::allattachment.phtml"}}``
 
 <h3>Product Page - Table View</h3>
 <img src="https://marketplace.magento.com/media/catalog/product/7/e/7ec8_01_table_view_description.jpg" heigth="600"/>
+<img src="https://marketplace.magento.com/media/catalog/product/8/e/8ed7_03_table_view_tab.jpg" heigth="600"/>
 
 <h3>Product Page - List View</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/2-productattachment.png" alt="Product Page" heigth="600">
+<img src="https://marketplace.magento.com/media/catalog/product/a/9/a96b_02_list_view_description.jpg" alt="Product Page" heigth="600">
+<img src="https://marketplace.magento.com/media/catalog/product/f/a/fa56_04_list_view_tab.jpg" alt="Product Page" heigth="600">
 
 <h3>CMS Page</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/3.1-productattachment.png" alt="CMS page" heigth="600">
+<img src="https://marketplace.magento.com/media/catalog/product/3/5/3508_5_cms_page.jpg" alt="CMS page" heigth="600">
 
 <h3>Product Edit Page</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/3.2-productattachment.jpg" alt="Admin Product Edit Page" heigth="600">
+<img src="https://marketplace.magento.com/media/catalog/product/3/e/3eb5_6_admin_product_edit.jpg" alt="Admin Product Edit Page" heigth="600">
+<img src="https://marketplace.magento.com/media/catalog/product/0/7/0758_6_admin_product_edit_1.jpg" alt="Admin Product Edit Page" heigth="600">
+<img src="https://marketplace.magento.com/media/catalog/product/b/a/ba37_7_admin_product_edit_2.jpg" alt="Admin Product Edit Page" heigth="600">
+
+<h3>Add/Edit Attachment</h3>
+<img src="https://marketplace.magento.com/media/catalog/product/6/d/6d3a_10_admin_attachment_edit_1_updated.png" alt="Add Edit Attachment" heigth="600">
+<img src="https://marketplace.magento.com/media/catalog/product/f/d/fd97_11_admin_attachment_edit_2.jpg" alt="Add Edit Attachment" heigth="600">
+<img src="https://marketplace.magento.com/media/catalog/product/e/7/e740_12_admin_attachment_edit_product.jpg" alt="Add Edit Attachment" heigth="600">
+
+<h3>Add/Edit Attachment Icon</h3>
+<img src="https://marketplace.magento.com/media/catalog/product/d/8/d895_13_admin_icon_edit.jpg" alt="Add Edit Attachment" heigth="600">
 
 <h3>Admin Grid</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/5-productattachment-grid.png" alt="Admin Attachment Grid" heigth="600">
+<img src="https://marketplace.magento.com/media/catalog/product/d/7/d72c_9_admin_grid.jpg" alt="Admin Attachment Grid" heigth="600">
 
 <h3>Configuration</h3>
-<img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/product_attachment_config1.jpeg" alt="Admin Configuration" heigth="600">
+<img src="https://marketplace.magento.com/media/catalog/product/6/7/67ea_14_configuration_1.jpg" alt="Admin Configuration" heigth="600">
 
 <img src="https://raw.githubusercontent.com/mageprince/all-module-screenshots/master/Product-Attahments/product_attachment_config2.jpg" alt="Admin Configuration" heigth="600">
 
