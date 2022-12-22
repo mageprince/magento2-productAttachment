@@ -1,7 +1,7 @@
 # Download Latest Module with Magento 2.4.x support From Magento Marketplace
-# <a href="https://marketplace.magento.com/prince-module-productattachment.html">Download Link</a>
+# <a href="https://marketplace.magento.com/mageprince-module-product-attachment.html">Download Link</a>
 
-<h3><a href="https://marketplace.magento.com/media/catalog/product/prince-module-productattachment-2-1-8-ce/user_guides.pdf">User Guide</a></h3>
+<h3><a href="https://marketplace.magento.com/media/catalog/product/mageprince-module-product-attachment-2-2-0-ce/user_guides.pdf">User Guide</a></h3>
 
 # Magento2 Product Attachment
 
