@@ -69,31 +69,30 @@ template="Mageprince_Productattach::all-attachment.phtml"}}``
 # Screenshot
 
 <h3>Product Page - Table View</h3>
-<img src="https://marketplace.magento.com/media/catalog/product/7/e/7ec8_01_table_view_description.jpg" heigth="600"/>
-<img src="https://marketplace.magento.com/media/catalog/product/8/e/8ed7_03_table_view_tab.jpg" heigth="600"/>
+![01_table_view_description](https://user-images.githubusercontent.com/24751863/210595155-337b0a8e-06f4-48f9-9248-fe58eeb95f44.jpg)
+![03_table_view_tab](https://user-images.githubusercontent.com/24751863/210595207-f32946d9-3ce7-4bcb-96a4-1768b1a6a81c.jpg)
 
 <h3>Product Page - List View</h3>
-<img src="https://marketplace.magento.com/media/catalog/product/a/9/a96b_02_list_view_description.jpg" alt="Product Page" heigth="600">
-<img src="https://marketplace.magento.com/media/catalog/product/f/a/fa56_04_list_view_tab.jpg" alt="Product Page" heigth="600">
+![02_list_view_description](https://user-images.githubusercontent.com/24751863/210595243-59df1953-f741-4600-8e00-c6aaaf6f6ba6.jpg)
+![04_list_view_tab](https://user-images.githubusercontent.com/24751863/210595273-44fb52aa-6626-4702-89d6-cacdaeb655b8.jpg)
 
 <h3>CMS Page</h3>
-<img src="https://marketplace.magento.com/media/catalog/product/3/5/3508_5_cms_page.jpg" alt="CMS page" heigth="600">
+![5_cms_page](https://user-images.githubusercontent.com/24751863/210595318-cf32f588-51d4-46d4-b19d-9ec14482024d.jpg)
 
 <h3>Product Edit Page</h3>
-<img src="https://marketplace.magento.com/media/catalog/product/3/e/3eb5_6_admin_product_edit.jpg" alt="Admin Product Edit Page" heigth="600">
-<img src="https://marketplace.magento.com/media/catalog/product/0/7/0758_6_admin_product_edit_1.jpg" alt="Admin Product Edit Page" heigth="600">
-<img src="https://marketplace.magento.com/media/catalog/product/b/a/ba37_7_admin_product_edit_2.jpg" alt="Admin Product Edit Page" heigth="600">
+![6_admin_product_edit](https://user-images.githubusercontent.com/24751863/210595439-a9627eec-4de8-47f1-8bf8-9dc94089936f.jpg)
+![6_admin_product_edit_1](https://user-images.githubusercontent.com/24751863/210595457-11b5806b-d445-4292-a63b-0f7e75034573.jpg)
+![7_admin_product_edit_2](https://user-images.githubusercontent.com/24751863/210595469-d482f5f1-efdd-476e-bf61-c7e97c8d301a.jpg)
 
 <h3>Add/Edit Attachment</h3>
-<img src="https://marketplace.magento.com/media/catalog/product/6/d/6d3a_10_admin_attachment_edit_1_updated.png" alt="Add Edit Attachment" heigth="600">
-<img src="https://marketplace.magento.com/media/catalog/product/f/d/fd97_11_admin_attachment_edit_2.jpg" alt="Add Edit Attachment" heigth="600">
-<img src="https://marketplace.magento.com/media/catalog/product/e/7/e740_12_admin_attachment_edit_product.jpg" alt="Add Edit Attachment" heigth="600">
+![10_admin_attachment_edit_1_updated](https://user-images.githubusercontent.com/24751863/210595740-64e6f11c-f7ae-4e65-a29c-2c066ece1ff1.png)
+![11_admin_attachment_edit_2](https://user-images.githubusercontent.com/24751863/210595661-3a2389a1-f360-43fc-ac26-e70fa0334642.jpg)
 
 <h3>Add/Edit Attachment Icon</h3>
-<img src="https://marketplace.magento.com/media/catalog/product/d/8/d895_13_admin_icon_edit.jpg" alt="Add Edit Attachment" heigth="600">
+![13_admin_icon_edit](https://user-images.githubusercontent.com/24751863/210595782-4093aa4b-1d95-473b-8bc1-9ae693e8c7f7.jpg)
 
 <h3>Admin Grid</h3>
-<img src="https://marketplace.magento.com/media/catalog/product/d/7/d72c_9_admin_grid.jpg" alt="Admin Attachment Grid" heigth="600">
+![9_admin_grid](https://user-images.githubusercontent.com/24751863/210595834-8acbb5e8-07ce-4b01-8543-49a7af7aa0f0.jpg)
 
 <h3>Configuration</h3>
-<img src="https://marketplace.magento.com/media/catalog/product/6/7/67ea_14_configuration_1.jpg" alt="Admin Configuration" heigth="600">
+![14_configuration_1](https://user-images.githubusercontent.com/24751863/210595890-f54de0a2-df3e-488c-b657-3e65e9570863.jpg)
