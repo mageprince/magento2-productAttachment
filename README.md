@@ -79,30 +79,28 @@ template="Mageprince_Productattach::all-attachment.phtml"}}
 # Screenshot
 
 <h3>Product Page - Table View</h3>
-<img src="https://user-images.githubusercontent.com/24751863/210595155-337b0a8e-06f4-48f9-9248-fe58eeb95f44.jpg"/>
-<img src="https://user-images.githubusercontent.com/24751863/210595207-f32946d9-3ce7-4bcb-96a4-1768b1a6a81c.jpg"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/01_table_view_description.jpg"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/03_table_view_tab.jpg"/>
 
 <h3>Product Page - List View</h3>
-<img src="https://user-images.githubusercontent.com/24751863/210595243-59df1953-f741-4600-8e00-c6aaaf6f6ba6.jpg"/>
-<img src="https://user-images.githubusercontent.com/24751863/210595273-44fb52aa-6626-4702-89d6-cacdaeb655b8.jpg"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/02_list_view_description.jpg"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/04_list_view_tab.jpg"/>
 
 <h3>CMS Page</h3>
-<img src="https://user-images.githubusercontent.com/24751863/210595318-cf32f588-51d4-46d4-b19d-9ec14482024d.jpg"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/5_cms_page.jpg"/>
 
 <h3>Product Edit Page</h3>
-<img src="https://user-images.githubusercontent.com/24751863/210595439-a9627eec-4de8-47f1-8bf8-9dc94089936f.jpg"/>
-<img src="https://user-images.githubusercontent.com/24751863/210595457-11b5806b-d445-4292-a63b-0f7e75034573.jpg"/>
-<img src="https://user-images.githubusercontent.com/24751863/210595469-d482f5f1-efdd-476e-bf61-c7e97c8d301a.jpg"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/6_admin_product_edit.jpg"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/6_admin_product_edit_1.jpg"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/7_admin_product_edit_2.jpg"/>
 
 <h3>Add/Edit Attachment</h3>
-<img src="https://user-images.githubusercontent.com/24751863/210595740-64e6f11c-f7ae-4e65-a29c-2c066ece1ff1.png"/>
-<img src="https://user-images.githubusercontent.com/24751863/210595661-3a2389a1-f360-43fc-ac26-e70fa0334642.jpg"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/10_admin_attachment_edit_1_updated.png"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/11_admin_attachment_edit_2.jpg"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/12_admin_attachment_edit_product.jpg"/>
 
 <h3>Add/Edit Attachment Icon</h3>
-<img src="https://user-images.githubusercontent.com/24751863/210595782-4093aa4b-1d95-473b-8bc1-9ae693e8c7f7.jpg"/>
-
-<h3>Admin Grid</h3>
-<img src="https://user-images.githubusercontent.com/24751863/210595834-8acbb5e8-07ce-4b01-8543-49a7af7aa0f0.jpg"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/13_admin_icon_edit.jpg"/>
 
 <h3>Configuration</h3>
-<img src="https://user-images.githubusercontent.com/24751863/210595890-f54de0a2-df3e-488c-b657-3e65e9570863.jpg"/>
+<img src="https://mageprince.com/media/module_screenshots/productattachments/14_configuration_1.jpg"/>
