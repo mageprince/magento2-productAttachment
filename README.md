@@ -1,7 +1,7 @@
 # Download Latest Module with Magento 2.4.x support From Magento Marketplace
 # <a href="https://marketplace.magento.com/mageprince-module-product-attachment.html">Download Link</a>
 
-<h3><a href="https://marketplace.magento.com/media/catalog/product/mageprince-module-product-attachment-2-2-0-ce/user_guides.pdf">User Guide</a></h3>
+<h3><a href="https://commercemarketplace.adobe.com/media/catalog/product/mageprince-module-product-attachment-2-2-7-ece/user_guides.pdf">User Guide</a></h3>
 
 # Magento2 Product Attachment
 
@@ -30,7 +30,7 @@ The Product Attachments extension for Magento 2 equips product pages with a spec
 </li>
 </ul>
 
-<b>Check full description on <a href="https://marketplace.magento.com/prince-module-productattachment.html">Magento Marketplace</a></b>
+<b>Check full description on <a href="https://commercemarketplace.adobe.com/mageprince-module-product-attachment.html#description">Magento Marketplace</a></b>
 
 # Demo
 
@@ -79,28 +79,20 @@ template="Mageprince_Productattach::all-attachment.phtml"}}
 # Screenshot
 
 <h3>Product Page - Table View</h3>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/01_table_view_description.jpg"/>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/03_table_view_tab.jpg"/>
+<img src="https://commercemarketplace.adobe.com/media/catalog/product/2/9/2932_01_table_view_description_2.jpg"/>
+<img src="https://commercemarketplace.adobe.com/media/catalog/product/d/d/dd15_03_table_view_tab_2.jpg"/>
 
 <h3>Product Page - List View</h3>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/02_list_view_description.jpg"/>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/04_list_view_tab.jpg"/>
+<img src="https://commercemarketplace.adobe.com/media/catalog/product/e/f/efda_02_list_view_description_2.jpg"/>
+<img src="https://commercemarketplace.adobe.com/media/catalog/product/2/4/244e_04_list_view_tab_2.jpg"/>
 
 <h3>CMS Page</h3>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/5_cms_page.jpg"/>
+<img src="https://commercemarketplace.adobe.com/media/catalog/product/4/1/4155_5_cms_page_2.jpg"/>
 
 <h3>Product Edit Page</h3>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/6_admin_product_edit.jpg"/>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/6_admin_product_edit_1.jpg"/>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/7_admin_product_edit_2.jpg"/>
+<img src="https://commercemarketplace.adobe.com/media/catalog/product/9/1/915c_6_admin_product_edit_2.jpg"/>
+<img src="https://commercemarketplace.adobe.com/media/catalog/product/9/1/9122_7_admin_product_edit_2_2.jpg"/>
+<img src="https://commercemarketplace.adobe.com/media/catalog/product/3/b/3b60_6_admin_product_edit_1_2.jpg"/>
 
 <h3>Add/Edit Attachment</h3>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/10_admin_attachment_edit_1_updated.png"/>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/11_admin_attachment_edit_2.jpg"/>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/12_admin_attachment_edit_product.jpg"/>
-
-<h3>Add/Edit Attachment Icon</h3>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/13_admin_icon_edit.jpg"/>
-
-<h3>Configuration</h3>
-<img src="https://mageprince.com/media/module_screenshots/productattachments/14_configuration_1.jpg"/>
+<img src="https://commercemarketplace.adobe.com/media/catalog/product/7/3/730f_10_admin_attachment_edit_1_2.jpg"/>
